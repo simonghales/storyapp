@@ -1,0 +1,36 @@
+
+@mixin gradient($colour1, $colour2) {
+	background-image: -webkit-gradient(
+          linear,
+          left top,
+          left bottom,
+          color-stop(0, $colour1),
+          color-stop(1, $colour2)
+  );
+  background-image: -o-linear-gradient(bottom, $colour1 0%, $colour2 100%);
+  background-image: -moz-linear-gradient(bottom, $colour1 0%, $colour2 100%);
+  background-image: -webkit-linear-gradient(bottom, $colour1 0%, $colour2 100%);
+  background-image: -ms-linear-gradient(bottom, $colour1 0%, $colour2 100%);
+  background-image: linear-gradient(to bottom, $colour1 0%, $colour2 100%);
+}
+
+@mixin border-radius($radius) {
+	border-radius: $radius;
+}
+
+@mixin box-shadow($shadow) {
+  box-shadow: $shadow;
+}
+
+// Colours
+
+$colourLight: #DBE8F0;
+$colourLightBlue: #669BB2;
+$colourNiceBlue: #0049CD;
+
+$colourSyntax: #F93459;
+$colourSemantic: #0081FF;
+$colourDeprecated: #9800FF;
+$colourPractice: #FF9115;
+
+$fontStack: Helvetica, Arial, Verdana, sans-serif;

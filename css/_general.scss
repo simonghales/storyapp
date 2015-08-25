@@ -1,0 +1,86 @@
+// TODO. Move this stuff into separate .scss files
+
+.bgImg {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.intro {
+	@extend .bgImg;
+	width: 100%;
+	min-height: 100vh;
+	background-image: url(../images/boats.jpg);
+
+	h2 {
+		font-size: 1.8em;
+		line-height: 1.3em;
+		margin-bottom: 5px;
+		color: #2A4955;
+	}
+
+	h3 {
+		font-size: 1em;
+		font-weight: 600;
+		max-width: 400px;
+		color: #6A767A;
+	}
+
+}
+
+.content {
+	@extend .clearfix;
+}
+
+.content__padded {
+	padding: 80px;
+}
+
+.content__paddedExtra {
+	padding: 120px 80px;
+}
+
+.storyRow {
+	@extend .bgImg;
+	width: 100%;
+}
+
+// Heights
+
+.height__medium {
+	height: 700px;
+}
+
+.height__full {
+	height: 100vh;
+}
+
+// Text Blocks
+
+.textBlock__default {
+	
+	h2 {
+	    color: #53728E;
+		font-size: 1.4em;
+
+		&.darker {
+			color: #485961;
+		}
+
+	}
+
+}
+
+//
+
+.storyRow--chiao {
+	background-image: url(../images/chiao.jpg);
+}
+
+.storyRow--simon {
+	background-image: url(../images/simon.jpg);
+}
+
+.storyRow--beach {
+	background-image: url(../images/beachUs.jpg);
+}

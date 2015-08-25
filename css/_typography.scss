@@ -1,0 +1,14 @@
+body {
+	font-size: 13pt;
+	line-height: 17pt;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+.font__heading {
+	font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	@extend .font__heading;
+	font-weight: bold;
+}

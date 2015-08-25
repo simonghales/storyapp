@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
+.clearfix:after{
+  display:block;visibility:hidden;clear:both;height:0;content:" ";font-size:0
+}
+
+* html .clearfix{
+  -ms-zoom:1;zoom:1
+}
+
+*:first-child+html .clearfix{
+  -ms-zoom:1;zoom:1
+}
+
+.float__left {
+	float: left;
+}
+
+.float__right {
+	float: right;
+}
+
+.align__left {
+	text-align: left;
+}
+
+.align__right {
+	text-align: right;
+}
+
+.fillSpace {
+	overflow: hidden;
+}
+
+html,
+body {
+	min-height: 100%;
+}
