@@ -20,8 +20,6 @@ var enableEditing = function() {
 
 	// Story Containers
 	$(".storyContainer__resizable").resizable({
-		// maxWidth: "100%", get width of screen?
-		// containment: "parent",
 		handles: "e, w",
 		resize: function(event, ui) {
 			var newWidth = ui.originalSize.width+((ui.size.width - ui.originalSize.width)*2);
@@ -31,16 +29,48 @@ var enableEditing = function() {
 	            at: "center center"
 	        });
 	        $(this).css("left", "auto").css("right", "auto");
-	        // ui.size.width += (ui.size.width - ui.originalSize.width);
-	        //not knowing how you center your stuff i do it the jquery-ui way can be left out
-	        // $(this).position({
-	        //     of: $(this).parent(),
-	        //     my: "center center",
-	        //     at: "center center"
-	        // })
 	    }
 	});
 	$(".storyContainer__resizable").resizable("enable");
+
+	// Story Content
+	$(".storyContent__resizable").resizable({
+		handles: "all",
+		// containment: "parent",
+		resize: function(event, ui) {
+			var newWidth = ui.size.width += (ui.size.width - ui.originalSize.width);
+			var newHeight = ui.size.height += (ui.size.height - ui.originalSize.height);
+			var parentHeight = $(this).parent().height();
+			var parentWidth = $(this).parent().width();
+
+	        $(this).width("auto").height("auto").position({
+	            of: $(this).parent(),
+	            my: "center center",
+	            at: "center center"
+	        });
+
+	        // calculate top offset
+	        var horizontalOffset = (parentWidth - newWidth) / 2;
+	        var verticalOffset = (parentHeight - newHeight) / 2;
+	        if(horizontalOffset < 10) {
+	        	horizontalOffset = 10;
+	        }
+	        if(verticalOffset < 10) {
+	        	verticalOffset = 10;
+	        };
+	        ui.size.height = "auto";
+	        ui.size.width = "auto";
+	        $(this).css({
+	        	"top" : verticalOffset, 
+	        	"bottom" : verticalOffset, 
+	        	"left" : horizontalOffset, 
+	        	"right" : horizontalOffset
+	        });
+
+	        // $(this).css("left", "auto").css("right", "auto");
+	    }
+	});
+	$(".storyContent__resizable").resizable("enable");
 
 	// Story Text Blocks
 	$(".storyText__resizable").resizable({

@@ -1,5 +1,6 @@
 
 $editing-shade: rgba(1, 46, 82, 0.48);
+$editing-shade__lighter: rgba(1, 46, 82, 0.35);
 $editing-primary: #FFB658;
 
 .storyPage {
@@ -50,7 +51,7 @@ $editing-primary: #FFB658;
 
 	.storyContainer {
 		position: relative;
-		outline: $editing-shade solid 1000px;
+		outline: $editing-shade solid 2000px;
 		// @include box-shadow(0 0 0 1000px rgba(0,0,0,0.2));
 	}
 
@@ -63,15 +64,23 @@ $editing-primary: #FFB658;
 .storyPadding {
 	width: 100%;
 	height: 100%;
+	position: relative;
 }
 
 .padding__default {
-	padding: 80px 40px;
+	// padding: 80px 40px;
+	// padding: 10px;
 }
 
 .storyContent {
-	width: 100%;
-	height: 100%;
+	// width: 100%;
+	// height: 100%;
+	margin: 0 auto;
+	position: absolute;
+	top: 80px;
+	left: 40px;
+	right: 40px;
+	bottom: 80px;
 }
 
 .state__editing {
@@ -82,7 +91,7 @@ $editing-primary: #FFB658;
 
 	.storyContent {
 		outline: #FFF dotted 2px;
-		@include box-shadow(0 0 0 1000px $editing-shade);
+		@include box-shadow(0 0 0 2000px $editing-shade__lighter);
 	}
 
 }
