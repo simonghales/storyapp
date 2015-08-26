@@ -17,14 +17,14 @@ $editing-primary: #FFB658;
 	margin-right: auto;
 
 	&.size__default {
-		max-width: 1024px;
+		width: 1024px;
 	}
 
 }
 
 .storyContainer-slider {
 	display: none;
-	cursor: w-resize;
+	// cursor: w-resize;
 	position: absolute;
 	top: 0;
 	left: 0;
