@@ -1,22 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ng-app="storyApp">
 <head>
 	<meta charset="UTF-8">
 	<title>StoryApp</title>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,300,400,600,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="dependencies/jqueryui/jquery-ui.min.css">
+	<link rel="stylesheet" href="dependencies/jqueryui/jquery-ui.structure.min.css">
+	<link rel="stylesheet" href="dependencies/jqueryui/jquery-ui.theme.min.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="">
+	<div id="globalEditControls" class="globalEditControls">
+		<div>Toggle Edit</div>
+	</div>
 	<div class="siteWrapper">
 		<article class="storyPage">
-			<div class="size__default">
-				<div class="padding__default">
-					BOOP WOO
+			<div class="storyContainer size__default">
+				<div class="storyContainer-slider storyContainer-slider--left"></div>
+				<div class="storyContainer-slider storyContainer-slider--right"></div>
+				<div class="storyPadding padding__default">
+					<div class="storyContent">
+						<div class="storyText storyText__resizable">
+							<div class="headingContainer">
+								<h2 class="heading hide__editing">China Trip 2015</h2>
+								<div class="inputWrapper show__editing">
+									<h2 class="heading editable" contenteditable="true">China Trip 2015</h2>
+								</div>
+							</div>
+							<div class="subHeadingContainer">
+								<h3 class="subHeading hide__editing">China and Hong Kong</h3>
+								<div class="inputWrapper show__editing">
+									<h3 class="subHeading editable" contenteditable="true">China and Hong Kong</h3>
+								</div>
+							</div>
+							<div class="descriptionContainer">
+								<p class="description hide__editing">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel totam ullam aliquid vitae cum quos quis deserunt earum eveniet ipsa aut, incidunt! Doloremque hic quod porro ea consequatur, dolores temporibus.
+								</p>
+								<div class="inputWrapper show__editing">
+									<p class="description editable" contenteditable="true">
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel totam ullam aliquid vitae cum quos quis deserunt earum eveniet ipsa aut, incidunt! Doloremque hic quod porro ea consequatur, dolores temporibus.
+									</p>
+								</div>
+							</div>
+							<div class="editControls show__editing">
+								<div class="storyText-slider slider__left"></div>
+								<div class="storyText-slider slider__top"></div>
+								<div class="storyText-slider slider__right"></div>
+								<div class="storyText-slider slider__bottom"></div>
+								<div class="storyText-corner corner__topLeft"></div>
+								<div class="storyText-corner corner__topRight"></div>
+								<div class="storyText-corner corner__bottomLeft"></div>
+								<div class="storyText-corner corner__bottomRight"></div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</article>
-		<section class="intro">
-			<div class="content size__default content__paddedExtra">
+		<!-- <section class="intro">
+			<div class="content storyContainer size__default content__paddedExtra">
 				<h2>China Trip 2015</h2>
 				<h3>
 					Some photos and stories from my 2015 trip to China and Hong Kong
@@ -24,14 +67,14 @@
 			</div>
 		</section>
 		<section class="storyRow storyRow--chiao height__medium">
-			<div class="content size__default content__paddedExtra">
+			<div class="content storyContainer size__default content__paddedExtra">
 				<div class="textBlock textBlock__default align__right float__right">
 					<h2>Meet Chiao!</h2>
 				</div>
 			</div>
 		</section>
 		<section class="storyRow storyRow--simon height__medium">
-			<div class="content size__default content__paddedExtra">
+			<div class="content storyContainer size__default content__paddedExtra">
 				<div class="textBlock textBlock__default">
 					<h2>And this guy...</h2>
 				</div>
@@ -43,7 +86,13 @@
 					<h2 class="darker">Here's the two of us</h2>
 				</div>
 			</div>
-		</section>
+		</section> -->
 	</div>
+	<script src="js/libraries/jquery-2.1.4.min.js"></script>
+	<script src="dependencies/jqueryui/jquery-ui.min.js"></script>
+	<script src="dependencies/angular/angular.js"></script>
+	<script src="dependencies/angular/angular-ui-router.min.js"></script>
+	<script src="js/storyapp/storyApp.js"></script>
+	<script src="js/storyapp/main.js"></script>
 </body>
 </html>

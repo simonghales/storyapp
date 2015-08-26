@@ -1,0 +1,23 @@
+
+.show__editing,
+.show__empty,
+.show__loading {
+	display: none;
+}
+
+.state__editing .show__editing,
+.state__empty .show__empty,
+.state__loading .show__loading {
+	display: block;
+
+	&.__inline {
+		display: inline-block;
+	}
+
+}
+
+.state__editing .hide__editing,
+.state__empty .hide__empty,
+.state__loading .hide__loading {
+	display: none;
+}

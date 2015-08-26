@@ -1,21 +1,203 @@
 
+$editing-shade: rgba(1, 46, 82, 0.48);
+$editing-primary: #FFB658;
 
 .storyPage {
 	@extend .bgImg;
 	width: 100%;
 	height: 100vh;
+	overflow: hidden;
+	background-image: url(../images/boats.jpg);
+}
 
-	background-image: url(../images/bg-lake.jpg);
+.storyContainer {
+	height: 100%;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+
+	&.size__default {
+		max-width: 1024px;
+	}
 
 }
 
-.size__default {
+.storyContainer-slider {
+	display: none;
+	cursor: w-resize;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	height: 100%;
+	width: 1px;
+	background-color: #FFF;
+	@include box-shadow(0 0 0 1px rgba(0,0,0,0.25));
+
+	&:active,
+	&:hover {
+		background-color: $editing-primary;
+	}
+
+}
+
+.storyContainer-slider--right {
+	left: auto;
+	right: 0;
+}
+
+.state__editing {
+
+	.storyContainer {
+		position: relative;
+		outline: $editing-shade solid 1000px;
+		// @include box-shadow(0 0 0 1000px rgba(0,0,0,0.2));
+	}
+
+	.storyContainer-slider {
+		display: block;
+	}
+
+}
+
+.storyPadding {
 	width: 100%;
-	max-width: 1024px;
-	margin-left: auto;
-	margin-right: auto;
+	height: 100%;
 }
 
 .padding__default {
+	padding: 80px 40px;
+}
 
+.storyContent {
+	width: 100%;
+	height: 100%;
+}
+
+.state__editing {
+
+	.storyPadding {
+		overflow: hidden;
+	}
+
+	.storyContent {
+		outline: #FFF dotted 2px;
+		@include box-shadow(0 0 0 1000px $editing-shade);
+	}
+
+}
+
+.storyText {
+	position: relative;
+	width: 400px;
+	max-width: 100%;
+}
+
+.state__editing {
+
+	.storyText {
+		outline: #FFF dotted 2px;
+		@include box-shadow(0 0 0 4px rgba(0,0,0,0.25));
+	}
+
+}
+
+.storyText-slider {
+	position: absolute;
+
+	&.slider__left,
+	&.slider__right {
+		height: 100%;
+		width: 4px;
+		top: 0;
+		bottom: 0;
+		// cursor: w-resize;
+	}
+
+	&.slider__left {
+		left: -2px;
+	}
+
+	&.slider__right {
+		right: -2px;
+	}
+
+	&.slider__top,
+	&.slider__bottom {
+		width: 100%;
+		height: 4px;
+		left: 0;
+		right: 0;
+		// cursor: n-resize;
+	}
+
+	&.slider__top {
+		top: -2px;
+	}
+
+	&.slider__bottom {
+		bottom: -2px;
+	}
+
+}
+
+.headingContainer {
+	margin-bottom: 5px;
+
+	.inputWrapper {}
+
+	input {
+		@extend .heading;
+	}
+
+}
+
+.heading {
+	font-size: 1.6em;
+	line-height: 1.3em;
+	color: #2F3851;
+	font-weight: bold;
+}
+
+.subHeadingContainer {
+	margin-bottom: 5px;
+
+	.inputWrapper {}
+
+	input {
+		@extend .subHeading;
+	}
+
+}
+
+.subHeading {
+    color: #54616A;
+    font-weight: 600;
+}
+
+.descriptionContainer {
+	margin-bottom: 5px;
+
+	.inputWrapper {}
+
+	.input {
+		@extend .description;
+	}
+
+}
+
+.description {
+	font-size: .8em;
+}
+
+.globalEditControls {
+	position: fixed;
+	left: 100px;
+	bottom: 0;
+	background-color: #FFF;
+	z-index: 50;
+	padding: 6px 8px;
+	font-size: .7em;
+	font-weight: bold;
+	cursor: pointer;
 }
