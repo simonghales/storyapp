@@ -29,6 +29,7 @@ var enableEditing = function() {
 	            at: "center center"
 	        });
 	        $(this).css("left", "auto").css("right", "auto");
+	        // change to update max-width, not width
 	    }
 	});
 	$(".storyContainer__resizable").resizable("enable");
