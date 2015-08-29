@@ -1,0 +1,11 @@
+.button__reset {
+	background: none;
+	border: 0;
+	cursor: pointer;
+	padding: 0;
+
+	&:focus {
+		outline: none;
+	}
+
+}

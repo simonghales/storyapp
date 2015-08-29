@@ -1,19 +1,31 @@
 // Source: http://stackoverflow.com/questions/23066731/using-jqueryui-resizeable-with-angularjs
-storyApp.directive('resizable', function () {
+storyApp.directive('resizable', ['$rootScope', 'Author', function ($rootScope, Author) {
 
     return {
         restrict: 'A',
         scope: {
-            // callback: '&onResize',
             resizableConfig: '=',
         },
         link: function postLink(scope, elem, attrs) {
+
+            scope.editing = Author.getEditing();
             var resizableConfig = scope.resizableConfig;
-            console.log("Resizable configuration:", resizableConfig);
+
             elem.resizable(resizableConfig);
-            // elem.on('resizestop', function () {
-            //     if (scope.callback) scope.callback();
-            // });
+
+            if(!scope.editing) {
+                elem.resizable("disable");
+            }
+
+            $rootScope.$on('author-editingChanged', function(event, value) {
+                scope.editing = value;
+                if(!scope.editing) {
+                    elem.resizable("disable");
+                } else {
+                    elem.resizable("enable");
+                }
+            });
+
         }
     };
-});
+}]);

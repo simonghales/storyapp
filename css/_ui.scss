@@ -1,0 +1,33 @@
+
+
+.storyUi-inlineOptions {
+	@extend .clearfix;
+	$button-size: 24px;
+	position: absolute;
+	z-index: 50; // sass for z-index soon pls
+	right: 100%;
+	margin-right: 2px;
+	height: $button-size;
+	width: $button-size * 2;
+	background-color: white;
+    @include border-radius(4px 0 0 4px);
+}
+
+.storyUi-button {
+	$button-size: 24px;
+	@extend .button__reset;
+	display: block;
+	width: $button-size;
+    text-align: center;
+    line-height: $button-size;
+    font-size: .7em;
+    text-align: center;
+    color: #888;
+
+    float: left;
+
+	&:hover {
+		color: #333	;
+	}
+
+}

@@ -1,6 +1,11 @@
-storyApp.controller('Story', function($scope) {
+storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope, $rootScope, Author) {
 	// Avoid using $scope, use story = this instead
 	var story = this;
+
+	story.editing = Author.getEditing();
+	$rootScope.$on('author-editingChanged', function(event, value) {
+		story.editing = value;
+	});
 
 	// load story data
 	story.data = {
@@ -11,9 +16,9 @@ storyApp.controller('Story', function($scope) {
 				subheading : "China and Hong Kong",
 				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt ea aliquam, earum recusandae similique! Repellendus temporibus beatae velit, a amet ullam inventore libero veritatis distinctio rem voluptatum consequuntur voluptate facere.",
 				measurements : {
-					containerWidth : 1024,
-					paddingVertical : 80,
-					paddingHorizontal : 40
+					containerWidth : "1024px",
+					paddingVertical : "80px",
+					paddingHorizontal : "40px"
 				}
 			},
 			{
@@ -22,20 +27,20 @@ storyApp.controller('Story', function($scope) {
 				subheading : "Yay",
 				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum voluptas perferendis unde, corporis nulla odit. Repellendus iusto nam pariatur, temporibus soluta dolore molestias quis accusantium eum quae quo fuga assumenda!",
 				measurements : {
-					containerWidth : 960,
-					paddingVertical : 80,
-					paddingHorizontal : 40
+					containerWidth : "820px",
+					paddingVertical : "20px",
+					paddingHorizontal : "20px"
 				}
 			},
 			{
-				image : "images/chiao.jpg",
+				image : "images/bg-glasses.jpg",
 				heading : "Chiao!",
 				subheading : "Yay",
 				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
 				measurements : {
-					containerWidth : 1280,
-					paddingVertical : 40,
-					paddingHorizontal : 40
+					containerWidth : "1280px",
+					paddingVertical : "40px",
+					paddingHorizontal : "40px"
 				}
 			},
 			{
@@ -44,23 +49,27 @@ storyApp.controller('Story', function($scope) {
 				subheading : "Woo",
 				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
 				measurements : {
-					containerWidth : 1024,
-					paddingVertical : 80,
-					paddingHorizontal : 40
+					containerWidth : "1024px",
+					paddingVertical : "80px",
+					paddingHorizontal : "40px"
 				}
 			},
 			{
-				image : "images/beachUs.jpg",
+				image : "images/bg-us.jpg",
 				heading : "We!",
 				subheading : "Yeah",
 				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
 				measurements : {
-					containerWidth : 720,
-					paddingVertical : 120,
-					paddingHorizontal : 40
+					containerWidth : "720px",
+					paddingVertical : "120px",
+					paddingHorizontal : "40px"
 				}
 			},
 		]
 	};
 
-});
+	story.toggleEditing = function() {
+		Author.toggleEditing();
+	}
+
+}]);

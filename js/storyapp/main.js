@@ -6,7 +6,7 @@ var siteStates = {
 $(document).ready(function() {
 
 	$("#globalEditControls").click(function() {
-		toggleEditing();
+		// toggleEditing();
 	});
 
 });
@@ -37,7 +37,6 @@ var enableEditing = function() {
 	// Story Content
 	$(".storyContent__resizable").resizable({
 		handles: "all",
-		// containment: "parent",
 		resize: function(event, ui) {
 			var newWidth = ui.size.width += (ui.size.width - ui.originalSize.width);
 			var newHeight = ui.size.height += (ui.size.height - ui.originalSize.height);
@@ -67,8 +66,6 @@ var enableEditing = function() {
 	        	"left" : horizontalOffset, 
 	        	"right" : horizontalOffset
 	        });
-
-	        // $(this).css("left", "auto").css("right", "auto");
 	    }
 	});
 	$(".storyContent__resizable").resizable("enable");

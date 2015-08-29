@@ -18,7 +18,7 @@ $editing-primary: #FFB658;
 	margin-right: auto;
 
 	&.size__default {
-		width: 1024px;
+		max-width: 1024px;
 	}
 
 }
@@ -87,7 +87,7 @@ $editing-primary: #FFB658;
 .state__editing {
 
 	.storyPadding {
-		overflow: hidden;
+		// overflow: hidden;
 	}
 
 	.storyContent {
@@ -101,6 +101,11 @@ $editing-primary: #FFB658;
 	position: relative;
 	width: 400px;
 	max-width: 100%;
+
+	.inputWrapper {
+		position: relative;
+	}
+
 }
 
 .state__editing {
@@ -154,7 +159,8 @@ $editing-primary: #FFB658;
 .headingContainer {
 	margin-bottom: 5px;
 
-	.inputWrapper {}
+	.inputWrapper {
+	}
 
 	input {
 		@extend .heading;
