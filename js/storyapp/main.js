@@ -19,20 +19,20 @@ var toggleEditing = function() {
 var enableEditing = function() {
 
 	// Story Containers
-	$(".storyContainer__resizable").resizable({
-		handles: "e, w",
-		resize: function(event, ui) {
-			var newWidth = ui.originalSize.width+((ui.size.width - ui.originalSize.width)*2);
-	        $(this).width(newWidth).position({
-	            of: $(this).parent(),
-	            my: "center center",
-	            at: "center center"
-	        });
-	        $(this).css("left", "auto").css("right", "auto");
-	        // change to update max-width, not width
-	    }
-	});
-	$(".storyContainer__resizable").resizable("enable");
+	// $(".storyContainer__resizable").resizable({
+	// 	handles: "e, w",
+	// 	resize: function(event, ui) {
+	// 		var newWidth = ui.originalSize.width+((ui.size.width - ui.originalSize.width)*2);
+	//         $(this).width(newWidth).position({
+	//             of: $(this).parent(),
+	//             my: "center center",
+	//             at: "center center"
+	//         });
+	//         $(this).css("left", "auto").css("right", "auto");
+	//         // change to update max-width, not width
+	//     }
+	// });
+	// $(".storyContainer__resizable").resizable("enable");
 
 	// Story Content
 	$(".storyContent__resizable").resizable({
@@ -86,7 +86,7 @@ var enableEditing = function() {
 var disableEditing = function() {
 
 	// Story Containers
-	$(".storyContainer__resizable").resizable("disable");
+	// $(".storyContainer__resizable").resizable("disable");
 
 	// Story Text Blocks
 	$(".storyText__resizable").resizable("disable");

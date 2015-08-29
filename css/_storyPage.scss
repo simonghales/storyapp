@@ -34,6 +34,7 @@ $editing-primary: #FFB658;
 	width: 1px;
 	background-color: #FFF;
 	@include box-shadow(0 0 0 1px rgba(0,0,0,0.25));
+	z-index: 2;
 
 	&:active,
 	&:hover {

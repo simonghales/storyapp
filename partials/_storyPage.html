@@ -1,42 +1,45 @@
-<article class="storyPage" data-ng-controller="Page as page" back-img="{{page.data.image}}">
-	<div class="storyContainer storyContainer__resizable size__default">
-		<div class="storyContainer-slider storyContainer-slider--left"></div>
-		<div class="storyContainer-slider storyContainer-slider--right"></div>
-		<div class="storyPadding padding__default">
-			<div class="storyContent storyContent__resizable">
-				<div class="storyText storyText__resizable">
-					<div class="headingContainer">
-						<h2 class="heading hide__editing">{{page.data.heading}}</h2>
-						<div class="inputWrapper show__editing">
-							<h2 class="heading editable" contenteditable="true" ng-model="page.data.heading"></h2>
+<div data-ng-controller="Page as page"> <!-- move back to article object -->
+	<h2>What is the width??? {{page.elementWidth}}</h2>
+	<article class="storyPage" back-img="{{page.data.image}}">
+		<div class="storyContainer storyContainer__resizable size__default" resizable resizable-config="page.resizableContainer.configuration">
+			<div class="storyContainer-slider storyContainer-slider--left"></div>
+			<div class="storyContainer-slider storyContainer-slider--right"></div>
+			<div class="storyPadding padding__default">
+				<div class="storyContent storyContent__resizable">
+					<div class="storyText storyText__resizable">
+						<div class="headingContainer">
+							<h2 class="heading hide__editing">{{page.data.heading}}</h2>
+							<div class="inputWrapper show__editing">
+								<h2 class="heading editable" contenteditable="true" ng-model="page.data.heading"></h2>
+							</div>
 						</div>
-					</div>
-					<div class="subHeadingContainer">
-						<h3 class="subHeading hide__editing">{{page.data.subheading}}</h3>
-						<div class="inputWrapper show__editing">
-							<h3 class="subHeading editable" contenteditable="true" ng-model="page.data.subheading"></h3>
+						<div class="subHeadingContainer">
+							<h3 class="subHeading hide__editing">{{page.data.subheading}}</h3>
+							<div class="inputWrapper show__editing">
+								<h3 class="subHeading editable" contenteditable="true" ng-model="page.data.subheading"></h3>
+							</div>
 						</div>
-					</div>
-					<div class="descriptionContainer">
-						<p class="description hide__editing">
-							{{page.data.description}}
-						</p>
-						<div class="inputWrapper show__editing">
-							<p class="description editable" contenteditable="true" ng-model="page.data.description"></p>
+						<div class="descriptionContainer">
+							<p class="description hide__editing">
+								{{page.data.description}}
+							</p>
+							<div class="inputWrapper show__editing">
+								<p class="description editable" contenteditable="true" ng-model="page.data.description"></p>
+							</div>
 						</div>
-					</div>
-					<div class="editControls show__editing">
-						<div class="storyText-slider slider__left"></div>
-						<div class="storyText-slider slider__top"></div>
-						<div class="storyText-slider slider__right"></div>
-						<div class="storyText-slider slider__bottom"></div>
-						<div class="storyText-corner corner__topLeft"></div>
-						<div class="storyText-corner corner__topRight"></div>
-						<div class="storyText-corner corner__bottomLeft"></div>
-						<div class="storyText-corner corner__bottomRight"></div>
+						<div class="editControls show__editing">
+							<div class="storyText-slider slider__left"></div>
+							<div class="storyText-slider slider__top"></div>
+							<div class="storyText-slider slider__right"></div>
+							<div class="storyText-slider slider__bottom"></div>
+							<div class="storyText-corner corner__topLeft"></div>
+							<div class="storyText-corner corner__topRight"></div>
+							<div class="storyText-corner corner__bottomLeft"></div>
+							<div class="storyText-corner corner__bottomRight"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</article>
+	</article>
+</div>
