@@ -1,1 +1,1 @@
-var storyApp = angular.module('storyApp', ['ui.router']);
+var storyApp = angular.module('storyApp', ['ui.router', 'mp.colorPicker']);

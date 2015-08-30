@@ -18,8 +18,14 @@
 	border-radius: $radius;
 }
 
-@mixin box-shadow($shadow) {
-  box-shadow: $shadow;
+@mixin box-shadow($shadow, $shadow2:false) {
+  $params: $shadow;
+  @if $shadow2 
+  { $params: $shadow, $shadow2; }
+  
+  -webkit-box-shadow: $params;
+  -moz-box-shadow: $params;
+  box-shadow: $params;
 }
 
 // Colours

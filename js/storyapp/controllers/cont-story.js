@@ -34,6 +34,12 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 			{
 				image : "images/bg-lake.jpg",
 				heading : "New journey!",
+				headingDetails : {
+					text : "New journey!",
+					color : "#000",
+					size : "24px",
+					alignment : "left"
+				},
 				subheading : "Yay",
 				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum voluptas perferendis unde, corporis nulla odit. Repellendus iusto nam pariatur, temporibus soluta dolore molestias quis accusantium eum quae quo fuga assumenda!",
 				measurements : {
@@ -49,6 +55,12 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 			{
 				image : "images/bg-glasses.jpg",
 				heading : "Chiao!",
+				headingDetails : {
+					text : "Chiao!",
+					color : "#000",
+					size : "24px",
+					alignment : "left"
+				},
 				subheading : "Yay",
 				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
 				measurements : {
@@ -64,6 +76,12 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 			{
 				image : "images/bg-fields.jpg",
 				heading : "Dali",
+				headingDetails : {
+					text : "Dali",
+					color : "#000",
+					size : "24px",
+					alignment : "left"
+				},
 				subheading : "Woo",
 				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
 				measurements : {
@@ -79,8 +97,14 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 			{
 				image : "images/bg-bbq.jpg",
 				heading : "Yum!",
+				headingDetails : {
+					text : "Yum!",
+					color : "#000",
+					size : "24px",
+					alignment : "left"
+				},
 				subheading : "Yeah",
-				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+				description : "The orange really masks the salmonella.",
 				measurements : {
 					containerWidth : "720px",
 					paddingVertical : "120px",
