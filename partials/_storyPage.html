@@ -4,12 +4,12 @@
 			<div class="storyContainer-slider storyContainer-slider--left"></div>
 			<div class="storyContainer-slider storyContainer-slider--right"></div>
 			<div class="storyPadding padding__default">
-				<div class="storyContent storyContent__resizable" resizable resizable-config="page.resizableContent.configuration" ng-style="{ 'top' : page.data.measurements.paddingVertical, 'bottom' : page.data.measurements.paddingVertical, 'left' : page.data.measurements.paddingHorizontal, 'right' : page.data.measurements.paddingHorizontal }">
-					<div class="storyText storyText__resizable">
+				<div class="storyContent storyContent__resizable" resizable resizable-config="page.resizableContent.configuration" ng-style="page.setContentCSS();">
+					<div class="storyText storyText__resizable" resizable resizable-config="page.resizableText.configuration" position-vertical="page.data.measurements.positionVertical" position-horizontal="page.data.measurements.positionHorizontal" ng-class="page.setPositionClasses();" ng-style="page.setTextDimensions();">
 						<div class="headingContainer">
 							<h2 class="heading hide__editing">{{page.data.heading}}</h2>
 							<div class="inputWrapper show__editing">
-								<div class="storyUi-inlineOptions">
+								<div class="storyUi-inlineOptions storyUi-inlineOptions__heading">
 									<button class="storyUi-button">
 										<span class="icon icon-font"></span>
 									</button>
@@ -23,7 +23,7 @@
 						<div class="subHeadingContainer">
 							<h3 class="subHeading hide__editing">{{page.data.subheading}}</h3>
 							<div class="inputWrapper show__editing">
-								<div class="storyUi-inlineOptions">
+								<div class="storyUi-inlineOptions storyUi-inlineOptions__subheading">
 									<button class="storyUi-button">
 										<span class="icon icon-font"></span>
 									</button>
@@ -39,7 +39,7 @@
 								{{page.data.description}}
 							</p>
 							<div class="inputWrapper show__editing">
-								<div class="storyUi-inlineOptions">
+								<div class="storyUi-inlineOptions storyUi-inlineOptions__description">
 									<button class="storyUi-button">
 										<span class="icon icon-font"></span>
 									</button>
@@ -59,6 +59,20 @@
 							<div class="storyText-corner corner__topRight"></div>
 							<div class="storyText-corner corner__bottomLeft"></div>
 							<div class="storyText-corner corner__bottomRight"></div>
+						</div>
+						<div class="storyUi-positionControls show__editing">
+							<button class="storyUi-positionButton direction__left" ng-click="page.changeDirection('left', 'horizontal');">
+								<span class="icon icon-left-big"></span>
+							</button>
+							<button class="storyUi-positionButton direction__right" ng-click="page.changeDirection('right', 'horizontal');">
+								<span class="icon icon-right-big"></span>
+							</button>
+							<button class="storyUi-positionButton direction__up" ng-click="page.changeDirection('top', 'vertical');">
+								<span class="icon icon-up-big"></span>
+							</button>
+							<button class="storyUi-positionButton direction__down" ng-click="page.changeDirection('bottom', 'vertical');">
+								<span class="icon icon-down-big"></span>
+							</button>
 						</div>
 					</div>
 				</div>

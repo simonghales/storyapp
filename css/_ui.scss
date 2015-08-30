@@ -1,33 +1,187 @@
-
+$ui-zindex: 100;
 
 .storyUi-inlineOptions {
-	@extend .clearfix;
 	$button-size: 24px;
+	$button-width: 20px;
+	@extend .clearfix;
 	position: absolute;
-	z-index: 50; // sass for z-index soon pls
+	z-index: $ui-zindex;
 	right: 100%;
 	margin-right: 2px;
 	height: $button-size;
-	width: $button-size * 2;
+	width: $button-width * 2;
 	background-color: white;
     @include border-radius(4px 0 0 4px);
 }
 
+.storyUi-inlineOptions__heading {
+	top: 7px;
+}
+
+.storyUi-inlineOptions__subheading {}
+
+.storyUi-inlineOptions__description {
+}
+
 .storyUi-button {
 	$button-size: 24px;
+	$button-width: 20px;
 	@extend .button__reset;
 	display: block;
-	width: $button-size;
+	width: $button-width;
     text-align: center;
     line-height: $button-size;
     font-size: .7em;
     text-align: center;
-    color: #888;
+    color: #FF5F19;
 
     float: left;
 
-	&:hover {
-		color: #333	;
+    &:hover {
+    	color: #DD4D0F;
+    }
+
+	&:active {
+		color: #932D01;
+	}
+
+}
+
+.storyUi-positionControls {}
+
+$positionButton-size: 24px;
+$positionButton-offset: $positionButton-size + 4px;
+.storyUi-positionButton {
+	@extend .button__reset;
+	position: absolute;
+	width: $positionButton-size;
+	height: $positionButton-size;
+	background-color: white;
+	@include border-radius(3px);
+	text-align: center;
+	line-height: $positionButton-size;
+	color: #A0B5C8;
+    font-size: .75em;
+
+    &:hover {
+    	color: #6792B9;
+    }
+
+    &:active {
+    	color: #2A4A67;
+    }
+
+	&.direction__left {
+		left: 0;
+	}
+
+	&.direction__right {
+		right: 0;
+	}
+
+	&.direction__up {
+		top: 0;
+	}
+
+	&.direction__down {
+		bottom: 0;
+	}
+
+}
+
+.storyText {
+
+	&.position__top {
+
+		.storyUi-positionButton {
+
+			&.direction__left {
+				bottom: 0 - $positionButton-offset;
+			}
+
+			&.direction__right {
+				bottom: 0 - $positionButton-offset;
+			}
+
+			&.direction__up {
+				display: none;
+			}
+
+			&.direction__down {
+				bottom: 0 - $positionButton-offset;
+			}
+
+		}
+
+	}
+
+	&.position__bottom {
+
+		.storyUi-positionButton {
+
+			&.direction__left {
+				top: 0 - $positionButton-offset;
+			}
+
+			&.direction__right {
+				top: 0 - $positionButton-offset;
+			}
+
+			&.direction__up {
+				top: 0 - $positionButton-offset;
+			}
+
+			&.direction__down {
+				display: none;
+			}
+
+		}
+
+	}
+
+	&.position__left {
+
+		.storyUi-positionButton {
+
+			&.direction__left {
+				display: none;
+			}
+
+			&.direction__right {
+			}
+
+			&.direction__up {
+			}
+
+			&.direction__down {
+			}
+
+		}
+
+	}
+
+	&.position__right {
+
+		.storyUi-positionButton {
+
+			&.direction__left {
+				left: 0;
+			}
+
+			&.direction__right {
+				display: none;
+			}
+
+			&.direction__up {
+				right: 0;
+			}
+
+			&.direction__down {
+				right: 0;
+			}
+
+		}
+
 	}
 
 }

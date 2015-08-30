@@ -82,6 +82,7 @@ $editing-primary: #FFB658;
 	left: 40px;
 	right: 40px;
 	bottom: 80px;
+	padding: 10px;
 }
 
 .state__editing {
@@ -98,9 +99,26 @@ $editing-primary: #FFB658;
 }
 
 .storyText {
-	position: relative;
+	position: absolute;
 	width: 400px;
 	max-width: 100%;
+	max-height: 100%;
+
+	&.position__top {
+		top: 0;
+	}
+
+	&.position__bottom {
+		bottom: 0;
+	}
+
+	&.position__left {
+		left: 0;
+	}
+
+	&.position__right {
+		right: 0;
+	}
 
 	.inputWrapper {
 		position: relative;

@@ -12,13 +12,23 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 		pages : [
 			{
 				image : "images/boats.jpg",
+				headingDetails : {
+					text : "China Trip 2015",
+					color : "#000",
+					size : "24px",
+					alignment : "left"
+				},
 				heading : "China Trip 2015",
 				subheading : "China and Hong Kong",
 				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt ea aliquam, earum recusandae similique! Repellendus temporibus beatae velit, a amet ullam inventore libero veritatis distinctio rem voluptatum consequuntur voluptate facere.",
 				measurements : {
 					containerWidth : "1024px",
 					paddingVertical : "80px",
-					paddingHorizontal : "40px"
+					paddingHorizontal : "40px",
+					positionHorizontal : "right",
+					positionVertical : "top",
+					textWidth : "400px",
+					textHeight : "300px"
 				}
 			},
 			{
@@ -28,8 +38,12 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum voluptas perferendis unde, corporis nulla odit. Repellendus iusto nam pariatur, temporibus soluta dolore molestias quis accusantium eum quae quo fuga assumenda!",
 				measurements : {
 					containerWidth : "820px",
-					paddingVertical : "20px",
-					paddingHorizontal : "20px"
+					paddingVertical : "100px",
+					paddingHorizontal : "20px",
+					positionHorizontal : "left",
+					positionVertical : "top",
+					textWidth : "200px",
+					textHeight : "500px"
 				}
 			},
 			{
@@ -38,31 +52,43 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 				subheading : "Yay",
 				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
 				measurements : {
-					containerWidth : "1280px",
+					containerWidth : "1080px",
 					paddingVertical : "40px",
-					paddingHorizontal : "40px"
+					paddingHorizontal : "40px",
+					positionHorizontal : "right",
+					positionVertical : "bottom",
+					textWidth : "700px",
+					textHeight : "300px"
 				}
 			},
 			{
-				image : "images/simon.jpg",
-				heading : "Simon!",
+				image : "images/bg-fields.jpg",
+				heading : "Dali",
 				subheading : "Woo",
 				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
 				measurements : {
 					containerWidth : "1024px",
 					paddingVertical : "80px",
-					paddingHorizontal : "40px"
+					paddingHorizontal : "40px",
+					positionHorizontal : "left",
+					positionVertical : "top",
+					textWidth : "100px",
+					textHeight : "200px"
 				}
 			},
 			{
-				image : "images/bg-us.jpg",
-				heading : "We!",
+				image : "images/bg-bbq.jpg",
+				heading : "Yum!",
 				subheading : "Yeah",
 				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
 				measurements : {
 					containerWidth : "720px",
 					paddingVertical : "120px",
-					paddingHorizontal : "40px"
+					paddingHorizontal : "40px",
+					positionHorizontal : "left",
+					positionVertical : "top",
+					textWidth : "400px",
+					textHeight : "300px"
 				}
 			},
 		]

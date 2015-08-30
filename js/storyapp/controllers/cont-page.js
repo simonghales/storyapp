@@ -78,9 +78,69 @@ storyApp.controller('Page', ['$scope', '$log', 'Author', function($scope, $log, 
 		}
 	};
 
+	page.resizableText = {
+		configuration : {
+			handles : "all",
+			// containment : "parent",
+			resize: function(event, ui) {
+				$(this).css({
+		        	"top" : "", 
+		        	"bottom" : "", 
+		        	"left" : "", 
+		        	"right" : ""
+		        });
+		    },
+			stop : function(event, ui) {
+		    	
+		    	// update relevant details
+		    	
+		    	$scope.$apply();
+		    }
+		}
+	}
+
 	page.initDimensions = function() {
 		// set up width
 		// set up padding
+	}
+
+	page.setContentCSS = function() {
+		return {
+			top : page.data.measurements.paddingVertical,
+			bottom : page.data.measurements.paddingVertical,
+			left : page.data.measurements.paddingHorizontal,
+			right : page.data.measurements.paddingHorizontal,
+		}
+	}
+
+	page.setTextDimensions = function() {
+		return {
+			width : page.data.measurements.textWidth,
+			height : page.data.measurements.textHeight
+		};
+	}
+
+	page.setPositionClasses = function() {
+		var classes = "";
+		if(page.data.measurements.positionVertical == 'top') {
+			classes += " position__top";
+		} else {
+			classes += " position__bottom";
+		}
+		if(page.data.measurements.positionHorizontal == 'left') {
+			classes += " position__left";
+		} else {
+			classes += " position__right";
+		}
+		return classes;
+	}
+
+	page.changeDirection = function(newDirection, type) {
+		if(type == "horizontal") {
+			page.data.measurements.positionHorizontal = newDirection;
+		} else {
+			page.data.measurements.positionVertical = newDirection;
+		}
 	}
 
 }]);
