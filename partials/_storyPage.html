@@ -7,7 +7,7 @@
 				<div class="storyContent storyContent__resizable" resizable resizable-config="page.resizableContent.configuration" ng-style="page.setContentCSS();">
 					<div class="storyText storyText__resizable" resizable resizable-config="page.resizableText.configuration" position-vertical="page.data.measurements.positionVertical" position-horizontal="page.data.measurements.positionHorizontal" ng-class="page.setPositionClasses();" ng-style="page.setTextDimensions();">
 						<div class="headingContainer">
-							<h2 class="heading hide__editing">{{page.data.headingDetails.text}}</h2>
+							<h2 class="heading hide__editing" ng-style="page.setHeadingStyles();">{{page.data.headingDetails.text}}</h2>
 							<div class="inputWrapper show__editing">
 								<div class="storyUi-inlineOptions storyUi-inlineOptions__heading">
 									<button class="storyUi-button">
@@ -17,11 +17,11 @@
 										<span class="icon icon-eyedropper"></span>
 									</button>
 								</div>
-								<h2 class="heading editable" contenteditable="true" ng-model="page.data.headingDetails.text" tabindex="1"></h2>
+								<h2 class="heading editable" contenteditable="true" ng-model="page.data.headingDetails.text" tabindex="1" ng-style="page.setHeadingStyles();"></h2>
 							</div>
 						</div>
 						<div class="subHeadingContainer">
-							<h3 class="subHeading hide__editing">{{page.data.subheading}}</h3>
+							<h3 class="subHeading hide__editing" ng-style="page.setSubheadingStyles();">{{page.data.subheading}}</h3>
 							<div class="inputWrapper show__editing">
 								<div class="storyUi-inlineOptions storyUi-inlineOptions__subheading">
 									<button class="storyUi-button">
@@ -31,11 +31,11 @@
 										<span class="icon icon-eyedropper"></span>
 									</button>
 								</div>
-								<h3 class="subHeading editable" contenteditable="true" ng-model="page.data.subheading" tabindex="2"></h3>
+								<h3 class="subHeading editable" contenteditable="true" ng-model="page.data.subheading" tabindex="2" ng-style="page.setSubheadingStyles();"></h3>
 							</div>
 						</div>
 						<div class="descriptionContainer">
-							<p class="description hide__editing">
+							<p class="description hide__editing" ng-style="page.setDescriptionStyles();">
 								{{page.data.description}}
 							</p>
 							<div class="inputWrapper show__editing">
@@ -47,7 +47,7 @@
 										<span class="icon icon-eyedropper"></span>
 									</button>
 								</div>
-								<p class="description editable" contenteditable="true" ng-model="page.data.description" tabindex="3"></p>
+								<p class="description editable" contenteditable="true" ng-model="page.data.description" tabindex="3" ng-style="page.setDescriptionStyles();"></p>
 							</div>
 						</div>
 						<div class="editControls show__editing">

@@ -143,4 +143,28 @@ storyApp.controller('Page', ['$scope', '$log', 'Author', function($scope, $log, 
 		}
 	}
 
+	page.setHeadingStyles = function() {
+		return {
+			"font-size" : page.data.headingDetails.size,
+			"color" : page.data.headingDetails.color,
+			"text-align" : page.data.headingDetails.alignment
+		}
+	}
+
+	page.setSubheadingStyles = function() {
+		return {
+			"font-size" : page.data.subheadingDetails.size,
+			"color" : page.data.subheadingDetails.color,
+			"text-align" : page.data.subheadingDetails.alignment
+		}
+	}
+
+	page.setDescriptionStyles = function() {
+		return {
+			"font-size" : page.data.descriptionDetails.size,
+			"color" : page.data.descriptionDetails.color,
+			"text-align" : page.data.descriptionDetails.alignment
+		}
+	}
+
 }]);

@@ -7,9 +7,14 @@ $textEditor-zindex: $ui-zindex + 10;
 	position: absolute;
 	left: 420px;
 	top: 80px;
-	width: 300px;
-	height: 300px;
+	width: 322px;
+	padding: 20px;
 	background-color: white;
 	@include border-radius(7px);
 	@include box-shadow(0 0 1px rgba(0,0,0,0.3), 0 2px 7px 2px rgba(0, 0, 0, 0.13));
+
+	.angular-color-picker {
+		width: 100%;
+	}
+
 }

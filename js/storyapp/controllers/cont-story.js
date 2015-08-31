@@ -18,6 +18,18 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 					size : "24px",
 					alignment : "left"
 				},
+				subheadingDetails : {
+					text : "China Trip 2015",
+					color : "#54616A",
+					size : "14px",
+					alignment : "left"
+				},
+				descriptionDetails : {
+					text : "China Trip 2015",
+					color : "#000",
+					size : "24px",
+					alignment : "left"
+				},
 				heading : "China Trip 2015",
 				subheading : "China and Hong Kong",
 				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt ea aliquam, earum recusandae similique! Repellendus temporibus beatae velit, a amet ullam inventore libero veritatis distinctio rem voluptatum consequuntur voluptate facere.",
@@ -37,8 +49,20 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 				headingDetails : {
 					text : "New journey!",
 					color : "#000",
+					size : "34px",
+					alignment : "right"
+				},
+				subheadingDetails : {
+					text : "China Trip 2015",
+					color : "#000",
 					size : "24px",
-					alignment : "left"
+					alignment : "right"
+				},
+				descriptionDetails : {
+					text : "China Trip 2015",
+					color : "#54616A",
+					size : "14px",
+					alignment : "right"
 				},
 				subheading : "Yay",
 				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum voluptas perferendis unde, corporis nulla odit. Repellendus iusto nam pariatur, temporibus soluta dolore molestias quis accusantium eum quae quo fuga assumenda!",
@@ -57,8 +81,20 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 				heading : "Chiao!",
 				headingDetails : {
 					text : "Chiao!",
+					color : "#54616A",
+					size : "42px",
+					alignment : "left"
+				},
+				subheadingDetails : {
+					text : "China Trip 2015",
 					color : "#000",
 					size : "24px",
+					alignment : "left"
+				},
+				descriptionDetails : {
+					text : "China Trip 2015",
+					color : "#54616A",
+					size : "14px",
 					alignment : "left"
 				},
 				subheading : "Yay",
@@ -82,6 +118,18 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 					size : "24px",
 					alignment : "left"
 				},
+				subheadingDetails : {
+					text : "China Trip 2015",
+					color : "#000",
+					size : "24px",
+					alignment : "left"
+				},
+				descriptionDetails : {
+					text : "China Trip 2015",
+					color : "#000",
+					size : "14px",
+					alignment : "left"
+				},
 				subheading : "Woo",
 				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
 				measurements : {
@@ -101,6 +149,18 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 					text : "Yum!",
 					color : "#000",
 					size : "24px",
+					alignment : "left"
+				},
+				subheadingDetails : {
+					text : "China Trip 2015",
+					color : "#000",
+					size : "24px",
+					alignment : "left"
+				},
+				descriptionDetails : {
+					text : "China Trip 2015",
+					color : "#000",
+					size : "14px",
 					alignment : "left"
 				},
 				subheading : "Yeah",
