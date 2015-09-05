@@ -21,7 +21,7 @@
 							</div>
 						</div>
 						<div class="subHeadingContainer">
-							<h3 class="subHeading hide__editing" ng-style="page.setSubheadingStyles();">{{page.data.subheading}}</h3>
+							<h3 class="subHeading hide__editing" ng-style="page.setSubheadingStyles();">{{page.data.subheadingDetails.text}}</h3>
 							<div class="inputWrapper show__editing">
 								<div class="storyUi-inlineOptions storyUi-inlineOptions__subheading">
 									<button class="storyUi-button">
@@ -31,12 +31,12 @@
 										<span class="icon icon-eyedropper"></span>
 									</button>
 								</div>
-								<h3 class="subHeading editable" contenteditable="true" ng-model="page.data.subheading" tabindex="2" ng-style="page.setSubheadingStyles();"></h3>
+								<h3 class="subHeading editable" contenteditable="true" ng-model="page.data.subheadingDetails.text" tabindex="2" ng-style="page.setSubheadingStyles();"></h3>
 							</div>
 						</div>
 						<div class="descriptionContainer">
 							<p class="description hide__editing" ng-style="page.setDescriptionStyles();">
-								{{page.data.description}}
+								{{page.data.descriptionDetails.text}}
 							</p>
 							<div class="inputWrapper show__editing">
 								<div class="storyUi-inlineOptions storyUi-inlineOptions__description">
@@ -47,7 +47,7 @@
 										<span class="icon icon-eyedropper"></span>
 									</button>
 								</div>
-								<p class="description editable" contenteditable="true" ng-model="page.data.description" tabindex="3" ng-style="page.setDescriptionStyles();"></p>
+								<p class="description editable" contenteditable="true" ng-model="page.data.descriptionDetails.text" tabindex="3" ng-style="page.setDescriptionStyles();"></p>
 							</div>
 						</div>
 						<div class="editControls show__editing">

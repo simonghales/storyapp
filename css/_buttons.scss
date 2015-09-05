@@ -9,3 +9,25 @@
 	}
 
 }
+
+.button__close {
+  @extend .button__reset;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  border: 0;
+  font-weight: bold;
+  padding: 4px 2px;
+  font-size: .8em;
+  color: #CCC;
+
+  &:hover {
+	color: #888;
+  }
+
+  &:active {
+	color: #555;
+  }
+
+}

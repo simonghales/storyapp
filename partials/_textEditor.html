@@ -1,6 +1,55 @@
-<div class="textEditor"> <!-- add .show__editing -->
-	<div>Colour</div>
-	<color-picker ng-model="color"></color-picker>
-	<div>Font-size</div>
-	<div>Alignment</div>
+<div class="textEditor" ng-controller="TextEditor as textEditor"> <!-- add .show__editing -->
+	<button class="button button__close icon icon-cancel"></button>
+	<section class="inputSection">
+		<label class="label__plain">Colour</label>
+		<div class="inputWrapper">
+			<input type="text" class="input__plain" ng-model="textEditor.data.color" readonly/>
+		</div>
+		<color-picker ng-model="textEditor.data.color"></color-picker>
+	</section>
+	<section class="inputSection">
+		<label class="label__plain" for="textEditor-fontSize">Font-size</label>
+		<div class="input__dropdown inputWrapper">
+			<input class="input__plain" id="textEditor-fontSize" type="text" ng-model="textEditor.data.fontSize" readonly/>
+			<span class="icon icon-down-dir"></span>
+			<ul class="dropdown dropdown__input">
+				<li>
+					12px
+				</li>
+				<li>
+					14px
+				</li>
+				<li>
+					16px
+				</li>
+				<li>
+					18px
+				</li>
+				<li>
+					20px
+				</li>
+				<li>
+					22px
+				</li>
+			</ul>
+		</div>
+	</section>
+	<section class="inputSection"> <!-- state__dropdown -->
+		<label class="label__plain" for="textEditor-alignment">Text-align</label>
+		<div class="input__dropdown inputWrapper">
+			<input class="input__plain" id="textEditor-alignment" type="text" ng-model="textEditor.data.textAlign" readonly/>
+			<span class="icon icon-down-dir"></span>
+			<ul class="dropdown dropdown__input">
+				<li>
+					left
+				</li>
+				<li>
+					right
+				</li>
+				<li>
+					center
+				</li>
+			</ul>
+		</div>
+	</section>
 </div>

@@ -19,20 +19,17 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 					alignment : "left"
 				},
 				subheadingDetails : {
-					text : "China Trip 2015",
+					text : "Animaliss peregrinatione!",
 					color : "#54616A",
 					size : "14px",
 					alignment : "left"
 				},
 				descriptionDetails : {
-					text : "China Trip 2015",
+					text : "Sunt byssuses experientia pius, flavum genetrixes. Varius, clemens paluss foris consumere de bi-color, salvus vortex.",
 					color : "#000",
 					size : "24px",
 					alignment : "left"
 				},
-				heading : "China Trip 2015",
-				subheading : "China and Hong Kong",
-				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt ea aliquam, earum recusandae similique! Repellendus temporibus beatae velit, a amet ullam inventore libero veritatis distinctio rem voluptatum consequuntur voluptate facere.",
 				measurements : {
 					containerWidth : "1024px",
 					paddingVertical : "80px",
@@ -53,19 +50,17 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 					alignment : "right"
 				},
 				subheadingDetails : {
-					text : "China Trip 2015",
+					text : "Cum spatii velum, omnes elevatuses amor audax, varius imberes5",
 					color : "#000",
 					size : "24px",
 					alignment : "right"
 				},
 				descriptionDetails : {
-					text : "China Trip 2015",
+					text : "Advenas accelerare! Eheu, eleates! Pol. Frondators experimentum! Cum cotta persuadere, omnes ollaes manifestum camerarius, bi-color apolloniateses5",
 					color : "#54616A",
 					size : "14px",
 					alignment : "right"
 				},
-				subheading : "Yay",
-				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum voluptas perferendis unde, corporis nulla odit. Repellendus iusto nam pariatur, temporibus soluta dolore molestias quis accusantium eum quae quo fuga assumenda!",
 				measurements : {
 					containerWidth : "820px",
 					paddingVertical : "100px",
