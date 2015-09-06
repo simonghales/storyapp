@@ -1,5 +1,5 @@
-<div class="textEditor" ng-controller="TextEditor as textEditor" drag-me=""> <!-- add .show__editing -->
-	<button class="button button__close icon icon-cancel"></button>
+<div class="textEditor" ng-controller="TextEditor as textEditor" off-click="textEditor.hide();" off-click-if="textEditor.states.open" off-click-filter="'.storyUi-button'"> <!--  drag-me="" add .show__editing -->
+	<button class="button button__close icon icon-cancel" ng-click="textEditor.hide();"></button>
 	<section class="inputSection">
 		<label class="label__plain">Colour</label>
 		<div class="inputWrapper">
@@ -13,25 +13,11 @@
 			<input class="input__plain" id="textEditor-fontSize" type="text"
 				   ng-model="textEditor.data.fontSize" readonly
 				   ng-click="textEditor.toggleDropdownFont();" />
-			<span class="icon icon-down-dir"></span>
+			<span class="icon icon-down-dir" ng-click="textEditor.toggleDropdownFont();"></span>
 			<ul class="dropdown dropdown__input">
-				<li>
-					12px
-				</li>
-				<li>
-					14px
-				</li>
-				<li>
-					16px
-				</li>
-				<li>
-					18px
-				</li>
-				<li>
-					20px
-				</li>
-				<li>
-					22px
+				<li ng-repeat="option in textEditor.options.fontSize" ng-click="textEditor.selectOption(option,
+				'fontSize', 'dropdown_fontSize')">
+					{{ ::option }}
 				</li>
 			</ul>
 		</div>
@@ -42,16 +28,11 @@
 			<input class="input__plain" id="textEditor-alignment" type="text"
 				   ng-model="textEditor.data.textAlign" readonly
 				   ng-click="textEditor.toggleDropdownAlign();" />
-			<span class="icon icon-down-dir"></span>
+			<span class="icon icon-down-dir" ng-click="textEditor.toggleDropdownAlign();"></span>
 			<ul class="dropdown dropdown__input">
-				<li>
-					left
-				</li>
-				<li>
-					right
-				</li>
-				<li>
-					center
+				<li ng-repeat="option in textEditor.options.textAlign" ng-click="textEditor.selectOption(option,
+				'textAlign', 'dropdown_textAlign')">
+					{{ ::option }}
 				</li>
 			</ul>
 		</div>

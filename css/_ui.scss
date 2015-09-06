@@ -1,7 +1,7 @@
 $ui-zindex: 100;
 
 .storyUi-inlineOptions {
-	$button-size: 24px;
+	$button-size: 22px;
 	$button-width: 20px;
 	@extend .clearfix;
 	position: absolute;
@@ -9,7 +9,7 @@ $ui-zindex: 100;
 	right: 100%;
 	margin-right: 2px;
 	height: $button-size;
-	width: $button-width * 2;
+	//width: $button-width * 2;
 	background-color: white;
     @include border-radius(4px 0 0 4px);
 }
@@ -21,10 +21,11 @@ $ui-zindex: 100;
 .storyUi-inlineOptions__subheading {}
 
 .storyUi-inlineOptions__description {
+  top: 5px;
 }
 
 .storyUi-button {
-	$button-size: 24px;
+	$button-size: 22px;
 	$button-width: 20px;
 	@extend .button__reset;
 	display: block;

@@ -10,12 +10,12 @@
 							<h2 class="heading hide__editing" ng-style="page.setHeadingStyles();">{{page.data.headingDetails.text}}</h2>
 							<div class="inputWrapper show__editing">
 								<div class="storyUi-inlineOptions storyUi-inlineOptions__heading">
-									<button class="storyUi-button">
+									<button class="storyUi-button" ng-click="page.openEditor(page.data.headingDetails, $event);">
 										<span class="icon icon-font"></span>
 									</button>
-									<button class="storyUi-button">
-										<span class="icon icon-eyedropper"></span>
-									</button>
+									<!--<button class="storyUi-button">-->
+										<!--<span class="icon icon-eyedropper"></span>-->
+									<!--</button>-->
 								</div>
 								<h2 class="heading editable" contenteditable="true" ng-model="page.data.headingDetails.text" tabindex="1" ng-style="page.setHeadingStyles();"></h2>
 							</div>
@@ -24,12 +24,12 @@
 							<h3 class="subHeading hide__editing" ng-style="page.setSubheadingStyles();">{{page.data.subheadingDetails.text}}</h3>
 							<div class="inputWrapper show__editing">
 								<div class="storyUi-inlineOptions storyUi-inlineOptions__subheading">
-									<button class="storyUi-button">
+									<button class="storyUi-button" ng-click="page.openEditor(page.data.subheadingDetails, $event);">
 										<span class="icon icon-font"></span>
 									</button>
-									<button class="storyUi-button">
-										<span class="icon icon-eyedropper"></span>
-									</button>
+									<!--<button class="storyUi-button">-->
+										<!--<span class="icon icon-eyedropper"></span>-->
+									<!--</button>-->
 								</div>
 								<h3 class="subHeading editable" contenteditable="true" ng-model="page.data.subheadingDetails.text" tabindex="2" ng-style="page.setSubheadingStyles();"></h3>
 							</div>
@@ -40,12 +40,12 @@
 							</p>
 							<div class="inputWrapper show__editing">
 								<div class="storyUi-inlineOptions storyUi-inlineOptions__description">
-									<button class="storyUi-button">
+									<button class="storyUi-button" ng-click="page.openEditor(page.data.descriptionDetails, $event);">
 										<span class="icon icon-font"></span>
 									</button>
-									<button class="storyUi-button">
-										<span class="icon icon-eyedropper"></span>
-									</button>
+									<!--<button class="storyUi-button">-->
+										<!--<span class="icon icon-eyedropper"></span>-->
+									<!--</button>-->
 								</div>
 								<p class="description editable" contenteditable="true" ng-model="page.data.descriptionDetails.text" tabindex="3" ng-style="page.setDescriptionStyles();"></p>
 							</div>

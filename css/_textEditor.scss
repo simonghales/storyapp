@@ -2,11 +2,15 @@ $textEditor-zindex: $ui-zindex + 10;
 
 .textEditor-wrapper {}
 
+text-editor {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .textEditor {
 	z-index: $textEditor-zindex;
-	position: absolute;
-	left: 420px;
-	top: 80px;
+	position: relative;
 	width: 322px;
 	padding: 20px;
 	background-color: white;
@@ -51,4 +55,20 @@ $textEditor-zindex: $ui-zindex + 10;
 	//@extend .fillSpace;
   }
 
+}
+
+.textMenu {
+  @extend .clearfix;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background-color: #FFF;
+  z-index: 200;
+  padding: 20px;
+}
+
+.textMenu-section {
+  float: left;
 }

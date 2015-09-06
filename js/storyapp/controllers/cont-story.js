@@ -15,20 +15,20 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 				headingDetails : {
 					text : "China Trip 2015",
 					color : "#000",
-					size : "24px",
-					alignment : "left"
+					fontSize : "24px",
+					textAlign : "left"
 				},
 				subheadingDetails : {
 					text : "Animaliss peregrinatione!",
 					color : "#54616A",
-					size : "14px",
-					alignment : "left"
+					fontSize : "14px",
+					textAlign : "left"
 				},
 				descriptionDetails : {
 					text : "Sunt byssuses experientia pius, flavum genetrixes. Varius, clemens paluss foris consumere de bi-color, salvus vortex.",
-					color : "#000",
-					size : "24px",
-					alignment : "left"
+					color : "#e27006",
+					fontSize : "12px",
+					textAlign : "left"
 				},
 				measurements : {
 					containerWidth : "1024px",
@@ -46,20 +46,20 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 				headingDetails : {
 					text : "New journey!",
 					color : "#000",
-					size : "34px",
-					alignment : "right"
+					fontSize : "34px",
+					textAlign : "right"
 				},
 				subheadingDetails : {
 					text : "Cum spatii velum, omnes elevatuses amor audax, varius imberes5",
 					color : "#000",
-					size : "24px",
-					alignment : "right"
+					fontSize : "24px",
+					textAlign : "right"
 				},
 				descriptionDetails : {
 					text : "Advenas accelerare! Eheu, eleates! Pol. Frondators experimentum! Cum cotta persuadere, omnes ollaes manifestum camerarius, bi-color apolloniateses5",
 					color : "#54616A",
-					size : "14px",
-					alignment : "right"
+					fontSize : "14px",
+					textAlign : "right"
 				},
 				measurements : {
 					containerWidth : "820px",
@@ -77,20 +77,20 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 				headingDetails : {
 					text : "Chiao!",
 					color : "#54616A",
-					size : "42px",
-					alignment : "left"
+					fontSize : "42px",
+					textAlign : "left"
 				},
 				subheadingDetails : {
 					text : "China Trip 2015",
 					color : "#000",
-					size : "24px",
-					alignment : "left"
+					fontSize : "24px",
+					textAlign : "left"
 				},
 				descriptionDetails : {
 					text : "China Trip 2015",
 					color : "#54616A",
-					size : "14px",
-					alignment : "left"
+					fontSize : "14px",
+					textAlign : "left"
 				},
 				subheading : "Yay",
 				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
@@ -110,20 +110,20 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 				headingDetails : {
 					text : "Dali",
 					color : "#000",
-					size : "24px",
-					alignment : "left"
+					fontSize : "24px",
+					textAlign : "left"
 				},
 				subheadingDetails : {
 					text : "China Trip 2015",
 					color : "#000",
-					size : "24px",
-					alignment : "left"
+					fontSize : "24px",
+					textAlign : "left"
 				},
 				descriptionDetails : {
 					text : "China Trip 2015",
 					color : "#000",
-					size : "14px",
-					alignment : "left"
+					fontSize : "14px",
+					textAlign : "left"
 				},
 				subheading : "Woo",
 				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
@@ -143,20 +143,20 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 				headingDetails : {
 					text : "Yum!",
 					color : "#000",
-					size : "24px",
-					alignment : "left"
+					fontSize : "24px",
+					textAlign : "left"
 				},
 				subheadingDetails : {
 					text : "China Trip 2015",
 					color : "#000",
-					size : "24px",
-					alignment : "left"
+					fontSize : "24px",
+					textAlign : "left"
 				},
 				descriptionDetails : {
 					text : "China Trip 2015",
 					color : "#000",
-					size : "14px",
-					alignment : "left"
+					fontSize : "14px",
+					textAlign : "left"
 				},
 				subheading : "Yeah",
 				description : "The orange really masks the salmonella.",

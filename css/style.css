@@ -83,7 +83,7 @@ h1, h2, h3, h4, h5, h6 {
 * {
   box-sizing: border-box; }
 
-.clearfix:after, .content:after, .storyUi-inlineOptions:after, .textEditor .inputSection:after {
+.clearfix:after, .content:after, .storyUi-inlineOptions:after, .textEditor .inputSection:after, .textMenu:after {
   display: block;
   visibility: hidden;
   clear: both;
@@ -91,11 +91,11 @@ h1, h2, h3, h4, h5, h6 {
   content: " ";
   font-size: 0; }
 
-* html .clearfix, * html .content, * html .storyUi-inlineOptions, * html .textEditor .inputSection, .textEditor * html .inputSection {
+* html .clearfix, * html .content, * html .storyUi-inlineOptions, * html .textEditor .inputSection, .textEditor * html .inputSection, * html .textMenu {
   -ms-zoom: 1;
   zoom: 1; }
 
-*:first-child + html .clearfix, *:first-child + html .content, *:first-child + html .storyUi-inlineOptions, *:first-child + html .textEditor .inputSection, .textEditor *:first-child + html .inputSection {
+*:first-child + html .clearfix, *:first-child + html .content, *:first-child + html .storyUi-inlineOptions, *:first-child + html .textEditor .inputSection, .textEditor *:first-child + html .inputSection, *:first-child + html .textMenu {
   -ms-zoom: 1;
   zoom: 1; }
 
@@ -390,7 +390,7 @@ textarea.input__clear {
 .globalEditControls {
   position: fixed;
   left: 100px;
-  bottom: 0;
+  top: 0;
   background-color: #FFF;
   z-index: 50;
   padding: 6px 8px;
@@ -403,19 +403,21 @@ textarea.input__clear {
   z-index: 100;
   right: 100%;
   margin-right: 2px;
-  height: 24px;
-  width: 40px;
+  height: 22px;
   background-color: white;
   border-radius: 4px 0 0 4px; }
 
 .storyUi-inlineOptions__heading {
   top: 7px; }
 
+.storyUi-inlineOptions__description {
+  top: 5px; }
+
 .storyUi-button {
   display: block;
   width: 20px;
   text-align: center;
-  line-height: 24px;
+  line-height: 22px;
   font-size: .7em;
   text-align: center;
   color: #FF5F19;
@@ -487,11 +489,14 @@ textarea.input__clear {
 .storyText.position__right .storyUi-positionButton.direction__down {
   right: 0; }
 
+text-editor {
+  position: absolute;
+  top: 0;
+  left: 0; }
+
 .textEditor {
   z-index: 110;
-  position: absolute;
-  left: 420px;
-  top: 80px;
+  position: relative;
   width: 322px;
   padding: 20px;
   background-color: white;
@@ -519,3 +524,16 @@ textarea.input__clear {
       margin-right: 10px;
       padding-top: 6px;
       margin-bottom: 4px; }
+
+.textMenu {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background-color: #FFF;
+  z-index: 200;
+  padding: 20px; }
+
+.textMenu-section {
+  float: left; }

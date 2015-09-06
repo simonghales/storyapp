@@ -1,4 +1,4 @@
-storyApp.controller('Page', ['$scope', '$log', 'Author', function($scope, $log, Author) {
+storyApp.controller('Page', ['$scope', '$log', 'Author', 'Editor', function($scope, $log, Author, Editor) {
 	var page = this;
 	page.data = $scope.storyPage;
 
@@ -145,26 +145,35 @@ storyApp.controller('Page', ['$scope', '$log', 'Author', function($scope, $log, 
 
 	page.setHeadingStyles = function() {
 		return {
-			"font-size" : page.data.headingDetails.size,
+			"font-size" : page.data.headingDetails.fontSize,
 			"color" : page.data.headingDetails.color,
-			"text-align" : page.data.headingDetails.alignment
+			"text-align" : page.data.headingDetails.textAlign
 		}
 	}
 
 	page.setSubheadingStyles = function() {
 		return {
-			"font-size" : page.data.subheadingDetails.size,
+			"font-size" : page.data.subheadingDetails.fontSize,
 			"color" : page.data.subheadingDetails.color,
-			"text-align" : page.data.subheadingDetails.alignment
+			"text-align" : page.data.subheadingDetails.textAlign
 		}
 	}
 
 	page.setDescriptionStyles = function() {
 		return {
-			"font-size" : page.data.descriptionDetails.size,
+			"font-size" : page.data.descriptionDetails.fontSize,
 			"color" : page.data.descriptionDetails.color,
-			"text-align" : page.data.descriptionDetails.alignment
+			"text-align" : page.data.descriptionDetails.textAlign
 		}
+	}
+
+	page.openEditor = function(item, $event) {
+		var offset = {
+			x : $event.pageX,
+			y : $event.pageY
+		}
+		console.log("Event returned", $event);
+		Editor.setEditingItem(item, offset);
 	}
 
 }]);
