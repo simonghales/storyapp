@@ -31,3 +31,28 @@
   }
 
 }
+
+.button__plain {
+  @extend .button__reset;
+  background-color: #FFF;
+  @include gradient(#FFF, #f5f5f5);
+  border: 1px solid #D0D0D0;
+  padding: 5px 7px;
+  color: #666;
+  @include border-radius(4px);
+
+  &:hover {
+    border-color: #C0C0C0;
+    color: #333;
+  }
+
+  &:active {
+    @include gradient(#F5F5F5, #F5F5F5)
+  }
+
+  &.state__selected {
+    @include gradient(#D3D3D3, #DDD);
+    color: #333;
+  }
+
+}

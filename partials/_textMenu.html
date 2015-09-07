@@ -1,12 +1,40 @@
-<div class="textMenu">
-    <section class="textMenu-section">
-        <div>
-            <label class="label__plain" for="">Font-size</label>
-            <input class="input__plain" type="text"/>
-        </div>
-        <div>
-            <label class="label__plain" for="">Text-align</label>
-            <input class="input__plain" type="text"/>
-        </div>
-    </section>
+<div class="textMenu" ng-controller="TextEditor as textEditor">
+    <div class="textMenuCentre clearfix">
+        <section class="textMenu-section">
+            <div class="labelInput">
+                <label class="label__plain" for="">Font-size</label>
+            </div>
+            <div class="fontSizeOptions clearfix">
+                <button class="buttonMinus button__plain">-</button>
+                <button class="buttonPlus button__plain">+</button>
+                <div class="inputWrapper">
+                    <input ng-model="textEditor.data.fontSize" class="mainInput input__plain" type="text" readonly/>
+                </div>
+            </div>
+        </section>
+        <section class="textMenu-section">
+            <div class="labelInput">
+                <label class="label__plain" for="">Text-align</label>
+                <!--<input ng-model="textEditor.data.textAlign" class="mainInput input__plain" type="text" readonly/>-->
+            </div>
+            <div class="clearfix inlineButtons">
+                <button class="button__plain" ng-class="{ 'state__selected' : textEditor.data.textAlign == 'left' }">left</button>
+                <button class="button__plain" ng-class="{ 'state__selected' : textEditor.data.textAlign == 'center' }">center</button>
+                <button class="button__plain" ng-class="{ 'state__selected' : textEditor.data.textAlign == 'right' }">right</button>
+            </div>
+        </section>
+        <section class="textMenu-section">
+            <div class="labelInput">
+                <label class="label__plain">Colour</label>
+            </div>
+            <div class="fontColorOptions clearfix">
+                <div class="colorPreview">c</div>
+                <button class="buttonColor button__plain">i</button>
+                <div class="inputWrapper">
+                    <input type="text" class="mainInput input__plain" ng-model="textEditor.data.color" readonly/>
+                </div>
+            </div>
+            <!--<color-picker ng-model="textEditor.data.color"></color-picker>-->
+        </section>
+    </div>
 </div>
