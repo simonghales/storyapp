@@ -177,4 +177,9 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 		Author.toggleEditing();
 	}
 
+	story.editorOptions = {
+		cancel: ".__noDrag",
+		containment: "window"
+	}
+
 }]);

@@ -21,8 +21,14 @@ storyApp.directive('textEditor', ['$rootScope', 'Editor', function($rootScope, E
             var leftOffset = offset.x - width - 15;
             console.log("Left offset: " + leftOffset);
 
+            if(topOffset < 10) {
+                console.log("This is going offscreen");
+                topOffset = 10;
+            }
+
             if(leftOffset < 10) {
                 console.log("This is going offscreen!");
+                leftOffset = 10;
             }
 
             element.css({

@@ -18,7 +18,7 @@
 			<div>Toggle Edit</div>
 		</div>
 		<div class="textEditor-wrapper show__editing">
-			<text-editor></text-editor>
+			<text-editor drag-me="" drag-options="{{story.editorOptions}}"></text-editor>
 			<!--<text-menu></text-menu>-->
 		</div>
 		<div class="storyPage-wrapper" data-ng-repeat="storyPage in story.data.pages" data-ng-include="'partials/_storyPage.html'">

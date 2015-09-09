@@ -12,10 +12,13 @@ text-editor {
 	z-index: $textEditor-zindex;
 	position: relative;
 	width: 322px;
-	padding: 20px;
 	background-color: white;
 	@include border-radius(7px);
 	@include box-shadow(0 0 1px rgba(0,0,0,0.3), 0 2px 7px 2px rgba(0, 0, 0, 0.13));
+
+  .padding {
+    padding: 20px;
+  }
 
 	.angular-color-picker {
 		width: 100%;
@@ -53,6 +56,45 @@ text-editor {
 
   .inputWrapper {
 	//@extend .fillSpace;
+  }
+
+  .handle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: move;
+  }
+
+  $handleWidth: 6px;
+
+  .handle__n,
+  .handle__s {
+    width: 100%;
+    height: $handleWidth;
+  }
+
+  .handle__e,
+  .handle__w {
+    height: 100%;
+    width: $handleWidth;
+  }
+
+  .handle__n {
+    bottom: auto;
+  }
+
+  .handle__s {
+    top: auto;
+  }
+
+  .handle__e {
+    left: auto;
+  }
+
+  .handle__w {
+    right: auto;
   }
 
 }
