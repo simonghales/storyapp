@@ -83,7 +83,7 @@ h1, h2, h3, h4, h5, h6 {
 * {
   box-sizing: border-box; }
 
-.clearfix:after, .content:after, .storyUi-inlineOptions:after, .textEditor .inputSection:after, .textMenu:after {
+.clearfix:after, .content:after, .storyUi-inlineOptions:after, .textEditor .inputSection:after {
   display: block;
   visibility: hidden;
   clear: both;
@@ -91,11 +91,11 @@ h1, h2, h3, h4, h5, h6 {
   content: " ";
   font-size: 0; }
 
-* html .clearfix, * html .content, * html .storyUi-inlineOptions, * html .textEditor .inputSection, .textEditor * html .inputSection, * html .textMenu {
+* html .clearfix, * html .content, * html .storyUi-inlineOptions, * html .textEditor .inputSection, .textEditor * html .inputSection {
   -ms-zoom: 1;
   zoom: 1; }
 
-*:first-child + html .clearfix, *:first-child + html .content, *:first-child + html .storyUi-inlineOptions, *:first-child + html .textEditor .inputSection, .textEditor *:first-child + html .inputSection, *:first-child + html .textMenu {
+*:first-child + html .clearfix, *:first-child + html .content, *:first-child + html .storyUi-inlineOptions, *:first-child + html .textEditor .inputSection, .textEditor *:first-child + html .inputSection {
   -ms-zoom: 1;
   zoom: 1; }
 
@@ -197,7 +197,8 @@ textarea.input__clear {
 .input__plain {
   border-radius: 3px;
   border: 1px solid #E0E0E0;
-  padding: 5px; }
+  padding: 5px;
+  width: 100%; }
 
 .input__dropdown {
   position: relative; }
@@ -554,63 +555,3 @@ text-editor {
       margin-right: 10px;
       padding-top: 6px;
       margin-bottom: 4px; }
-
-.textMenu {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  background-color: #FFF;
-  z-index: 200; }
-
-.textMenuCentre {
-  width: 100%;
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 0 20px;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap; }
-
-.textMenu-section {
-  width: 33.33%;
-  padding: 30px;
-  border-right: 1px solid #F0F0F0;
-  height: 100%; }
-  .textMenu-section:last-of-type {
-    border-right: 0; }
-  .textMenu-section .labelInput {
-    width: 100%;
-    margin-bottom: 6px; }
-  .textMenu-section label {
-    display: block;
-    margin-bottom: 5px; }
-  .textMenu-section .mainInput {
-    width: 100%; }
-
-.inlineButtons button {
-  margin-right: 1px; }
-
-.fontSizeOptions .buttonMinus {
-  float: left; }
-
-.fontSizeOptions .buttonPlus {
-  float: right; }
-
-.fontSizeOptions .inputWrapper {
-  padding: 0 4px;
-  overflow: hidden; }
-
-.fontColorOptions .colorPreview {
-  float: left; }
-
-.fontColorOptions .buttonColor {
-  float: right; }
-
-.fontColorOptions .inputWrapper {
-  padding: 0 4px;
-  overflow: hidden; }
