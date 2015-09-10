@@ -1,4 +1,4 @@
-<div data-ng-controller="Page as page"> <!-- move back to article object -->
+<div class="storyPageWrapper" data-ng-controller="Page as page"> <!-- move back to article object -->
 	<article class="storyPage" back-img="{{page.data.image}}">
 		<div class="storyContainer storyContainer__resizable size__default" resizable resizable-config="page.resizableContainer.configuration" ng-style="{ 'max-width' : page.data.measurements.containerWidth }">
 			<div class="storyContainer-slider storyContainer-slider--left"></div>
@@ -10,7 +10,7 @@
 							<h2 class="heading hide__editing" ng-style="page.setHeadingStyles();">{{page.data.headingDetails.text}}</h2>
 							<div class="inputWrapper show__editing">
 								<div class="storyUi-inlineOptions storyUi-inlineOptions__heading">
-									<button class="storyUi-button" ng-click="page.openEditor(page.data.headingDetails, $event);">
+									<button class="storyUi-button" ng-click="page.openEditor(page.data.headingDetails, $event);" tooltips title="Edit font size, alignment and color" tooltip-side="left">
 										<span class="icon icon-font"></span>
 									</button>
 									<!--<button class="storyUi-button">-->
@@ -24,7 +24,7 @@
 							<h3 class="subHeading hide__editing" ng-style="page.setSubheadingStyles();">{{page.data.subheadingDetails.text}}</h3>
 							<div class="inputWrapper show__editing">
 								<div class="storyUi-inlineOptions storyUi-inlineOptions__subheading">
-									<button class="storyUi-button" ng-click="page.openEditor(page.data.subheadingDetails, $event);">
+									<button class="storyUi-button" ng-click="page.openEditor(page.data.subheadingDetails, $event);" tooltips title="Edit font size, alignment and color" tooltip-side="left">
 										<span class="icon icon-font"></span>
 									</button>
 									<!--<button class="storyUi-button">-->
@@ -40,7 +40,7 @@
 							</p>
 							<div class="inputWrapper show__editing">
 								<div class="storyUi-inlineOptions storyUi-inlineOptions__description">
-									<button class="storyUi-button" ng-click="page.openEditor(page.data.descriptionDetails, $event);">
+									<button class="storyUi-button" ng-click="page.openEditor(page.data.descriptionDetails, $event);" tooltips title="Edit font size, alignment and color" tooltip-side="left">
 										<span class="icon icon-font"></span>
 									</button>
 									<!--<button class="storyUi-button">-->
@@ -79,4 +79,16 @@
 			</div>
 		</div>
 	</article>
+	<div class="show__editing"> <!-- show__editing -->
+		<div class="pageTopOptions">
+			<button class="deletePageButton button__round" tooltips title="Delete this page" tooltip-side="left" tooltip-try="0">
+				<span class="button-icon icon icon-trash"></span>
+			</button>
+		</div>
+		<div class="addPage">
+			<button class="button addPage-button" tooltips title="Add Page">
+				<span class="button-icon icon icon-plus"></span>
+			</button>
+		</div>
+	</div>
 </div>

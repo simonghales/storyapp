@@ -235,3 +235,46 @@ $editing-primary: #FFB658;
 	font-weight: bold;
 	cursor: pointer;
 }
+
+.storyPageWrapper {
+  position: relative;
+}
+
+.addPage {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+}
+
+.addPage-button {
+  @extend .button__reset;
+  $block-size: 35px;
+  display: block;
+  width: $block-size;
+  height: $block-size;
+  line-height: $block-size;
+  //@include gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+  //background-color: rgba(255,255,255,0.5);
+  background-color: #FFFFFF;
+  margin: 0 auto;
+  margin-bottom: -($block-size / 2);
+  @include border-radius(50%);
+  @include box-shadow(0 0 4px 1px rgba(0, 0, 0, 0.23));
+  font-size: 1.2em;
+  color: #FF5F19;
+  text-shadow: 0 1px #FFF;
+
+  &:hover {
+	//@include gradient(rgba(255,255,255,1), rgba(255,255,255,1));
+	@include box-shadow(0 0 4px 1px rgba(0, 0, 0, 0.4));
+  }
+  
+}
+
+.pageTopOptions {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}

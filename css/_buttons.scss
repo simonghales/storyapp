@@ -56,3 +56,14 @@
   }
 
 }
+
+.button__round {
+  @extend .button__reset;
+  background-color: #FFF;
+  width: 28px;
+  height: 28px;
+  color: #FF5F19;
+  @include border-radius(50%);
+  @include box-shadow(0 0 4px 1px rgba(0, 0, 0, 0.13));
+  z-index: 100;
+}

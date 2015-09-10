@@ -16,7 +16,9 @@ storyApp.directive('textEditor', ['$rootScope', 'Editor', function($rootScope, E
 
         $rootScope.$on('editor-display', function(event, value) {
             var offset = value;
+            var height = element.height();
             var width = element.width();
+            var windowHeight = $(window).height();
             var topOffset = offset.y;
             var leftOffset = offset.x - width - 15;
             console.log("Left offset: " + leftOffset);
@@ -24,6 +26,10 @@ storyApp.directive('textEditor', ['$rootScope', 'Editor', function($rootScope, E
             if(topOffset < 10) {
                 console.log("This is going offscreen");
                 topOffset = 10;
+            }
+
+            if(topOffset > (windowHeight - height)) {
+                topOffset = windowHeight - height;
             }
 
             if(leftOffset < 10) {
