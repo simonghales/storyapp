@@ -81,12 +81,12 @@
 	</article>
 	<div class="show__editing"> <!-- show__editing -->
 		<div class="pageTopOptions">
-			<button class="deletePageButton button__round" tooltips title="Delete this page" tooltip-side="left" tooltip-try="0">
+			<button class="deletePageButton button__round" ng-click="story.removePage($index, page.data.id)"> <!-- tooltips title="Delete this page" tooltip-side="left" tooltip-try="0" -->
 				<span class="button-icon icon icon-trash"></span>
 			</button>
 		</div>
 		<div class="addPage">
-			<button class="button addPage-button" tooltips title="Add Page">
+			<button class="button addPage-button" tooltips title="Add Page" ng-click="story.addPage($index)">
 				<span class="button-icon icon icon-plus"></span>
 			</button>
 		</div>

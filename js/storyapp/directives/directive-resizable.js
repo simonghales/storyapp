@@ -19,11 +19,17 @@ storyApp.directive('resizable', ['$rootScope', 'Author', function ($rootScope, A
                 elem.resizable("disable");
             }
 
-            $rootScope.$on('author-editingChanged', function(event, value) {
+            scope.$on('$destroy',function() {
+                authorEditingChanged(); // removes rootscope listener
+            });
+
+            var authorEditingChanged = $rootScope.$on('author-editingChanged', function(event, value) {
                 scope.editing = value;
                 if(!scope.editing) {
+                    console.log("Need to disable resizeable");
                     elem.resizable("disable");
                 } else {
+                    console.log("Need to enable resizeable");
                     elem.resizable("enable");
                 }
             });

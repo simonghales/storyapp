@@ -11,6 +11,7 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 	story.data = {
 		pages : [
 			{
+				id : "1",
 				image : "images/boats.jpg",
 				headingDetails : {
 					text : "China Trip 2015",
@@ -41,6 +42,7 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 				}
 			},
 			{
+				id : "4334",
 				image : "images/bg-lake.jpg",
 				heading : "New journey!",
 				headingDetails : {
@@ -72,6 +74,7 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 				}
 			},
 			{
+				id : "4545",
 				image : "images/bg-glasses.jpg",
 				heading : "Chiao!",
 				headingDetails : {
@@ -105,6 +108,7 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 				}
 			},
 			{
+				id : "2331",
 				image : "images/bg-fields.jpg",
 				heading : "Dali",
 				headingDetails : {
@@ -138,6 +142,7 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 				}
 			},
 			{
+				id : "6565",
 				image : "images/bg-bbq.jpg",
 				heading : "Yum!",
 				headingDetails : {
@@ -180,6 +185,51 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 	story.editorOptions = {
 		cancel: ".__noDrag",
 		containment: "window"
+	}
+
+	var generateDefaultPage = function() {
+		var defaultPage = {
+			image : "",
+			headingDetails : {
+				text : "Yum!",
+				color : "#000",
+				fontSize : "24px",
+				textAlign : "left"
+			},
+			subheadingDetails : {
+				text : "China Trip 2015",
+				color : "#000",
+				fontSize : "24px",
+				textAlign : "left"
+			},
+			descriptionDetails : {
+				text : "China Trip 2015",
+				color : "#000",
+				fontSize : "14px",
+				textAlign : "left"
+			},
+			measurements : {
+				containerWidth : "1024px",
+				paddingVertical : "80px",
+				paddingHorizontal : "120px",
+				positionHorizontal : "left",
+				positionVertical : "top",
+				textWidth : "400px",
+				textHeight : "300px"
+			}
+		};
+		defaultPage.id = new Date().getUTCMilliseconds();
+		return defaultPage;
+	}
+
+	story.addPage = function(index) {
+		var defaultPage = generateDefaultPage();
+		story.data.pages.splice(index + 1, 0, defaultPage);
+		console.log("Add Page at index: " + index, story.data.pages);
+	}
+
+	story.removePage = function(index, pageId) {
+		story.data.pages.splice(index, 1);
 	}
 
 }]);

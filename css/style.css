@@ -118,6 +118,11 @@ html,
 body {
   min-height: 100%; }
 
+.placeholderPattern, .storyPage.__noImage {
+  background-image: url(../images/pattern_geometry.png);
+  background-repeat: repeat;
+  background-size: auto; }
+
 .button__reset, .button__close, .button__plain, .button__round, .addPage-button, .storyUi-button, .storyUi-positionButton {
   background: none;
   border: 0;
@@ -303,8 +308,7 @@ textarea.input__clear {
 .storyPage {
   width: 100%;
   height: 100vh;
-  overflow: hidden;
-  background-image: url(../images/boats.jpg); }
+  overflow: hidden; }
 
 .storyContainer {
   height: 100%;
@@ -448,7 +452,8 @@ textarea.input__clear {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 50; }
+  z-index: 50;
+  height: 0; }
 
 .addPage-button {
   display: block;
@@ -457,7 +462,7 @@ textarea.input__clear {
   line-height: 35px;
   background-color: #FFFFFF;
   margin: 0 auto;
-  margin-bottom: -17.5px;
+  margin-top: -17.5px;
   border-radius: 50%;
   -webkit-box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.23);
   -moz-box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.23);

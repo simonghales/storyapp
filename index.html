@@ -22,7 +22,7 @@
 			<text-editor drag-me="" drag-options="{{story.editorOptions}}"></text-editor>
 			<!--<text-menu></text-menu>-->
 		</div>
-		<div class="storyPage-wrapper" data-ng-repeat="storyPage in story.data.pages" data-ng-include="'partials/_storyPage.html'">
+		<div class="storyPage-wrapper" data-ng-repeat="storyPage in story.data.pages track by storyPage.id" data-ng-include="'partials/_storyPage.html'">
 		</div>
 	</div>
 	<script src="js/libraries/jquery-2.1.4.min.js"></script>
