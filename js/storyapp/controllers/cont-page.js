@@ -1,6 +1,10 @@
-storyApp.controller('Page', ['$scope', '$element', '$log', 'Author', 'Editor', 'ngDialog', function($scope, $element, $log, Author, Editor, ngDialog) {
+storyApp.controller('Page', ['$scope', '$element', '$log', 'Author', 'Editor', 'ngDialog', 'PageData', function($scope, $element, $log, Author, Editor, ngDialog, PageData) {
 	var page = this;
 	page.data = $scope.storyPage;
+
+	page.safeData = PageData.GetSafeData(page.data);
+
+	console.log("Safe data is:", page.safeData);
 
 	page.dimensions = {
 		containerWidth : "",
@@ -12,7 +16,6 @@ storyApp.controller('Page', ['$scope', '$element', '$log', 'Author', 'Editor', '
 		configuration : {
 			handles : "w, e",
 			resize : function(event, ui) {
-				console.log("EXECUTING RESIZE FUNCTION");
 				var newWidth = ui.originalSize.width+((ui.size.width - ui.originalSize.width)*2);
 		        $(this).width("auto").position({
 		            of: $(this).parent(),
@@ -25,9 +28,12 @@ storyApp.controller('Page', ['$scope', '$element', '$log', 'Author', 'Editor', '
 		        	"width" : "auto",
 		        	"max-width" : newWidth
 		        });
+				ui.size.width = newWidth;
+				//console.log("EXECUTING RESIZE FUNCTION", newWidth);
 		    },
 		    stop : function(event, ui) {
-		    	page.dimensions.containerWidth = ui.size.width;
+				//console.log("Finished resizing", ui.size.width);
+		    	page.safeData.measurements.containerWidth = ui.size.width;
 		    	$scope.$apply();
 		    }
 		}
@@ -37,20 +43,36 @@ storyApp.controller('Page', ['$scope', '$element', '$log', 'Author', 'Editor', '
 		configuration : {
 			handles: "all",
 			resize: function(event, ui) {
-				var newWidth = ui.size.width += (ui.size.width - ui.originalSize.width);
-				var newHeight = ui.size.height += (ui.size.height - ui.originalSize.height);
+
 				var parentHeight = $(this).parent().height();
 				var parentWidth = $(this).parent().width();
 
-		        $(this).width("auto").height("auto").position({
-		            of: $(this).parent(),
-		            my: "center center",
-		            at: "center center"
-		        });
+				$(this).width("auto").height("auto").position({
+					of: $(this).parent(),
+					my: "center center",
+					at: "center center"
+				});
 
-		        // calculate top offset
-		        var horizontalOffset = (parentWidth - newWidth) / 2;
-		        var verticalOffset = (parentHeight - newHeight) / 2;
+				var horizontalOffset = $(this).css("left");
+				var verticalOffset = $(this).css("top");
+
+				console.log("Original offsets", horizontalOffset, verticalOffset);
+
+				if(isNaN(ui.size.width) || ui.size.width == ui.originalSize.width) {
+					var newWidth = ui.originalSize.width;
+				} else {
+					var newWidth = ui.size.width + (ui.size.width - ui.originalSize.width) / 2;
+					var horizontalOffset = (parentWidth - newWidth) / 2;
+					console.log("Fixed up horizontal offset", horizontalOffset, newWidth, ui.size.width, ui.originalSize.width);
+				}
+				if(isNaN(ui.size.height) || ui.size.height == ui.originalSize.height) {
+					var newHeight = ui.originalSize.height;
+				} else {
+					var newHeight = ui.size.height + (ui.size.height - ui.originalSize.height) / 2;
+					var verticalOffset = (parentHeight - newHeight) / 2;
+					console.log("Fixed up vertical offset", verticalOffset, newHeight, ui.size.height, ui.originalSize.height);
+				}
+
 		        if(horizontalOffset < 10) {
 		        	horizontalOffset = 10;
 		        }
@@ -65,14 +87,20 @@ storyApp.controller('Page', ['$scope', '$element', '$log', 'Author', 'Editor', '
 		        	"left" : horizontalOffset, 
 		        	"right" : horizontalOffset
 		        });
+				ui.size.verticalOffset = verticalOffset;
+				ui.size.horizontalOffset = horizontalOffset;
+				console.log("Resized", verticalOffset, horizontalOffset);
 		    },
 		    stop : function(event, ui) {
-		    	var parentHeight = $(this).parent().height();
-				var parentWidth = $(this).parent().width();
-				var horizontalOffset = (parentWidth - ui.size.width) / 2;
-		        var verticalOffset = (parentHeight - ui.size.height) / 2;
-		    	page.dimensions.paddingHorizontal = horizontalOffset;
-		    	page.dimensions.paddingVertical = verticalOffset;
+				//var parentHeight = $(this).parent().height();
+				//var parentWidth = $(this).parent().width();
+				//var horizontalOffset = (parentWidth - ui.size.widthTemp) / 2;
+				//var verticalOffset = (parentHeight - ui.size.heightTemp) / 2;
+				var verticalOffset = ui.size.verticalOffset;
+				var horizontalOffset = ui.size.horizontalOffset;
+		    	page.safeData.measurements.paddingHorizontal = horizontalOffset;
+		    	page.safeData.measurements.paddingVertical = verticalOffset;
+				console.log("Final", verticalOffset, horizontalOffset);
 		    	$scope.$apply();
 		    }
 		}
@@ -92,7 +120,7 @@ storyApp.controller('Page', ['$scope', '$element', '$log', 'Author', 'Editor', '
 		    },
 			stop : function(event, ui) {
 		    	
-		    	// update relevant details
+		    	// TODO: update relevant details
 		    	
 		    	$scope.$apply();
 		    }
@@ -114,28 +142,28 @@ storyApp.controller('Page', ['$scope', '$element', '$log', 'Author', 'Editor', '
 
 	page.setContentCSS = function() {
 		return {
-			top : page.data.measurements.paddingVertical,
-			bottom : page.data.measurements.paddingVertical,
-			left : page.data.measurements.paddingHorizontal,
-			right : page.data.measurements.paddingHorizontal,
+			top : page.safeData.measurements.paddingVertical,
+			bottom : page.safeData.measurements.paddingVertical,
+			left : page.safeData.measurements.paddingHorizontal,
+			right : page.safeData.measurements.paddingHorizontal,
 		}
 	}
 
 	page.setTextDimensions = function() {
 		return {
-			width : page.data.measurements.textWidth,
-			height : page.data.measurements.textHeight
+			width : page.safeData.measurements.textWidth,
+			height : page.safeData.measurements.textHeight
 		};
 	}
 
 	page.setPositionClasses = function() {
 		var classes = "";
-		if(page.data.measurements.positionVertical == 'top') {
+		if(page.safeData.measurements.positionVertical == 'top') {
 			classes += " position__top";
 		} else {
 			classes += " position__bottom";
 		}
-		if(page.data.measurements.positionHorizontal == 'left') {
+		if(page.safeData.measurements.positionHorizontal == 'left') {
 			classes += " position__left";
 		} else {
 			classes += " position__right";
@@ -145,33 +173,33 @@ storyApp.controller('Page', ['$scope', '$element', '$log', 'Author', 'Editor', '
 
 	page.changeDirection = function(newDirection, type) {
 		if(type == "horizontal") {
-			page.data.measurements.positionHorizontal = newDirection;
+			page.safeData.measurements.positionHorizontal = newDirection;
 		} else {
-			page.data.measurements.positionVertical = newDirection;
+			page.safeData.measurements.positionVertical = newDirection;
 		}
 	}
 
 	page.setHeadingStyles = function() {
 		return {
-			"font-size" : page.data.headingDetails.fontSize,
-			"color" : page.data.headingDetails.color,
-			"text-align" : page.data.headingDetails.textAlign
+			//"font-size" : page.data.headingDetails.fontSize,
+			//"color" : page.data.headingDetails.color,
+			//"text-align" : page.data.headingDetails.textAlign
 		}
 	}
 
 	page.setSubheadingStyles = function() {
 		return {
-			"font-size" : page.data.subheadingDetails.fontSize,
-			"color" : page.data.subheadingDetails.color,
-			"text-align" : page.data.subheadingDetails.textAlign
+			//"font-size" : page.data.subheadingDetails.fontSize,
+			//"color" : page.data.subheadingDetails.color,
+			//"text-align" : page.data.subheadingDetails.textAlign
 		}
 	}
 
 	page.setDescriptionStyles = function() {
 		return {
-			"font-size" : page.data.descriptionDetails.fontSize,
-			"color" : page.data.descriptionDetails.color,
-			"text-align" : page.data.descriptionDetails.textAlign
+			//"font-size" : page.data.descriptionDetails.fontSize,
+			//"color" : page.data.descriptionDetails.color,
+			//"text-align" : page.data.descriptionDetails.textAlign
 		}
 	}
 

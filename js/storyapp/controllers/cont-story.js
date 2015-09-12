@@ -1,186 +1,206 @@
-storyApp.controller('Story', ['$scope', '$rootScope', 'Author', 'ngDialog', function($scope, $rootScope, Author, ngDialog) {
+storyApp.controller('Story', ['$scope', '$rootScope', '$stateParams', 'Author', 'ngDialog', 'StoryService', function($scope, $rootScope, $stateParams, Author, ngDialog, StoryService) {
 	// Avoid using $scope, use story = this instead
 	var story = this;
 
-	story.editing = Author.getEditing();
-	$rootScope.$on('author-editingChanged', function(event, value) {
-		story.editing = value;
-	});
+	story.states = {
+		loaded : false,
+		loading : true
+	}
+
+	story.data = {};
+
+	story.id = $stateParams.id;
+
+	story.LoadStory = function() {
+		story.states.loading = true;
+		story.states.loaded = false;
+		StoryService.GetById(story.id)
+			.then(function(data) {
+				story.data = data;
+				story.states.loaded = true;
+				story.states.loading = false;
+				console.log("Successfully loaded story data", data);
+			}, function(error) {
+				console.log("Error: " + error);
+				story.states.loaded = true;
+				story.states.loading = false;
+			})
+	}
+
+	story.LoadStory();
 
 	// load story data
-	story.data = {
-		pages : [
-			{
-				id : "1",
-				image : "images/boats.jpg",
-				headingDetails : {
-					text : "China Trip 2015",
-					color : "#000",
-					fontSize : "24px",
-					textAlign : "left"
-				},
-				subheadingDetails : {
-					text : "Animaliss peregrinatione!",
-					color : "#54616A",
-					fontSize : "14px",
-					textAlign : "left"
-				},
-				descriptionDetails : {
-					text : "Sunt byssuses experientia pius, flavum genetrixes. Varius, clemens paluss foris consumere de bi-color, salvus vortex.",
-					color : "#e27006",
-					fontSize : "12px",
-					textAlign : "left"
-				},
-				measurements : {
-					containerWidth : "1024px",
-					paddingVertical : "80px",
-					paddingHorizontal : "40px",
-					positionHorizontal : "right",
-					positionVertical : "top",
-					textWidth : "400px",
-					textHeight : "300px"
-				}
-			},
-			{
-				id : "4334",
-				image : "images/bg-lake.jpg",
-				heading : "New journey!",
-				headingDetails : {
-					text : "New journey!",
-					color : "#000",
-					fontSize : "34px",
-					textAlign : "right"
-				},
-				subheadingDetails : {
-					text : "Cum spatii velum, omnes elevatuses amor audax, varius imberes5",
-					color : "#000",
-					fontSize : "24px",
-					textAlign : "right"
-				},
-				descriptionDetails : {
-					text : "Advenas accelerare! Eheu, eleates! Pol. Frondators experimentum! Cum cotta persuadere, omnes ollaes manifestum camerarius, bi-color apolloniateses5",
-					color : "#54616A",
-					fontSize : "14px",
-					textAlign : "right"
-				},
-				measurements : {
-					containerWidth : "820px",
-					paddingVertical : "100px",
-					paddingHorizontal : "20px",
-					positionHorizontal : "left",
-					positionVertical : "top",
-					textWidth : "200px",
-					textHeight : "500px"
-				}
-			},
-			{
-				id : "4545",
-				image : "images/bg-glasses.jpg",
-				heading : "Chiao!",
-				headingDetails : {
-					text : "Chiao!",
-					color : "#54616A",
-					fontSize : "42px",
-					textAlign : "left"
-				},
-				subheadingDetails : {
-					text : "China Trip 2015",
-					color : "#000",
-					fontSize : "24px",
-					textAlign : "left"
-				},
-				descriptionDetails : {
-					text : "China Trip 2015",
-					color : "#54616A",
-					fontSize : "14px",
-					textAlign : "left"
-				},
-				subheading : "Yay",
-				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-				measurements : {
-					containerWidth : "1080px",
-					paddingVertical : "40px",
-					paddingHorizontal : "40px",
-					positionHorizontal : "right",
-					positionVertical : "bottom",
-					textWidth : "700px",
-					textHeight : "300px"
-				}
-			},
-			{
-				id : "2331",
-				image : "images/bg-fields.jpg",
-				heading : "Dali",
-				headingDetails : {
-					text : "Dali",
-					color : "#000",
-					fontSize : "24px",
-					textAlign : "left"
-				},
-				subheadingDetails : {
-					text : "China Trip 2015",
-					color : "#000",
-					fontSize : "24px",
-					textAlign : "left"
-				},
-				descriptionDetails : {
-					text : "China Trip 2015",
-					color : "#000",
-					fontSize : "14px",
-					textAlign : "left"
-				},
-				subheading : "Woo",
-				description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-				measurements : {
-					containerWidth : "1024px",
-					paddingVertical : "80px",
-					paddingHorizontal : "40px",
-					positionHorizontal : "left",
-					positionVertical : "top",
-					textWidth : "100px",
-					textHeight : "200px"
-				}
-			},
-			{
-				id : "6565",
-				image : "images/bg-bbq.jpg",
-				heading : "Yum!",
-				headingDetails : {
-					text : "Yum!",
-					color : "#000",
-					fontSize : "24px",
-					textAlign : "left"
-				},
-				subheadingDetails : {
-					text : "China Trip 2015",
-					color : "#000",
-					fontSize : "24px",
-					textAlign : "left"
-				},
-				descriptionDetails : {
-					text : "China Trip 2015",
-					color : "#000",
-					fontSize : "14px",
-					textAlign : "left"
-				},
-				subheading : "Yeah",
-				description : "The orange really masks the salmonella.",
-				measurements : {
-					containerWidth : "720px",
-					paddingVertical : "120px",
-					paddingHorizontal : "40px",
-					positionHorizontal : "left",
-					positionVertical : "top",
-					textWidth : "400px",
-					textHeight : "300px"
-				}
-			},
-		]
-	};
+	//story.data = {
+	//	pages : [
+	//		{
+	//			id : "1",
+	//			image : "images/boats.jpg",
+	//			headingDetails : {
+	//				text : "China Trip 2015",
+	//				color : "#000",
+	//				fontSize : "24px",
+	//				textAlign : "left"
+	//			},
+	//			subheadingDetails : {
+	//				text : "Animaliss peregrinatione!",
+	//				color : "#54616A",
+	//				fontSize : "14px",
+	//				textAlign : "left"
+	//			},
+	//			descriptionDetails : {
+	//				text : "Sunt byssuses experientia pius, flavum genetrixes. Varius, clemens paluss foris consumere de bi-color, salvus vortex.",
+	//				color : "#e27006",
+	//				fontSize : "12px",
+	//				textAlign : "left"
+	//			},
+	//			measurements : {
+	//				containerWidth : "1024px",
+	//				paddingVertical : "80px",
+	//				paddingHorizontal : "40px",
+	//				positionHorizontal : "right",
+	//				positionVertical : "top",
+	//				textWidth : "400px",
+	//				textHeight : "300px"
+	//			}
+	//		},
+	//		{
+	//			id : "4334",
+	//			image : "images/bg-lake.jpg",
+	//			heading : "New journey!",
+	//			headingDetails : {
+	//				text : "New journey!",
+	//				color : "#000",
+	//				fontSize : "34px",
+	//				textAlign : "right"
+	//			},
+	//			subheadingDetails : {
+	//				text : "Cum spatii velum, omnes elevatuses amor audax, varius imberes5",
+	//				color : "#000",
+	//				fontSize : "24px",
+	//				textAlign : "right"
+	//			},
+	//			descriptionDetails : {
+	//				text : "Advenas accelerare! Eheu, eleates! Pol. Frondators experimentum! Cum cotta persuadere, omnes ollaes manifestum camerarius, bi-color apolloniateses5",
+	//				color : "#54616A",
+	//				fontSize : "14px",
+	//				textAlign : "right"
+	//			},
+	//			measurements : {
+	//				containerWidth : "820px",
+	//				paddingVertical : "100px",
+	//				paddingHorizontal : "20px",
+	//				positionHorizontal : "left",
+	//				positionVertical : "top",
+	//				textWidth : "200px",
+	//				textHeight : "500px"
+	//			}
+	//		},
+	//		{
+	//			id : "4545",
+	//			image : "images/bg-glasses.jpg",
+	//			heading : "Chiao!",
+	//			headingDetails : {
+	//				text : "Chiao!",
+	//				color : "#54616A",
+	//				fontSize : "42px",
+	//				textAlign : "left"
+	//			},
+	//			subheadingDetails : {
+	//				text : "China Trip 2015",
+	//				color : "#000",
+	//				fontSize : "24px",
+	//				textAlign : "left"
+	//			},
+	//			descriptionDetails : {
+	//				text : "China Trip 2015",
+	//				color : "#54616A",
+	//				fontSize : "14px",
+	//				textAlign : "left"
+	//			},
+	//			subheading : "Yay",
+	//			description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+	//			measurements : {
+	//				containerWidth : "1080px",
+	//				paddingVertical : "40px",
+	//				paddingHorizontal : "40px",
+	//				positionHorizontal : "right",
+	//				positionVertical : "bottom",
+	//				textWidth : "700px",
+	//				textHeight : "300px"
+	//			}
+	//		},
+	//		{
+	//			id : "2331",
+	//			image : "images/bg-fields.jpg",
+	//			heading : "Dali",
+	//			headingDetails : {
+	//				text : "Dali",
+	//				color : "#000",
+	//				fontSize : "24px",
+	//				textAlign : "left"
+	//			},
+	//			subheadingDetails : {
+	//				text : "China Trip 2015",
+	//				color : "#000",
+	//				fontSize : "24px",
+	//				textAlign : "left"
+	//			},
+	//			descriptionDetails : {
+	//				text : "China Trip 2015",
+	//				color : "#000",
+	//				fontSize : "14px",
+	//				textAlign : "left"
+	//			},
+	//			subheading : "Woo",
+	//			description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+	//			measurements : {
+	//				containerWidth : "1024px",
+	//				paddingVertical : "80px",
+	//				paddingHorizontal : "40px",
+	//				positionHorizontal : "left",
+	//				positionVertical : "top",
+	//				textWidth : "100px",
+	//				textHeight : "200px"
+	//			}
+	//		},
+	//		{
+	//			id : "6565",
+	//			image : "images/bg-bbq.jpg",
+	//			heading : "Yum!",
+	//			headingDetails : {
+	//				text : "Yum!",
+	//				color : "#000",
+	//				fontSize : "24px",
+	//				textAlign : "left"
+	//			},
+	//			subheadingDetails : {
+	//				text : "China Trip 2015",
+	//				color : "#000",
+	//				fontSize : "24px",
+	//				textAlign : "left"
+	//			},
+	//			descriptionDetails : {
+	//				text : "China Trip 2015",
+	//				color : "#000",
+	//				fontSize : "14px",
+	//				textAlign : "left"
+	//			},
+	//			subheading : "Yeah",
+	//			description : "The orange really masks the salmonella.",
+	//			measurements : {
+	//				containerWidth : "720px",
+	//				paddingVertical : "120px",
+	//				paddingHorizontal : "40px",
+	//				positionHorizontal : "left",
+	//				positionVertical : "top",
+	//				textWidth : "400px",
+	//				textHeight : "300px"
+	//			}
+	//		},
+	//	]
+	//};
 
-	story.toggleEditing = function() {
-		Author.toggleEditing();
-	}
+
 
 	story.editorOptions = {
 		cancel: ".__noDrag",

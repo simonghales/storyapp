@@ -16,7 +16,7 @@ storyApp.factory('StoryService', ['$http', 'API_URL', function($http, API_URL){
     }
 
     function GetById(id) {
-        return $http.get('/api/users/' + id).then(handleSuccess, handleError('Error getting user by id'));
+        return $http.get(API_URL + '/api/stories/' + id).then(handleSuccess, handleError('Error getting story by id'));
     }
 
     function GetByUsername(username) {
