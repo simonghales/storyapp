@@ -1,5 +1,5 @@
 <div class="storyPageWrapper" data-ng-controller="Page as page"> <!-- move back to article object -->
-	<article class="storyPage" back-img="{{page.data.image}}">
+	<article class="storyPage" back-img="{{page.data.image}}" ng-style="page.setPageCSS();">
 		<div class="storyContainer storyContainer__resizable size__default" resizable resizable-config="page.resizableContainer.configuration" ng-style="{ 'max-width' : page.data.measurements.containerWidth }">
 			<div class="storyContainer-slider storyContainer-slider--left"></div>
 			<div class="storyContainer-slider storyContainer-slider--right"></div>
@@ -17,7 +17,7 @@
 										<!--<span class="icon icon-eyedropper"></span>-->
 									<!--</button>-->
 								</div>
-								<h2 class="heading editable" contenteditable="true" ng-model="page.data.headingDetails.text" tabindex="1" ng-style="page.setHeadingStyles();"></h2>
+								<h2 class="heading editable editableElem" data-ph="Enter a heading" contenteditable="true" ng-model="page.data.headingDetails.text" tabindex="1" ng-style="page.setHeadingStyles();"></h2>
 							</div>
 						</div>
 						<div class="subHeadingContainer">
@@ -31,7 +31,7 @@
 										<!--<span class="icon icon-eyedropper"></span>-->
 									<!--</button>-->
 								</div>
-								<h3 class="subHeading editable" contenteditable="true" ng-model="page.data.subheadingDetails.text" tabindex="2" ng-style="page.setSubheadingStyles();"></h3>
+								<h3 class="subHeading editable editableElem" data-ph="Enter a subheading" contenteditable="true" ng-model="page.data.subheadingDetails.text" tabindex="2" ng-style="page.setSubheadingStyles();"></h3>
 							</div>
 						</div>
 						<div class="descriptionContainer">
@@ -47,7 +47,7 @@
 										<!--<span class="icon icon-eyedropper"></span>-->
 									<!--</button>-->
 								</div>
-								<p class="description editable" contenteditable="true" ng-model="page.data.descriptionDetails.text" tabindex="3" ng-style="page.setDescriptionStyles();"></p>
+								<p class="description editable editableElem" data-ph="Enter text" contenteditable="true" ng-model="page.data.descriptionDetails.text" tabindex="3" ng-style="page.setDescriptionStyles();"></p>
 							</div>
 						</div>
 						<div class="editControls show__editing">
@@ -81,7 +81,10 @@
 	</article>
 	<div class="show__editing"> <!-- show__editing -->
 		<div class="pageTopOptions">
-			<button class="deletePageButton button__round" ng-click="story.removePage($index, page.data.id)"> <!-- tooltips title="Delete this page" tooltip-side="left" tooltip-try="0" -->
+			<button class="deletePageButton button button__round" ng-click="page.updateImage();"> <!-- tooltips title="Delete this page" tooltip-side="left" tooltip-try="0" -->
+				<span class="button-icon icon icon-picture"></span>
+			</button>
+			<button class="deletePageButton button button__round" ng-click="story.removePage($index, page)"> <!-- tooltips title="Delete this page" tooltip-side="left" tooltip-try="0" -->
 				<span class="button-icon icon icon-trash"></span>
 			</button>
 		</div>

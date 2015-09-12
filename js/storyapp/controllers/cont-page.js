@@ -1,4 +1,4 @@
-storyApp.controller('Page', ['$scope', '$log', 'Author', 'Editor', function($scope, $log, Author, Editor) {
+storyApp.controller('Page', ['$scope', '$element', '$log', 'Author', 'Editor', 'ngDialog', function($scope, $element, $log, Author, Editor, ngDialog) {
 	var page = this;
 	page.data = $scope.storyPage;
 
@@ -104,6 +104,14 @@ storyApp.controller('Page', ['$scope', '$log', 'Author', 'Editor', function($sco
 		// set up padding
 	}
 
+	page.setPageCSS = function() {
+		var cssStyles = {};
+		if(page.data.backgroundColor) {
+			cssStyles["background-color"] = page.data.backgroundColor;
+		}
+		return cssStyles;
+	}
+
 	page.setContentCSS = function() {
 		return {
 			top : page.data.measurements.paddingVertical,
@@ -174,6 +182,29 @@ storyApp.controller('Page', ['$scope', '$log', 'Author', 'Editor', function($sco
 		}
 		console.log("Event returned", $event);
 		Editor.setEditingItem(item, offset);
+	}
+
+	page.updateImage = function() {
+
+		freezeSite();
+		ngDialog.open({
+			template: 'template-backgroundHandler',
+			className: 'yepDialog-theme-default',
+			controller: 'Confirmation',
+			controllerAs: 'confirmation',
+			preCloseCallback: function() {
+				unfreezeSite();
+			}
+		});
+
+	}
+
+	page.removeAnimation = function(callback) {
+		console.log("Removing this page!");
+		var domElement = $($element);
+		domElement.parent().slideUp(300, function() {
+			callback();
+		});
 	}
 
 }]);

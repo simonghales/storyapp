@@ -1,4 +1,4 @@
-storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope, $rootScope, Author) {
+storyApp.controller('Story', ['$scope', '$rootScope', 'Author', 'ngDialog', function($scope, $rootScope, Author, ngDialog) {
 	// Avoid using $scope, use story = this instead
 	var story = this;
 
@@ -190,20 +190,21 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 	var generateDefaultPage = function() {
 		var defaultPage = {
 			image : "",
+			backgroundColor : "#E0E0E0",
 			headingDetails : {
-				text : "Yum!",
+				text : "",
 				color : "#000",
 				fontSize : "24px",
 				textAlign : "left"
 			},
 			subheadingDetails : {
-				text : "China Trip 2015",
+				text : "",
 				color : "#000",
-				fontSize : "24px",
+				fontSize : "22px",
 				textAlign : "left"
 			},
 			descriptionDetails : {
-				text : "China Trip 2015",
+				text : "",
 				color : "#000",
 				fontSize : "14px",
 				textAlign : "left"
@@ -228,8 +229,37 @@ storyApp.controller('Story', ['$scope', '$rootScope', 'Author', function($scope,
 		console.log("Add Page at index: " + index, story.data.pages);
 	}
 
-	story.removePage = function(index, pageId) {
-		story.data.pages.splice(index, 1);
+	story.removePage = function(index, page) {
+
+		freezeSite();
+
+		ngDialog.open({
+			template: 'template-confirmation',
+			className: 'yepDialog-theme-default',
+			controller: 'Confirmation',
+			controllerAs: 'confirmation',
+			preCloseCallback: function(confirmed) {
+				unfreezeSite();
+				console.log("Pre closed conf?", confirmed);
+				if(confirmed == true) {
+					page.removeAnimation(function() {
+						console.log("Removing page!");
+						story.data.pages.splice(index, 1);
+						$scope.$apply();
+					});
+				} else {
+					console.log("Do nothing...");
+				}
+			}
+		});
+
+		//prompt({
+		//	title: 'Delete this Thing?',
+		//	message: 'Are you sure you want to do that?'
+		//}).then(function(){
+		//	story.data.pages.splice(index, 1);
+		//});
+
 	}
 
 }]);

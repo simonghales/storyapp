@@ -59,6 +59,7 @@
 
 .button__round {
   @extend .button__reset;
+  display: block;
   background-color: #FFF;
   width: 28px;
   height: 28px;
@@ -66,4 +67,52 @@
   @include border-radius(50%);
   @include box-shadow(0 0 4px 1px rgba(0, 0, 0, 0.13));
   z-index: 100;
+}
+
+.button__primary {
+  @extend .button__reset;
+  background-color: #FF5F19;
+  border: 1px solid #FF5F19;
+  color: #FFFFFF;
+  padding: 8px 14px;
+  @include border-radius(4px);
+  font-weight: bold;
+
+  &.button__cancel {
+    border-color: #F0F0F0;
+    color: #666;
+    background-color: #F6F6F6;
+
+    &:hover {
+      color: #444444;
+      border-color: #e5e5e5;
+    }
+
+  }
+
+}
+
+.button__upload {
+  @extend .button__reset;
+  width: 100%;
+  background-color: #0094FF;
+  color: #FFFFFF;
+  padding: 12px;
+  @include border-radius(5px);
+  font-size: .9em;
+  font-weight: bold;
+
+  .icon {
+    font-size: 1.1em;
+  }
+
+}
+
+.button__inputAction {
+  @extend .button__reset;
+  background-color: #0094FF;
+  padding: 0 5px;
+  border-radius: 3px;
+  color: #FFF;
+  text-shadow: 0 1px #005695;
 }

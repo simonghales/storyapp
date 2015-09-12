@@ -71,16 +71,178 @@
 
 }
 
-//
+// Dialog
 
-.storyRow--chiao {
-	background-image: url(../images/chiao.jpg);
+html {
+  overflow-y: scroll;
 }
 
-.storyRow--simon {
-	background-image: url(../images/simon.jpg);
+body.state__siteFrozen {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
 
-.storyRow--beach {
-	background-image: url(../images/beachUs.jpg);
+.state__siteFrozen #siteWrapper {
+  position: absolute;
+  width: 100%;
 }
+
+html.ngdialog-open {
+  overflow-y: scroll;
+}
+
+body.ngdialog-open {
+  padding-right: 0 !important;
+}
+
+.ngdialog-content {
+  position: relative;
+}
+
+.yepDialog-theme-default {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+
+  .ngdialog-content {
+
+	width: 100%;
+	max-width: 400px;
+	margin: 0 auto;
+	background: none;
+  }
+
+}
+
+.modalConfirmation {
+
+  .modal-header {
+	background-color: #0094FF;
+	@include border-radius(5px 5px 0 0);
+	padding: 15px;
+	text-align: center;
+	color: #FFFFFF;
+
+	h2 {
+	  font-weight: 400;
+	}
+
+  }
+
+  .modal-body {
+	background-color: #FFF;
+	@include border-radius(0 0 5px 5px);
+	padding: 30px 15px;
+  }
+
+  .message {
+	text-align: center;
+	font-size: .9em;
+	color: #999999;
+  }
+
+  .modal-options {
+	margin-top: 30px;
+	text-align: center;
+
+	.button {
+	  margin: 0 2px;
+	}
+
+  }
+
+}
+
+.modalMain {
+  padding: 30px;
+  background-color: #FFFFFF;
+  @include border-radius(5px);
+
+  .modal-title {
+	color: #666666;
+  }
+
+  .modal-body {
+	margin-top: 30px;
+  }
+
+}
+
+.modalForm {
+  
+  .formSection {
+	padding: 0 15px;
+	margin-top: 15px;
+	
+	&:first-child {
+	  margin-top: 0;
+	}
+	
+	&.__separate {
+	  padding-top: 30px;
+	  margin-top: 30px;
+	  border-top: 1px solid #f0f0f0;
+	}
+	
+  }
+  
+}
+
+.flexInput {
+  display: flex;
+
+  label {
+	min-width: 60px;
+	margin-right: 10px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	text-align: right;
+  }
+
+  .inputWrapper {
+	flex-grow: 1;
+  }
+
+  input, textarea {
+	width: 100%;
+  }
+
+  .button__right {
+	margin-left: 5px;
+  }
+
+}
+
+.text__faint {
+  font-size: .8em;
+  font-weight: 600;
+  color: #777777;
+}
+
+.centeredButtons {
+  text-align: center;
+
+  .button {
+	margin: 0 2px;
+  }
+
+}
+
+.imagePreview {
+  width: 100%;
+  height: 130px;
+  background-color: #F0F0F0;
+  @include border-radius(5px);
+}
+
+// END Dialog

@@ -83,4 +83,10 @@
 
 }
 
+//[contentEditable=true]:empty:not(:focus):before{
+.editableElem:empty:not(:focus):before{
+  content:attr(data-ph);
+  font-style:italic;
+}
+
 // END Plain

@@ -118,17 +118,17 @@ html,
 body {
   min-height: 100%; }
 
-.placeholderPattern, .storyPage.__noImage {
+.placeholderPattern {
   background-image: url(../images/pattern_geometry.png);
   background-repeat: repeat;
   background-size: auto; }
 
-.button__reset, .button__close, .button__plain, .button__round, .addPage-button, .storyUi-button, .storyUi-positionButton {
+.button__reset, .button__close, .button__plain, .button__round, .button__primary, .button__upload, .button__inputAction, .addPage-button, .storyUi-button, .storyUi-positionButton {
   background: none;
   border: 0;
   cursor: pointer;
   padding: 0; }
-  .button__reset:focus, .button__close:focus, .button__plain:focus, .button__round:focus, .addPage-button:focus, .storyUi-button:focus, .storyUi-positionButton:focus {
+  .button__reset:focus, .button__close:focus, .button__plain:focus, .button__round:focus, .button__primary:focus, .button__upload:focus, .button__inputAction:focus, .addPage-button:focus, .storyUi-button:focus, .storyUi-positionButton:focus {
     outline: none; }
 
 .button__close {
@@ -178,6 +178,7 @@ body {
     color: #333; }
 
 .button__round {
+  display: block;
   background-color: #FFF;
   width: 28px;
   height: 28px;
@@ -187,6 +188,39 @@ body {
   -moz-box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.13);
   box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.13);
   z-index: 100; }
+
+.button__primary {
+  background-color: #FF5F19;
+  border: 1px solid #FF5F19;
+  color: #FFFFFF;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-weight: bold; }
+  .button__primary.button__cancel {
+    border-color: #F0F0F0;
+    color: #666;
+    background-color: #F6F6F6; }
+    .button__primary.button__cancel:hover {
+      color: #444444;
+      border-color: #e5e5e5; }
+
+.button__upload {
+  width: 100%;
+  background-color: #0094FF;
+  color: #FFFFFF;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: .9em;
+  font-weight: bold; }
+  .button__upload .icon {
+    font-size: 1.1em; }
+
+.button__inputAction {
+  background-color: #0094FF;
+  padding: 0 5px;
+  border-radius: 3px;
+  color: #FFF;
+  text-shadow: 0 1px #005695; }
 
 .input__clear {
   width: 100%;
@@ -255,6 +289,10 @@ textarea.input__clear {
 .state__dropdown .dropdown__input {
   display: block; }
 
+.editableElem:empty:not(:focus):before {
+  content: attr(data-ph);
+  font-style: italic; }
+
 .bgImg, .intro, .storyRow, .storyPage {
   background-size: cover;
   background-position: center;
@@ -296,19 +334,125 @@ textarea.input__clear {
   .textBlock__default h2.darker {
     color: #485961; }
 
-.storyRow--chiao {
-  background-image: url(../images/chiao.jpg); }
+html {
+  overflow-y: scroll; }
 
-.storyRow--simon {
-  background-image: url(../images/simon.jpg); }
+body.state__siteFrozen {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0; }
 
-.storyRow--beach {
-  background-image: url(../images/beachUs.jpg); }
+.state__siteFrozen #siteWrapper {
+  position: absolute;
+  width: 100%; }
+
+html.ngdialog-open {
+  overflow-y: scroll; }
+
+body.ngdialog-open {
+  padding-right: 0 !important; }
+
+.ngdialog-content {
+  position: relative; }
+
+.yepDialog-theme-default {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  align-items: center; }
+  .yepDialog-theme-default .ngdialog-content {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    background: none; }
+
+.modalConfirmation .modal-header {
+  background-color: #0094FF;
+  border-radius: 5px 5px 0 0;
+  padding: 15px;
+  text-align: center;
+  color: #FFFFFF; }
+  .modalConfirmation .modal-header h2 {
+    font-weight: 400; }
+
+.modalConfirmation .modal-body {
+  background-color: #FFF;
+  border-radius: 0 0 5px 5px;
+  padding: 30px 15px; }
+
+.modalConfirmation .message {
+  text-align: center;
+  font-size: .9em;
+  color: #999999; }
+
+.modalConfirmation .modal-options {
+  margin-top: 30px;
+  text-align: center; }
+  .modalConfirmation .modal-options .button {
+    margin: 0 2px; }
+
+.modalMain {
+  padding: 30px;
+  background-color: #FFFFFF;
+  border-radius: 5px; }
+  .modalMain .modal-title {
+    color: #666666; }
+  .modalMain .modal-body {
+    margin-top: 30px; }
+
+.modalForm .formSection {
+  padding: 0 15px;
+  margin-top: 15px; }
+  .modalForm .formSection:first-child {
+    margin-top: 0; }
+  .modalForm .formSection.__separate {
+    padding-top: 30px;
+    margin-top: 30px;
+    border-top: 1px solid #f0f0f0; }
+
+.flexInput {
+  display: flex; }
+  .flexInput label {
+    min-width: 60px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: right; }
+  .flexInput .inputWrapper {
+    flex-grow: 1; }
+  .flexInput input, .flexInput textarea {
+    width: 100%; }
+  .flexInput .button__right {
+    margin-left: 5px; }
+
+.text__faint {
+  font-size: .8em;
+  font-weight: 600;
+  color: #777777; }
+
+.centeredButtons {
+  text-align: center; }
+  .centeredButtons .button {
+    margin: 0 2px; }
+
+.imagePreview {
+  width: 100%;
+  height: 130px;
+  background-color: #F0F0F0;
+  border-radius: 5px; }
 
 .storyPage {
   width: 100%;
   height: 100vh;
   overflow: hidden; }
+  .storyPage.__noImage {
+    background-color: #E0E0E0; }
 
 .storyContainer {
   height: 100%;
@@ -411,8 +555,13 @@ textarea.input__clear {
   .storyText-slider.slider__bottom {
     bottom: -2px; }
 
+.headingContainer,
+.subHeadingContainer,
+.descriptionContainer {
+  padding: 5px 0; }
+
 .headingContainer {
-  margin-bottom: 5px; }
+  padding-top: 0; }
 
 .heading, .headingContainer input {
   font-size: 1.6em;
@@ -420,15 +569,9 @@ textarea.input__clear {
   color: #2F3851;
   font-weight: bold; }
 
-.subHeadingContainer {
-  margin-bottom: 5px; }
-
 .subHeading, .subHeadingContainer input {
   color: #54616A;
   font-weight: 600; }
-
-.descriptionContainer {
-  margin-bottom: 5px; }
 
 .description, .descriptionContainer .input {
   font-size: .8em; }
@@ -452,7 +595,7 @@ textarea.input__clear {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 50;
+  z-index: 100;
   height: 0; }
 
 .addPage-button {
@@ -478,7 +621,10 @@ textarea.input__clear {
 .pageTopOptions {
   position: absolute;
   top: 15px;
-  right: 15px; }
+  left: 15px;
+  z-index: 100; }
+  .pageTopOptions .button {
+    margin-bottom: 5px; }
 
 .storyUi-inlineOptions {
   position: absolute;
@@ -488,12 +634,6 @@ textarea.input__clear {
   height: 22px;
   background-color: white;
   border-radius: 4px 0 0 4px; }
-
-.storyUi-inlineOptions__heading {
-  top: 7px; }
-
-.storyUi-inlineOptions__description {
-  top: 5px; }
 
 .storyUi-button {
   display: block;
