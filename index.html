@@ -15,16 +15,8 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body class="" ng-controller="Site as site">
-	<div id="siteWrapper" class="siteWrapper" data-ng-controller="Story as story" ng-class="{ 'state__editing' : story.editing }">
-		<div id="globalEditControls" class="globalEditControls">
-			<span ng-click="story.toggleEditing()">Toggle Edit</span> | <span ng-click="site.logIn();">Log In</span>
-		</div>
-		<div class="textEditor-wrapper show__editing">
-			<text-editor drag-me="" drag-options="{{story.editorOptions}}"></text-editor>
-			<!--<text-menu></text-menu>-->
-		</div>
-		<div class="storyPage-wrapper" data-ng-repeat="storyPage in story.data.pages track by storyPage.id" data-ng-include="'partials/_storyPage.html'">
-		</div>
+	<div id="siteWrapper" class="siteWrapper" ui-view="">
+
 	</div>
 
 	<!-- Templates -->
@@ -103,6 +95,8 @@
 	<script src="bower_components/angular-off-click/offClick.js"></script>
 	<script src="bower_components/angular-tooltips/dist/angular-tooltips.min.js"></script>
 	<script src="bower_components/ngDialog/js/ngDialog.min.js"></script>
+	<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+	<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 	<script src="js/storyapp/storyapp.js"></script>
 	<script src="js/storyapp/main.js"></script>
 
@@ -120,6 +114,7 @@
 	<script src="js/storyapp/factories/fact-editor.js"></script>
 	<script src="js/storyapp/factories/fact-authentication.js"></script>
 	<script src="js/storyapp/app-services/user.service.js"></script>
+	<script src="js/storyapp/app-services/story.service.js"></script>
 	<!-- END Factories -->
 
 	<!-- Controllers -->
@@ -128,6 +123,7 @@
 	<script src="js/storyapp/controllers/cont-page.js"></script>
 	<script src="js/storyapp/controllers/cont-textEditor.js"></script>
 	<script src="js/storyapp/controllers/cont-confirmation.js"></script>
+	<script src="js/storyapp/stories/storiesList.controller.js"></script>
 	<!-- END Controllers -->
 
 </body>

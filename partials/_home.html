@@ -1,0 +1,11 @@
+<section class="homePage" ng-controller="StoriesList as storiesList">
+    <section class="__pageCenter" ng-class="{ 'state__loading' : storiesList.states.loading }">
+        <section class="show__loading">
+            loading...
+        </section>
+        <ul class="hide__loading">
+            <li ng-repeat="story in storiesList.data.data" ng-include="'templates/_storyCard.html'">
+            </li>
+        </ul>
+    </section>
+</section>

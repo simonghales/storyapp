@@ -1,4 +1,15 @@
-// TODO. Move this stuff into separate .scss files
+
+body {
+  background-color: #E0E0E0;
+}
+
+.__pageCenter {
+  width: 100%;
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 30px;
+}
 
 .bgImg {
 	background-size: cover;

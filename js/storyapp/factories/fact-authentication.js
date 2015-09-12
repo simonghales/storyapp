@@ -1,8 +1,9 @@
-storyApp.factory('AuthenticationService', ['$http', '$rootScope', '$cookies', function($http, $rootScope, $cookies){
+storyApp.factory('AuthenticationService', ['$http', '$rootScope', '$cookies', 'API_URL', function($http, $rootScope, $cookies, API_URL){
 
     var service = {};
 
     service.Login = Login;
+    service.StoreAuth = StoreAuth;
     service.SetCredentials = SetCredentials;
     service.ClearCredentials = ClearCredentials;
 
@@ -12,11 +13,31 @@ storyApp.factory('AuthenticationService', ['$http', '$rootScope', '$cookies', fu
 
         /* Use this for real authentication
          ----------------------------------------------*/
-        $http.post('/api/authenticate', { username: username, password: password })
+
+        var apiData = {
+            username: username,
+            password: password
+        }
+
+        apiData = JSON.stringify(apiData);
+
+        $http.post(API_URL + '/api-token-auth/.json', apiData)
             .success(function (response) {
                 callback(response);
             });
 
+    }
+
+    function StoreAuth(username, token) {
+        $rootScope.globals = {
+            currentUser: {
+                username: username,
+                token: token
+            }
+        }
+
+        $http.defaults.headers.common['Authorization'] = 'JWT ' + token; // jshint ignore:line
+        $cookies.put('globals', $rootScope.globals);
     }
 
     function SetCredentials(username, password) {

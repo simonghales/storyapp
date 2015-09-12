@@ -293,6 +293,16 @@ textarea.input__clear {
   content: attr(data-ph);
   font-style: italic; }
 
+body {
+  background-color: #E0E0E0; }
+
+.__pageCenter {
+  width: 100%;
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 30px; }
+
 .bgImg, .intro, .storyRow, .storyPage {
   background-size: cover;
   background-position: center;
