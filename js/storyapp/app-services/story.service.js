@@ -4,6 +4,8 @@ storyApp.factory('StoryService', ['$http', 'API_URL', function($http, API_URL){
 
     service.GetAll = GetAll;
     service.GetById = GetById;
+    service.UpdatePageData = UpdatePageData;
+    service.UploadImage = UploadImage;
     service.GetByUsername = GetByUsername;
     service.Create = Create;
     service.Update = Update;
@@ -12,11 +14,19 @@ storyApp.factory('StoryService', ['$http', 'API_URL', function($http, API_URL){
     return service;
 
     function GetAll() {
-        return $http.get(API_URL + '/api/stories').then(handleSuccess, handleError('Error getting all stories'));
+        return $http.get(API_URL + '/api/stories/.json').then(handleSuccess, handleError('Error getting all stories'));
     }
 
     function GetById(id) {
-        return $http.get(API_URL + '/api/stories/' + id).then(handleSuccess, handleError('Error getting story by id'));
+        return $http.get(API_URL + '/api/stories/' + id + '/.json').then(handleSuccess, handleError('Error getting story by id'));
+    }
+
+    function UpdatePageData(sendData, pageId) {
+        return $http.put(API_URL + '/api/storypages/' + pageId + '/.json', sendData).then(handleSuccess, handleError('Error adding image'));
+    }
+
+    function UploadImage(sendData) {
+        return $http.post(API_URL + '/api/image/.json', sendData).then(handleSuccess, handleError('Error adding image'));
     }
 
     function GetByUsername(username) {

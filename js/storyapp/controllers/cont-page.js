@@ -1,4 +1,4 @@
-storyApp.controller('Page', ['$scope', '$element', '$log', 'Author', 'Editor', 'ngDialog', 'PageData', function($scope, $element, $log, Author, Editor, ngDialog, PageData) {
+storyApp.controller('Page', ['$scope', '$element', '$log', 'Author', 'Editor', 'ngDialog', 'PageData', 'StoryService', function($scope, $element, $log, Author, Editor, ngDialog, PageData, StoryService) {
 	var page = this;
 	page.data = $scope.storyPage;
 
@@ -212,19 +212,34 @@ storyApp.controller('Page', ['$scope', '$element', '$log', 'Author', 'Editor', '
 		Editor.setEditingItem(item, offset);
 	}
 
-	page.updateImage = function() {
+	page.updateImageModal = function() {
 
 		freezeSite();
 		ngDialog.open({
 			template: 'template-backgroundHandler',
 			className: 'yepDialog-theme-default',
-			controller: 'Confirmation',
-			controllerAs: 'confirmation',
-			preCloseCallback: function() {
+			controller: 'ImageUpload',
+			controllerAs: 'imageUpload',
+			preCloseCallback: function(newImage) {
 				unfreezeSite();
+				if(newImage && newImage.id) {
+					page.updateImage(newImage);
+				}
 			}
 		});
 
+	}
+
+	page.updateImage = function(newImage) {
+		console.log("Update this page's bg info with: ", newImage, page.data);
+		page.data.background_image_urls[0] = newImage;
+		page.data.background_images[0] = newImage.id;
+		StoryService.UpdatePageData(page.data, page.data.id).then(function(data) {
+			console.log("Update page data", data);
+		}, function(error) {
+			console.log("Error: " + error);
+		});
+		console.log("Updated bg", page.data.background_image_urls[0].remote_url);
 	}
 
 	page.removeAnimation = function(callback) {

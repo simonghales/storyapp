@@ -36,8 +36,10 @@ storyApp.factory('AuthenticationService', ['$http', '$rootScope', '$cookies', 'A
             }
         }
 
+        var cookieData = JSON.stringify($rootScope.globals);
+
         $http.defaults.headers.common['Authorization'] = 'JWT ' + token; // jshint ignore:line
-        $cookies.put('globals', $rootScope.globals);
+        $cookies.put('globals', cookieData);
     }
 
     function SetCredentials(username, password) {

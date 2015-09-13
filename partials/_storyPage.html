@@ -1,5 +1,5 @@
 <div class="storyPageWrapper" data-ng-controller="Page as page"> <!-- move back to article object -->
-	<article class="storyPage" back-img="{{page.data.image}}" ng-style="page.setPageCSS();">
+	<article class="storyPage" back-img="{{page.data.background_image_urls[0].original}}" ng-style="page.setPageCSS();">
 		<div class="storyContainer storyContainer__resizable size__default" resizable resizable-config="page.resizableContainer.configuration" ng-style="{ 'max-width' : page.safeData.measurements.containerWidth }">
 			<div class="storyContainer-slider storyContainer-slider--left"></div>
 			<div class="storyContainer-slider storyContainer-slider--right"></div>
@@ -81,7 +81,7 @@
 	</article>
 	<div class="show__editing"> <!-- show__editing -->
 		<div class="pageTopOptions">
-			<button class="deletePageButton button button__round" ng-click="page.updateImage();"> <!-- tooltips title="Delete this page" tooltip-side="left" tooltip-try="0" -->
+			<button class="deletePageButton button button__round" ng-click="page.updateImageModal();"> <!-- tooltips title="Delete this page" tooltip-side="left" tooltip-try="0" -->
 				<span class="button-icon icon icon-picture"></span>
 			</button>
 			<button class="deletePageButton button button__round" ng-click="story.removePage($index, page)"> <!-- tooltips title="Delete this page" tooltip-side="left" tooltip-try="0" -->

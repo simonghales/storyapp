@@ -3,6 +3,7 @@ storyApp.factory('PageData', function(){
     var service = {};
 
     service.GetSafeData = function(data) {
+        console.log("Page data:", data);
         var safeData = {
             measurements : {
                 containerWidth : "1024px",
@@ -15,6 +16,13 @@ storyApp.factory('PageData', function(){
             }
         }
 
+        var providedMeasurements = JSON.parse(data.measurements);
+
+        if(providedMeasurements.containerWidth) {
+            console.log("Container width provided", providedMeasurements.containerWidth);
+        }
+
+        console.log("Provided JSON data", providedMeasurements);
 
         return safeData;
     }
