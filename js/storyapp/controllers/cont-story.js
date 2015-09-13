@@ -209,35 +209,20 @@ storyApp.controller('Story', ['$scope', '$rootScope', '$stateParams', 'Author', 
 
 	var generateDefaultPage = function() {
 		var defaultPage = {
-			image : "",
-			backgroundColor : "#E0E0E0",
-			headingDetails : {
-				text : "",
-				color : "#000",
-				fontSize : "24px",
-				textAlign : "left"
-			},
-			subheadingDetails : {
-				text : "",
-				color : "#000",
-				fontSize : "22px",
-				textAlign : "left"
-			},
-			descriptionDetails : {
-				text : "",
-				color : "#000",
-				fontSize : "14px",
-				textAlign : "left"
-			},
-			measurements : {
-				containerWidth : "1024px",
-				paddingVertical : "80px",
-				paddingHorizontal : "120px",
-				positionHorizontal : "left",
-				positionVertical : "top",
-				textWidth : "400px",
-				textHeight : "300px"
-			}
+			background_images : [],
+			background_image_urls : [],
+			measurements : "[]",
+			background_colour : "#E0E0E0",
+			element_groups : []
+			//measurements : {
+			//	containerWidth : "1024px",
+			//	paddingVertical : "80px",
+			//	paddingHorizontal : "120px",
+			//	positionHorizontal : "left",
+			//	positionVertical : "top",
+			//	textWidth : "400px",
+			//	textHeight : "300px"
+			//}
 		};
 		defaultPage.id = new Date().getUTCMilliseconds();
 		return defaultPage;
@@ -245,8 +230,8 @@ storyApp.controller('Story', ['$scope', '$rootScope', '$stateParams', 'Author', 
 
 	story.addPage = function(index) {
 		var defaultPage = generateDefaultPage();
-		story.data.pages.splice(index + 1, 0, defaultPage);
-		console.log("Add Page at index: " + index, story.data.pages);
+		story.data.data.pages.splice(index + 1, 0, defaultPage);
+		console.log("Add Page at index: " + index, story.data.data.pages);
 	}
 
 	story.removePage = function(index, page) {
@@ -264,7 +249,7 @@ storyApp.controller('Story', ['$scope', '$rootScope', '$stateParams', 'Author', 
 				if(confirmed == true) {
 					page.removeAnimation(function() {
 						console.log("Removing page!");
-						story.data.pages.splice(index, 1);
+						story.data.data.pages.splice(index, 1);
 						$scope.$apply();
 					});
 				} else {

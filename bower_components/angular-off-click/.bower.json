@@ -1,0 +1,23 @@
+{
+  "name": "angular-off-click",
+  "version": "0.0.8",
+  "main": "offClick.js",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies": {
+    "angular": "*"
+  },
+  "homepage": "https://github.com/TheSharpieOne/angular-off-click",
+  "_release": "0.0.8",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.8",
+    "commit": "29334185f58d32e9c36501a9713a159d7f49817e"
+  },
+  "_source": "git://github.com/TheSharpieOne/angular-off-click.git",
+  "_target": "~0.0.8",
+  "_originalSource": "angular-off-click",
+  "_direct": true
+}
