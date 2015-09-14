@@ -1,4 +1,4 @@
-storyApp.controller('Site', ['$scope', 'AuthenticationService', function($scope, AuthenticationService) {
+storyApp.controller('Site', ['$scope', '$rootScope', '$state', 'Author', 'AuthenticationService', function($scope, $rootScope, $state, Author, AuthenticationService) {
 
     var site = this;
 
@@ -14,6 +14,23 @@ storyApp.controller('Site', ['$scope', 'AuthenticationService', function($scope,
                 console.log("Failed to log in :(((", response);
             }
         });
+    }
+
+
+
+    site.editing = Author.getEditing();
+    $rootScope.$on('author-editingChanged', function(event, value) {
+        site.editing = value;
+    });
+
+    site.toggleEditing = function() {
+        Author.toggleEditing();
+    }
+
+    site.saveEditing = function() {
+        console.log("Saving changes!");
+        //Author.toggleEditing();
+        // do something with the data....
     }
 
 }]);

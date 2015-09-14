@@ -80,6 +80,12 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-weight: bold; }
 
+a {
+  color: #0081FF;
+  text-decoration: none; }
+  a:hover {
+    text-decoration: underline; }
+
 * {
   box-sizing: border-box; }
 
@@ -104,6 +110,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .float__right {
   float: right; }
+
+.align__center {
+  text-align: center; }
 
 .align__left {
   text-align: left; }
@@ -295,6 +304,10 @@ textarea.input__clear {
 
 body {
   background-color: #E0E0E0; }
+  body.page__home {
+    background-image: url(../images/bg-fields.jpg);
+    background-size: cover;
+    background-attachment: fixed; }
 
 .__pageCenter {
   width: 100%;
@@ -780,3 +793,41 @@ text-editor {
     left: auto; }
   .textEditor .handle__w {
     right: auto; }
+
+.homeIntro {
+  text-align: center;
+  margin: 60px auto 30px auto; }
+  .homeIntro h1 {
+    font-size: 2em;
+    line-height: 1.5em; }
+  .homeIntro h3 {
+    text-shadow: 0 2px #E5E5E5; }
+
+.storiesList > li {
+  margin-top: 30px; }
+  .storiesList > li:first-child {
+    margin-top: 0; }
+
+.storyCard {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 15px;
+  background-color: white;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.15); }
+
+.siteHeader {
+  width: 100%;
+  height: 32px;
+  background-color: #FFFFFF;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center; }
+
+.homeLink {
+  font-weight: bold; }

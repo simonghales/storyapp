@@ -1,4 +1,4 @@
-var storyApp = angular.module('storyApp', ['ui.router', 'mp.colorPicker', 'offClick', '720kb.tooltips', 'ngDialog', 'ngCookies', 'ui.router']); // , 'ui.bootstrap', 'cgPrompt'
+var storyApp = angular.module('storyApp', ['ui.router', 'mp.colorPicker', 'offClick', '720kb.tooltips', 'ngDialog', 'ngCookies', 'ui.router', 'ngFileUpload']); // , 'ui.bootstrap', 'cgPrompt'
 
 storyApp.constant('API_URL', 'http://morning-mountain-1547.herokuapp.com');
 
@@ -31,5 +31,24 @@ storyApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) 
             activeTab: 'story'
         }
     )
+
+});
+
+storyApp.run(function($rootScope, $http, $cookies) {
+
+    console.log("Checking for cookies...");
+
+    if($cookies.get("globals")) {
+        var globalData = $cookies.get("globals");
+        globalData = JSON.parse(globalData); // TODO: This breaks the site if it doesn't parse correctly...
+        console.log("User's token", globalData.currentUser.token);
+        $http.defaults.headers.common['Authorization'] = 'JWT ' + globalData.currentUser.token;
+    }
+
+    $rootScope.containerClass = "page__loading";
+
+    $rootScope.$on('$stateChangeSuccess',function(event, toState, toParams, fromState, fromParams){
+        $rootScope.containerClass = "page__" + toState.activeTab;
+    });
 
 });

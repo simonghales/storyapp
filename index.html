@@ -14,9 +14,14 @@
 	<link rel="stylesheet" href="css/fontello.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
-<body class="" ng-controller="Site as site">
-	<div id="siteWrapper" class="siteWrapper" ui-view="">
+<body class="" ng-controller="Site as site" ng-class="containerClass">
+	<div id="siteWrapper" class="siteWrapper">
+		<header class="siteHeader">
+			<a class="homeLink" href="#/">yep.is</a>
+		</header>
+		<div ui-view="">
 
+		</div>
 	</div>
 
 	<!-- Templates -->
@@ -24,10 +29,10 @@
 	<script type="text/ng-template" id="template-backgroundHandler">
 		<section class="modalMain">
 			<h2 class="modal-title">Set up your background</h2>
-			<form class="modal-body modalForm">
-				<figure class="formSection imagePreview bgImg"></figure>
+			<form name="imageForm" class="modal-body modalForm" novalidate>
+				<figure class="formSection imagePreview bgImg" back-img="{{imageUpload.image}}"></figure>
 				<section class="formSection">
-					<button class="button__upload">
+					<button class="button__upload" ngf-select="imageUpload.uploadFile($file)">
 						<span class="button-text">
 							<span class="icon icon-up-circled2"></span>
 							Upload Image
@@ -37,9 +42,9 @@
 				<section class="flexInput uploadImageUrl formSection">
 					<label class="text__faint" for="imageUrl">Image Url</label>
 					<div class="inputWrapper">
-						<input name="imageUrl" class="input__plain" type="text" placeholder="http://www.website.com"/>
+						<input name="imageUrl" class="input__plain" required ng-model="imageUpload.url" type="url" placeholder="http://www.website.com"/>
 					</div>
-					<button class="button__inputAction button__right">
+					<button class="button__inputAction button__right" ng-disabled="imageForm$invalid" ng-click="imageUpload.uploadUrlCheck(imageForm.$valid, imageUpload.url);">
 						<span class="icon icon-up-circled2"></span>
 					</button>
 				</section>
@@ -53,10 +58,10 @@
 					</button>
 				</section>
 				<section class="formSection __separate modal-options centeredButtons clearfix">
-					<button class="button button__primary button__cancel">
+					<button class="button button__primary button__cancel" ng-click="imageUpload.cancel();">
 						Cancel
 					</button>
-					<button class="button button__primary">
+					<button class="button button__primary" ng-click="imageUpload.confirm();">
 						Save
 					</button>
 				</section>
@@ -97,6 +102,7 @@
 	<script src="bower_components/ngDialog/js/ngDialog.min.js"></script>
 	<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
 	<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
 	<script src="js/storyapp/storyapp.js"></script>
 	<script src="js/storyapp/main.js"></script>
 
@@ -115,6 +121,8 @@
 	<script src="js/storyapp/factories/fact-authentication.js"></script>
 	<script src="js/storyapp/app-services/user.service.js"></script>
 	<script src="js/storyapp/app-services/story.service.js"></script>
+	<script src="js/storyapp/app-services/pageData.service.js"></script>
+	<script src="js/storyapp/app-services/imgur.service.js"></script>
 	<!-- END Factories -->
 
 	<!-- Controllers -->
@@ -123,7 +131,8 @@
 	<script src="js/storyapp/controllers/cont-page.js"></script>
 	<script src="js/storyapp/controllers/cont-textEditor.js"></script>
 	<script src="js/storyapp/controllers/cont-confirmation.js"></script>
-	<script src="js/storyapp/stories/storiesList.controller.js"></script>
+	<script src="js/storyapp/controllers/cont-imageUpload.js"></script>
+	<script src="js/storyapp/stories/storiesList-controller.js"></script>
 	<!-- END Controllers -->
 
 </body>

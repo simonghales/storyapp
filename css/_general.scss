@@ -1,6 +1,13 @@
 
 body {
   background-color: #E0E0E0;
+
+  &.page__home {
+	background-image: url(../images/bg-fields.jpg);
+	background-size: cover;
+	background-attachment: fixed;
+  }
+
 }
 
 .__pageCenter {
