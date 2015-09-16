@@ -1,3 +1,11 @@
+a.button {
+
+  &:hover {
+    text-decoration: none;
+  }
+
+}
+
 .button__reset {
 	background: none;
 	border: 0;
@@ -115,4 +123,73 @@
   border-radius: 3px;
   color: #FFF;
   text-shadow: 0 1px #005695;
+}
+
+.button__major {
+  @extend .button__reset;
+  @extend .font__heading;
+  display: inline-block;
+  font-weight: bold;
+  background-color: rgba(236, 0, 69, 0.4);
+  color: #FFF;
+  text-shadow: 0 1px #AD2144;
+  padding: 8px 12px;
+  font-size: 1em;
+  @include border-radius(5px);
+
+  &:hover {
+    background-color: rgba(236, 0, 69, 0.55);
+  }
+
+  &.button__clear {
+    color: #495E5E;
+    background-color: rgba(61, 77, 81, 0.08);
+    text-shadow: none;
+
+    &:hover {
+      color: #1B2828;
+      background-color: rgba(61, 77, 81, 0.16);
+    }
+
+  }
+
+  &.button__bigger {
+    padding: 16px 16px;
+    font-size: 1.2em;
+  }
+
+  &.button__blue {
+    background-color: rgba(0, 120, 236, 0.4);
+    text-shadow: 0 1px #275C88;
+
+    &:hover {
+      background-color: rgba(0, 120, 236, 0.55);
+    }
+
+  }
+
+}
+
+.buttons_half {
+  @extend .clearfix;
+
+  .buttonWrapper {
+    float: left;
+    width: 50%;
+
+    &:first-child {
+      padding-right: 7px;
+    }
+
+    &:last-child {
+      padding-left: 7px;
+    }
+
+  }
+
+  button {
+    display: block;
+    width: 100%;
+  }
+
 }

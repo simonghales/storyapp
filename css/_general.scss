@@ -2,11 +2,17 @@
 body {
   background-color: #E0E0E0;
 
-  &.page__home {
-	background-image: url(../images/bg-fields.jpg);
+  //&.page__home,
+  //&.page__create {
+	background-image: url(../images/bg-home.jpg);
 	background-size: cover;
 	background-attachment: fixed;
-  }
+
+	.siteHeader {
+	  //background: none;
+	}
+
+  //}
 
 }
 

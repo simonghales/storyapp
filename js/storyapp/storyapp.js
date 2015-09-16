@@ -16,21 +16,25 @@ storyApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) 
                 templateUrl: 'partials/_home.html',
                 activeTab: 'home'
             }
+        ).state('home2',
+            {
+                url: '/',
+                templateUrl: 'partials/_home.html',
+                activeTab: 'home'
+            }
+         ).state('story',
+            {
+                url: '/s/:id',
+                templateUrl: 'partials/_story.html',
+                activeTab: 'story'
+            }
+        ).state('create',
+            {
+                url: '/create',
+                templateUrl: 'partials/_create.html',
+                activeTab: 'create'
+            }
         )
-        .state('home2',
-        {
-            url: '/',
-            templateUrl: 'partials/_home.html',
-            activeTab: 'home'
-        }
-    )
-        .state('story',
-        {
-            url: '/s/:id',
-            templateUrl: 'partials/_story.html',
-            activeTab: 'story'
-        }
-    )
 
 });
 

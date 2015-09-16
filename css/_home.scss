@@ -1,20 +1,91 @@
 .homeIntro {
-  text-align: center;
-  //background-color: rgba(229, 229, 229, 0.5);
-  //padding: 30px;
-  //@include border-radius(15px);
-  //@include box-shadow(0 0 1px rgba(0,0,0,0.25));
-  //width: 100%;
-  //max-width: 350px;
-  margin: 60px auto 30px auto;
+  padding: 0 15px 15px 15px;
+  margin: 30px 15px 15px 15px;
+  //border-bottom: 1px solid #979B8E;
 
   h1 {
-    font-size: 2em;
-    line-height: 1.5em;
+    margin: 10px 0 15px 0;
+    @extend .font__fancy;
+    font-size: 2.8em;
+    //padding: 0 15px;
+
+    a {
+      color: #515552;
+      text-shadow: 0 1px #CFDED4;
+
+      span {
+      }
+
+      &:hover {
+        text-decoration: none;
+        color: #404441;
+      }
+
+    }
+
   }
 
   h3 {
-    text-shadow: 0 2px #E5E5E5;
+    color: #6B6863;
+    font-size: .8em;
   }
 
+}
+
+$menu-width: 260px;
+
+.sideMenu {
+  float: left;
+  width: 100%;
+  max-width: $menu-width;
+  background-color: rgba(66, 66, 67, 0.1);
+  border-right: 1px solid rgba(79, 70, 65, 0.07);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.mainBodyWrapper {
+  padding-left: $menu-width;
+}
+
+.mainBody {
+  margin: 15px;
+}
+
+.menuUserOptions {
+  margin: 0 15px;
+
+  .homeCreateLink {
+    margin-top: 15px;
+    width: 100%;
+    text-align: center;
+  }
+
+}
+
+.storyPreviews {
+  //flex-direction: column;
+  //flex-wrap: wrap;
+}
+
+.previewRow {
+  display: flex;
+}
+
+.storyPreviewWrapper {
+  flex: 1;
+  padding: 15px;
+
+  &.grid__big {
+    flex: 2;
+  }
+
+}
+
+.storyPreview {
+  @extend .bgImg;
+  min-height: 220px;
+  @include border-radius(5px);
 }

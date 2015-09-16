@@ -1,6 +1,15 @@
+@font-face {
+  font-family: Lobster;
+  src: url("../font/Lobster_1.3.otf") format("opentype");
+}
+
 .font__main,
 .font__heading {
 	font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+.font__fancy {
+	font-family: Lobster, "Open Sans", sans-serif;
 }
 
 .typography__main {

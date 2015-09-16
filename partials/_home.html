@@ -1,15 +1,54 @@
-<section class="homePage" ng-controller="StoriesList as storiesList">
-    <section class="__pageCenter" ng-class="{ 'state__loading' : storiesList.states.loading }">
+<section class="homePage clearfix" ng-controller="StoriesList as storiesList">
+    <section class="sideMenu">
         <section class="homeIntro">
-            <h1>yep.is</h1>
+            <h1><a href="#/"><span>yep</span>.is</a></h1>
             <h3>Create and share your stories</h3>
         </section>
-        <section class="align__center show__loading">
-            loading...
+        <section class="menuUserOptions">
+            <div class="buttons_half">
+                <div class="buttonWrapper">
+                    <button class="button__major">Sign Up</button>
+                </div>
+                <div class="buttonWrapper">
+                    <button class="button__major button__clear">Log In</button>
+                </div>
+            </div>
+            <a href="#/create" class="button button__major button__blue button__bigger homeCreateLink">Create Story</a>
         </section>
-        <ul class="storiesList hide__loading">
-            <li ng-repeat="story in storiesList.data.data.results" ng-include="'templates/_storyCard.html'">
-            </li>
-        </ul>
     </section>
+    <div class="mainBodyWrapper">
+        <section class="mainBody">
+            <section class="storyPreviews">
+                <div class="previewRow">
+                    <div class="storyPreviewWrapper">
+                        <article class="storyPreview" style="background-image:url(images/bg-bbq.jpg);">
+                            STORY PREVIEW
+                        </article>
+                    </div>
+                    <div class="storyPreviewWrapper grid__big">
+                        <article class="storyPreview" style="background-image:url(images/bg-lake.jpg);">
+                            STORY PREVIEW
+                        </article>
+                    </div>
+                    <div class="storyPreviewWrapper">
+                        <article class="storyPreview" style="background-image:url(images/boats.jpg);">
+                            STORY PREVIEW
+                        </article>
+                    </div>
+                </div>
+            </section>
+            <!--<section class="" ng-class="{ 'state__loading' : storiesList.states.loading }">-->
+                <!--<section class="align__center">-->
+                    <!--<a href="#/create">Create Story</a>-->
+                <!--</section>-->
+                <!--<section class="align__center show__loading">-->
+                    <!--loading...-->
+                <!--</section>-->
+                <!--<ul class="storiesList hide__loading">-->
+                    <!--<li ng-repeat="story in storiesList.data.data.results" ng-include="'templates/_storyCard.html'">-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</section>-->
+        </section>
+    </div>
 </section>
