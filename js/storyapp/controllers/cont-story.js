@@ -1,4 +1,4 @@
-storyApp.controller('Story', ['$scope', '$rootScope', '$stateParams', 'Author', 'ngDialog', 'StoryService', function($scope, $rootScope, $stateParams, Author, ngDialog, StoryService) {
+angular.module('storyApp').controller('Story', ['$scope', '$rootScope', '$stateParams', 'Author', 'ngDialog', 'StoryService', function($scope, $rootScope, $stateParams, Author, ngDialog, StoryService) {
 	// Avoid using $scope, use story = this instead
 	var story = this;
 

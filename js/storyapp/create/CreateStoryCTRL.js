@@ -1,4 +1,4 @@
-storyApp.controller('CreateStoryCTRL', ['$scope', function($scope) {
+angular.module('storyApp').controller('CreateStoryCTRL', ['$scope', function($scope) {
     var controller = this;
 
     controller.submitForm = function() {

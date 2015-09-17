@@ -135,7 +135,14 @@ a.button {
   text-shadow: 0 1px #AD2144;
   padding: 8px 12px;
   font-size: 1em;
+  top: 0;
+  position: relative;
   @include border-radius(5px);
+  @include transition(background-color 200ms, top 200ms);
+
+  &:active {
+    top: 2px;
+  }
 
   &:hover {
     background-color: rgba(236, 0, 69, 0.55);

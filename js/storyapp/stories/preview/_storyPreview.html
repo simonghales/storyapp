@@ -1,0 +1,18 @@
+<div class="storyPreviewWrapper">
+    <article class="storyPreview">
+        <a class="storyPreview-link" ng-href="#/s/{{::story.id}}">
+            <div class="storyPreview-img" style="background-image:url(images/street_2.jpg);">
+                <div class="storyPreview-shade"></div>
+                <div class="storyPreview-title">
+                    <h3 ng-bind="::story.title"></h3>
+                </div>
+            </div>
+        </a>
+        <div class="storyPreview-details">
+            <a class="user" href="">
+                <figure class="user-img" style="background-image:url(images/simon.jpg);"></figure>
+                <span ng-bind="story.author.username"></span>
+            </a>
+        </div>
+    </article>
+</div>

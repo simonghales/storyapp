@@ -85,7 +85,101 @@ $menu-width: 260px;
 }
 
 .storyPreview {
+}
+
+.storyPreview-link {
+  
+  &:hover {
+    text-decoration: none;
+  }
+  
+}
+
+.storyPreview-img {
   @extend .bgImg;
-  min-height: 220px;
+  background-color: rgba(0,0,0,0.1);
+  min-height: 350px;
   @include border-radius(5px);
+  @include box-shadow(0 2px 3px rgba(0,0,0,0.1));
+  padding: 10px;
+  position: relative;
+
+  .storyPreview-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    @include gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.25));
+    @include border-radius(5px);
+    @include transition(opacity 200ms);
+  }
+
+  &:hover {
+    .storyPreview-shade {
+      opacity: 1;
+    }
+  }
+
+}
+
+.storyPreview-title {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  right: 0;
+  padding: 10px;
+  @include gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
+  @include border-radius(0 0 5px 5px);
+
+  h3 {
+    color: #FFFFFF;
+    font-size: 1.1em;
+    text-shadow: 0 1px rgba(0,0,0,0.2), 0 0 5px rgba(0,0,0,0.1);
+    display: inline-block;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+    
+  }
+
+}
+
+.storyPreview-details {
+  padding: 8px 6px 0 6px;
+}
+
+$user-size: 22px;
+.user {
+  color: rgba(255,255,255,0.85);
+  display: inline-flex;
+  font-family: "Open Sans";
+  font-weight: 600;
+  text-shadow: 0 1px rgba(0,0,0,0.2);
+  
+  &:hover {
+    text-decoration: underline;
+  }
+  
+  span {
+    font-size: .8em;
+    display: inline-block;
+    line-height: $user-size;
+  }
+  
+}
+
+$userImg-size: $user-size;
+.user-img {
+  @extend .bgImg;
+  width: $userImg-size;
+  height: $userImg-size;
+  background-color: rgba(0,0,0,0.1);
+  display: inline-block;
+  @include border-radius(50%);
+  //border: 1px solid #FFFFFF;
+  @include box-shadow(0 0 1px rgba(0,0,0,0.1));
+  margin-right: 6px;
 }

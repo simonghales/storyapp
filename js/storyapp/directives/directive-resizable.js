@@ -1,5 +1,5 @@
 // Source: http://stackoverflow.com/questions/23066731/using-jqueryui-resizeable-with-angularjs
-storyApp.directive('resizable', ['$rootScope', 'Author', function ($rootScope, Author) {
+angular.module('storyApp').directive('resizable', ['$rootScope', 'Author', function ($rootScope, Author) {
 
     return {
         restrict: 'A',

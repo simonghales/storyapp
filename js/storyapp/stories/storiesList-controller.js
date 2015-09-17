@@ -1,4 +1,4 @@
-storyApp.controller('StoriesList', ['$scope', 'StoryService', function($scope, StoryService) {
+angular.module('storyApp').controller('StoriesList', ['$scope', 'StoryService', function($scope, StoryService) {
 
     var storiesList = this;
     storiesList.data = {};

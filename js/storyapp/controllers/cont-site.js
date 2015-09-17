@@ -1,4 +1,4 @@
-storyApp.controller('Site', ['$scope', '$rootScope', '$state', 'Author', 'AuthenticationService', function($scope, $rootScope, $state, Author, AuthenticationService) {
+angular.module('storyApp').controller('Site', ['$scope', '$rootScope', '$state', 'Author', 'AuthenticationService', function($scope, $rootScope, $state, Author, AuthenticationService) {
 
     var site = this;
 

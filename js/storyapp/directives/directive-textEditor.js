@@ -1,4 +1,4 @@
-storyApp.directive('textEditor', ['$rootScope', 'Editor', function($rootScope, Editor) {
+angular.module('storyApp').directive('textEditor', ['$rootScope', 'Editor', function($rootScope, Editor) {
     //return {
     //    restrict: 'A',
     //    templateUrl : "partials/_textEditor.html",

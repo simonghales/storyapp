@@ -1,4 +1,4 @@
-storyApp.directive('textMenu', ['$rootScope', 'Editor', function($rootScope, Editor) {
+angular.module('storyApp').directive('textMenu', ['$rootScope', 'Editor', function($rootScope, Editor) {
     var directive = {};
 
     directive.restrict = 'E'; /* restrict this directive to elements */

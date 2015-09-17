@@ -1,4 +1,4 @@
-storyApp.factory('AuthenticationService', ['$http', '$rootScope', '$cookies', 'API_URL', function($http, $rootScope, $cookies, API_URL){
+angular.module('storyApp').factory('AuthenticationService', ['$http', '$rootScope', '$cookies', 'API_URL', function($http, $rootScope, $cookies, API_URL){
 
     var service = {};
 

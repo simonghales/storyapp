@@ -1,4 +1,4 @@
-storyApp.factory('Editor', ['$rootScope', function($rootScope){
+angular.module('storyApp').factory('Editor', ['$rootScope', function($rootScope){
 
     var editorData = {
         editingItem : null

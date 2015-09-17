@@ -1,4 +1,4 @@
-storyApp.controller('Confirmation', ['$scope', function($scope) {
+angular.module('storyApp').controller('Confirmation', ['$scope', function($scope) {
 
     console.log("Init confirmation controller!");
 

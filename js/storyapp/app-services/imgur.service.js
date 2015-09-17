@@ -1,4 +1,4 @@
-storyApp.factory('ImgurService', ['$http', 'Upload', 'API_URL', function($http, Upload, API_URL){
+angular.module('storyApp').factory('ImgurService', ['$http', 'Upload', 'API_URL', function($http, Upload, API_URL){
 
     var service = {};
 

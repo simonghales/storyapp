@@ -1,4 +1,4 @@
-storyApp.controller('TextEditor', ['$scope', '$rootScope', 'Editor', function($scope, $rootScope, Editor) {
+angular.module('storyApp').controller('TextEditor', ['$scope', '$rootScope', 'Editor', function($scope, $rootScope, Editor) {
     var textEditor = this;
 
     textEditor.states = {

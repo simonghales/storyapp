@@ -1,4 +1,4 @@
-storyApp.factory('StoryService', ['$http', 'API_URL', function($http, API_URL){
+angular.module('storyApp').factory('StoryService', ['$http', 'API_URL', function($http, API_URL){
 
     var service = {};
 

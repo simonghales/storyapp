@@ -1,4 +1,4 @@
-storyApp.directive('dragMe', function() {
+angular.module('storyApp').directive('dragMe', function() {
     return {
         restrict: 'A',
         link: function(scope, elm, attrs) {

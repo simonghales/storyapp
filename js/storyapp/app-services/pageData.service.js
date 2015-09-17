@@ -1,4 +1,4 @@
-storyApp.factory('PageData', function(){
+angular.module('storyApp').factory('PageData', function(){
 
     var service = {};
 

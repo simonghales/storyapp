@@ -1,4 +1,4 @@
-storyApp.factory('Author', ['$rootScope', function($rootScope){
+angular.module('storyApp').factory('Author', ['$rootScope', function($rootScope){
 
 	var authorData = {
 		editing : false,

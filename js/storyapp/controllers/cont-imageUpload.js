@@ -1,4 +1,4 @@
-storyApp.controller('ImageUpload', ['$scope', 'Upload', 'ImgurService', 'StoryService', function($scope, Upload, ImgurService, StoryService) {
+angular.module('storyApp').controller('ImageUpload', ['$scope', 'Upload', 'ImgurService', 'StoryService', function($scope, Upload, ImgurService, StoryService) {
 
     console.log("Init imageUpload controller!");
 

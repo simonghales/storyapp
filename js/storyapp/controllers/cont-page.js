@@ -1,4 +1,4 @@
-storyApp.controller('Page', ['$scope', '$element', '$log', 'Author', 'Editor', 'ngDialog', 'PageData', 'StoryService', function($scope, $element, $log, Author, Editor, ngDialog, PageData, StoryService) {
+angular.module('storyApp').controller('Page', ['$scope', '$element', '$log', 'Author', 'Editor', 'ngDialog', 'PageData', 'StoryService', function($scope, $element, $log, Author, Editor, ngDialog, PageData, StoryService) {
 	var page = this;
 	page.data = $scope.storyPage;
 

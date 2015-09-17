@@ -1,8 +1,8 @@
-var storyApp = angular.module('storyApp', ['ui.router', 'mp.colorPicker', 'offClick', '720kb.tooltips', 'ngDialog', 'ngCookies', 'ui.router', 'ngFileUpload']); // , 'ui.bootstrap', 'cgPrompt'
+angular.module('storyApp', ['ui.router', 'mp.colorPicker', 'offClick', '720kb.tooltips', 'ngDialog', 'ngCookies', 'ui.router', 'ngFileUpload']); // , 'ui.bootstrap', 'cgPrompt'
 
-storyApp.constant('API_URL', 'http://morning-mountain-1547.herokuapp.com');
+angular.module('storyApp').constant('API_URL', 'http://morning-mountain-1547.herokuapp.com');
 
-storyApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
+angular.module('storyApp').config(function($stateProvider, $locationProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/');
 
@@ -38,7 +38,7 @@ storyApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) 
 
 });
 
-storyApp.run(function($rootScope, $http, $cookies) {
+angular.module('storyApp').run(function($rootScope, $http, $cookies) {
 
     console.log("Checking for cookies...");
 
