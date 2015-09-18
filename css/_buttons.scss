@@ -6,6 +6,16 @@ a.button {
 
 }
 
+.button__activeAnim {
+  position: relative;
+  top: 0;
+  @include transition(background-color 200ms, top 200ms);
+
+  &:active {
+    top: 2px;
+  }
+}
+
 .button__reset {
 	background: none;
 	border: 0;
@@ -79,12 +89,23 @@ a.button {
 
 .button__primary {
   @extend .button__reset;
+  @extend .button__activeAnim;
   background-color: #FF5F19;
   border: 1px solid #FF5F19;
   color: #FFFFFF;
   padding: 8px 14px;
   @include border-radius(4px);
   font-weight: bold;
+
+  &:focus {
+    @include box-shadow(0 0 0px 2px #02A3FF);
+  }
+
+  &.state__invalid {
+    cursor: default;
+    background-color: #FFA076;
+    border-color: #FFA076;
+  }
 
   &.button__cancel {
     border-color: #F0F0F0;

@@ -9,24 +9,28 @@ angular.module('storyApp').factory('AuthenticationService', ['$http', '$rootScop
 
     return service;
 
-    function Login(username, password, callback) {
-
-        /* Use this for real authentication
-         ----------------------------------------------*/
-
-        var apiData = {
-            username: username,
-            password: password
-        }
-
-        apiData = JSON.stringify(apiData);
-
-        $http.post(API_URL + '/api-token-auth/.json', apiData)
-            .success(function (response) {
-                callback(response);
-            });
-
+    function Login(data) {
+        return $http.post(API_URL + '/api-token-auth/.json', data).then(handleSuccess, handleError('Error signing in'));
     }
+
+    //function Login(username, password, callback) {
+    //
+    //    /* Use this for real authentication
+    //     ----------------------------------------------*/
+    //
+    //    var apiData = {
+    //        username: username,
+    //        password: password
+    //    }
+    //
+    //    apiData = JSON.stringify(apiData);
+    //
+    //    $http.post(API_URL + '/api-token-auth/.json', apiData)
+    //        .success(function (response) {
+    //            callback(response);
+    //        });
+    //
+    //}
 
     function StoreAuth(username, token) {
         $rootScope.globals = {
@@ -60,6 +64,18 @@ angular.module('storyApp').factory('AuthenticationService', ['$http', '$rootScop
         $rootScope.globals = {};
         $cookies.remove('globals');
         $http.defaults.headers.common.Authorization = 'Basic ';
+    }
+
+    // private functions
+
+    function handleSuccess(data) {
+        return data;
+    }
+
+    function handleError(error) {
+        return function () {
+            return { success: false, message: error };
+        };
     }
 
 }]);

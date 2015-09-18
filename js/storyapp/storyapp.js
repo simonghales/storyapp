@@ -1,4 +1,6 @@
-angular.module('storyApp', ['ui.router', 'mp.colorPicker', 'offClick', '720kb.tooltips', 'ngDialog', 'ngCookies', 'ui.router', 'ngFileUpload']); // , 'ui.bootstrap', 'cgPrompt'
+angular.module('storyApp', ['ui.router', 'mp.colorPicker', 'offClick',
+    '720kb.tooltips', 'ngDialog', 'ngCookies', 'ui.router',
+    'ngFileUpload']); // , 'ui.bootstrap', 'cgPrompt'
 
 angular.module('storyApp').constant('API_URL', 'http://morning-mountain-1547.herokuapp.com');
 

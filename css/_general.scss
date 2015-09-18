@@ -190,6 +190,11 @@ body.ngdialog-open {
   padding: 30px;
   background-color: #FFFFFF;
   @include border-radius(5px);
+  position: relative;
+
+  .fullBusyOverlay {
+	@include border-radius(5px);
+  }
 
   .modal-title {
 	color: #666666;
@@ -225,7 +230,7 @@ body.ngdialog-open {
   display: flex;
 
   label {
-	min-width: 60px;
+	min-width: 62px;
 	margin-right: 10px;
 	display: flex;
 	justify-content: center;
@@ -270,3 +275,15 @@ body.ngdialog-open {
 }
 
 // END Dialog
+
+.fullBusyOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255,255,255,0.85);
+  background-image: url(../images/loader-white-32.GIF);
+  background-position: center;
+  background-repeat: no-repeat;
+}

@@ -7,20 +7,264 @@
         <section class="menuUserOptions">
             <div class="buttons_half">
                 <div class="buttonWrapper">
-                    <button class="button__major">Sign Up</button>
+                    <button class="button__major" ng-click="site.openRegister();">Sign Up</button>
                 </div>
                 <div class="buttonWrapper">
-                    <button class="button__major button__clear">Log In</button>
+                    <button class="button__major button__clear" ng-click="site.openSignIn();">Log In</button>
                 </div>
             </div>
             <a href="#/create" class="button button__major button__blue button__bigger homeCreateLink">Create Story</a>
         </section>
     </section>
-    <div class="mainBodyWrapper">
+    <div class="mainBodyWrapper" ng-class="{ 'state__loading' : storiesList.states.loading }">
         <section class="mainBody">
-            <section class="storyPreviews">
+            <section class="storyPreviews show__loading">
+                <div class="previewRow">
+                    <div class="storyPreviewWrapper">
+                        <article class="storyPreview">
+                            <a class="storyPreview-link" href="">
+                                <div class="storyPreview-img" style="background-image:url(images/bg-bbq.jpg);">
+                                    <div class="storyPreview-shade"></div>
+                                    <div class="storyPreview-title">
+                                        <h3>Name of Story</h3>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="storyPreview-details">
+                                <a class="user" href="">
+                                    <figure class="user-img" style="background-image:url(images/simon.jpg);"></figure>
+                                    <span>simon</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="storyPreviewWrapper">
+                        <article class="storyPreview">
+                            <a class="storyPreview-link" href="">
+                                <div class="storyPreview-img" style="background-image:url(images/bg-bbq.jpg);">
+                                    <div class="storyPreview-shade"></div>
+                                    <div class="storyPreview-title">
+                                        <h3>Name of Story</h3>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="storyPreview-details">
+                                <a class="user" href="">
+                                    <figure class="user-img" style="background-image:url(images/simon.jpg);"></figure>
+                                    <span>simon</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="storyPreviewWrapper grid__big">
+                        <article class="storyPreview">
+                            <a class="storyPreview-link" href="">
+                                <div class="storyPreview-img" style="background-image:url(images/tummy.jpg);">
+                                    <div class="storyPreview-shade"></div>
+                                    <div class="storyPreview-title">
+                                        <h3>Name of Story</h3>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="storyPreview-details">
+                                <a class="user" href="">
+                                    <figure class="user-img" style="background-image:url(images/simon.jpg);"></figure>
+                                    <span>simon</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="previewRow">
+                    <div class="storyPreviewWrapper">
+                        <article class="storyPreview">
+                            <a class="storyPreview-link" href="">
+                                <div class="storyPreview-img" style="background-image:url(images/bg-bbq.jpg);">
+                                    <div class="storyPreview-shade"></div>
+                                    <div class="storyPreview-title">
+                                        <h3>Name of Story</h3>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="storyPreview-details">
+                                <a class="user" href="">
+                                    <figure class="user-img" style="background-image:url(images/simon.jpg);"></figure>
+                                    <span>simon</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="storyPreviewWrapper grid__big">
+                        <article class="storyPreview">
+                            <a class="storyPreview-link" href="">
+                                <div class="storyPreview-img" style="background-image:url(images/tummy.jpg);">
+                                    <div class="storyPreview-shade"></div>
+                                    <div class="storyPreview-title">
+                                        <h3>Name of Story</h3>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="storyPreview-details">
+                                <a class="user" href="">
+                                    <figure class="user-img" style="background-image:url(images/simon.jpg);"></figure>
+                                    <span>simon</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="storyPreviewWrapper">
+                        <article class="storyPreview">
+                            <a class="storyPreview-link" href="">
+                                <div class="storyPreview-img" style="background-image:url(images/boats.jpg);">
+                                    <div class="storyPreview-shade"></div>
+                                    <div class="storyPreview-title">
+                                        <h3>Name of Story</h3>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="storyPreview-details">
+                                <a class="user" href="">
+                                    <figure class="user-img" style="background-image:url(images/simon.jpg);"></figure>
+                                    <span>simon</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="previewRow">
+                    <div class="storyPreviewWrapper grid__big">
+                        <article class="storyPreview">
+                            <a class="storyPreview-link" href="">
+                                <div class="storyPreview-img" style="background-image:url(images/bg-usha.jpg);">
+                                    <div class="storyPreview-shade"></div>
+                                    <div class="storyPreview-title">
+                                        <h3>Name of Story</h3>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="storyPreview-details">
+                                <a class="user" href="">
+                                    <figure class="user-img" style="background-image:url(images/simon.jpg);"></figure>
+                                    <span>simon</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="storyPreviewWrapper">
+                        <article class="storyPreview">
+                            <a class="storyPreview-link" href="">
+                                <div class="storyPreview-img" style="background-image:url(images/bg-fields.jpg);">
+                                    <div class="storyPreview-shade"></div>
+                                    <div class="storyPreview-title">
+                                        <h3>Name of Story</h3>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="storyPreview-details">
+                                <a class="user" href="">
+                                    <figure class="user-img" style="background-image:url(images/simon.jpg);"></figure>
+                                    <span>simon</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="storyPreviewWrapper">
+                        <article class="storyPreview">
+                            <a class="storyPreview-link" href="">
+                                <div class="storyPreview-img" style="background-image:url(images/simon.jpg);">
+                                    <div class="storyPreview-shade"></div>
+                                    <div class="storyPreview-title">
+                                        <h3>Name of Story</h3>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="storyPreview-details">
+                                <a class="user" href="">
+                                    <figure class="user-img" style="background-image:url(images/simon.jpg);"></figure>
+                                    <span>simon</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="previewRow">
+                    <div class="storyPreviewWrapper">
+                        <article class="storyPreview">
+                            <a class="storyPreview-link" href="">
+                                <div class="storyPreview-img" style="background-image:url(images/street_2.jpg);">
+                                    <div class="storyPreview-shade"></div>
+                                    <div class="storyPreview-title">
+                                        <h3>Name of Story</h3>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="storyPreview-details">
+                                <a class="user" href="">
+                                    <figure class="user-img" style="background-image:url(images/simon.jpg);"></figure>
+                                    <span>simon</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="storyPreviewWrapper">
+                        <article class="storyPreview">
+                            <a class="storyPreview-link" href="">
+                                <div class="storyPreview-img" style="background-image:url(images/bg-glasses.jpg);">
+                                    <div class="storyPreview-shade"></div>
+                                    <div class="storyPreview-title">
+                                        <h3>Name of Story</h3>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="storyPreview-details">
+                                <a class="user" href="">
+                                    <figure class="user-img" style="background-image:url(images/simon.jpg);"></figure>
+                                    <span>simon</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="storyPreviewWrapper grid__big">
+                        <article class="storyPreview">
+                            <a class="storyPreview-link" href="">
+                                <div class="storyPreview-img" style="background-image:url(images/misaki.jpg);">
+                                    <div class="storyPreview-shade"></div>
+                                    <div class="storyPreview-title">
+                                        <h3>Name of Story</h3>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="storyPreview-details">
+                                <a class="user" href="">
+                                    <figure class="user-img" style="background-image:url(images/simon.jpg);"></figure>
+                                    <span>simon</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+            <section class="storyPreviews hide__loading">
                 <div class="previewRow">
                     <story-preview ng-repeat="story in storiesList.data.data.results"></story-preview>
+                    <div class="storyPreviewWrapper grid__big">
+                        <article class="storyPreview">
+                            <a class="storyPreview-link" href="">
+                                <div class="storyPreview-img" style="background-image:url(images/tummy.jpg);">
+                                    <div class="storyPreview-shade"></div>
+                                    <div class="storyPreview-title">
+                                        <h3>Name of Story</h3>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="storyPreview-details">
+                                <a class="user" href="">
+                                    <figure class="user-img" style="background-image:url(images/simon.jpg);"></figure>
+                                    <span>simon</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
                 </div>
                 <div class="previewRow">
                     <div class="storyPreviewWrapper">

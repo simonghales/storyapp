@@ -1,0 +1,33 @@
+<section class="modalMain" ng-class="{ 'state__busy' : register.states.busy }">
+    <h2 class="modal-title align__center">Register</h2>
+    <form name="registerForm" ng-submit="register.register(registerForm.$valid);" class="modal-body modalForm" novalidate>
+        <section class="flexInput formSection">
+            <label class="text__faint">Email</label>
+            <div class="inputWrapper">
+                <input class="input__plain" required ng-model="register.email" type="email"/>
+            </div>
+        </section>
+        <section class="flexInput formSection">
+            <label class="text__faint">Username</label>
+            <div class="inputWrapper">
+                <input class="input__plain" required ng-model="register.username" type="text"/>
+            </div>
+        </section>
+        <section class="flexInput formSection">
+            <label class="text__faint">Password</label>
+            <div class="inputWrapper">
+                <input class="input__plain" required ng-model="register.password" type="password"/>
+            </div>
+        </section>
+        <section class="formSection __separate modal-options centeredButtons clearfix">
+            <button class="button button__primary button__cancel" ng-click="register.cancel();" type="button">
+                Cancel
+            </button>
+            <button class="button button__primary" ng-class="{ 'state__invalid' : registerForm.$invalid }" type="submit">
+                Create Account
+            </button>
+            <p class="message__error" ng-show="register.states.error">Incorrect username or password.</p>
+        </section>
+    </form>
+    <div class="fullBusyOverlay show__busy"></div>
+</section>

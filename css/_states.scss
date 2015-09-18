@@ -1,10 +1,12 @@
 
+.show__busy,
 .show__editing,
 .show__empty,
 .show__loading {
 	display: none;
 }
 
+.state__busy .show__busy,
 .state__editing .show__editing,
 .state__empty .show__empty,
 .state__loading .show__loading {
@@ -16,6 +18,7 @@
 
 }
 
+.state__busy .hide__busy,
 .state__editing .hide__editing,
 .state__empty .hide__empty,
 .state__loading .hide__loading {

@@ -45,20 +45,24 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+.show__busy,
 .show__editing,
 .show__empty,
 .show__loading {
   display: none; }
 
+.state__busy .show__busy,
 .state__editing .show__editing,
 .state__empty .show__empty,
 .state__loading .show__loading {
   display: block; }
+  .state__busy .show__busy.__inline,
   .state__editing .show__editing.__inline,
   .state__empty .show__empty.__inline,
   .state__loading .show__loading.__inline {
     display: inline-block; }
 
+.state__busy .hide__busy,
 .state__editing .hide__editing,
 .state__empty .hide__empty,
 .state__loading .hide__loading {
@@ -92,6 +96,11 @@ a {
   text-decoration: none; }
   a:hover {
     text-decoration: underline; }
+
+.message__error {
+  color: #FF5F19;
+  font-size: .8em;
+  margin-top: 10px; }
 
 * {
   box-sizing: border-box; }
@@ -141,6 +150,16 @@ body {
 
 a.button:hover {
   text-decoration: none; }
+
+.button__activeAnim, .button__primary {
+  position: relative;
+  top: 0;
+  -moz-transition: background-color 200ms, top 200ms;
+  -o-transition: background-color 200ms, top 200ms;
+  -webkit-transition: background-color 200ms, top 200ms;
+  transition: background-color 200ms, top 200ms; }
+  .button__activeAnim:active, .button__primary:active {
+    top: 2px; }
 
 .button__reset, .button__close, .button__plain, .button__round, .button__primary, .button__upload, .button__inputAction, .button__major, .addPage-button, .storyUi-button, .storyUi-positionButton {
   background: none;
@@ -215,6 +234,14 @@ a.button:hover {
   padding: 8px 14px;
   border-radius: 4px;
   font-weight: bold; }
+  .button__primary:focus {
+    -webkit-box-shadow: 0 0 0px 2px #02A3FF;
+    -moz-box-shadow: 0 0 0px 2px #02A3FF;
+    box-shadow: 0 0 0px 2px #02A3FF; }
+  .button__primary.state__invalid {
+    cursor: default;
+    background-color: #FFA076;
+    border-color: #FFA076; }
   .button__primary.button__cancel {
     border-color: #F0F0F0;
     color: #666;
@@ -487,7 +514,10 @@ body.ngdialog-open {
 .modalMain {
   padding: 30px;
   background-color: #FFFFFF;
-  border-radius: 5px; }
+  border-radius: 5px;
+  position: relative; }
+  .modalMain .fullBusyOverlay {
+    border-radius: 5px; }
   .modalMain .modal-title {
     color: #666666; }
   .modalMain .modal-body {
@@ -506,7 +536,7 @@ body.ngdialog-open {
 .flexInput {
   display: flex; }
   .flexInput label {
-    min-width: 60px;
+    min-width: 62px;
     margin-right: 10px;
     display: flex;
     justify-content: center;
@@ -534,6 +564,17 @@ body.ngdialog-open {
   height: 130px;
   background-color: #F0F0F0;
   border-radius: 5px; }
+
+.fullBusyOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.85);
+  background-image: url(../images/loader-white-32.GIF);
+  background-position: center;
+  background-repeat: no-repeat; }
 
 .storyPage {
   width: 100%;

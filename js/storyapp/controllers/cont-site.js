@@ -1,4 +1,6 @@
-angular.module('storyApp').controller('Site', ['$scope', '$rootScope', '$state', 'Author', 'AuthenticationService', function($scope, $rootScope, $state, Author, AuthenticationService) {
+angular.module('storyApp').controller('Site', ['$scope', '$rootScope', '$state',
+    'Author', 'AuthenticationService', 'ngDialog',
+    function($scope, $rootScope, $state, Author, AuthenticationService, ngDialog) {
 
     var site = this;
 
@@ -31,6 +33,38 @@ angular.module('storyApp').controller('Site', ['$scope', '$rootScope', '$state',
         console.log("Saving changes!");
         //Author.toggleEditing();
         // do something with the data....
+    }
+
+    site.openSignIn = function() {
+        console.log("Open signin!");
+
+        freezeSite();
+        ngDialog.open({
+            template: 'js/storyapp/signin/_signinModal.html',
+            className: 'yepDialog-theme-default',
+            controller: 'SigninCTRL',
+            controllerAs: 'signin',
+            preCloseCallback: function() {
+                unfreezeSite();
+            }
+        });
+
+    }
+
+    site.openRegister = function() {
+        console.log("Open register!");
+
+        freezeSite();
+        ngDialog.open({
+            template: 'js/storyapp/register/_registerModal.html',
+            className: 'yepDialog-theme-default',
+            controller: 'RegisterCTRL',
+            controllerAs: 'register',
+            preCloseCallback: function() {
+                unfreezeSite();
+            }
+        });
+
     }
 
 }]);

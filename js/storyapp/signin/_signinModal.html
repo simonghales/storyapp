@@ -1,0 +1,27 @@
+<section class="modalMain" ng-class="{ 'state__busy' : signin.states.busy }">
+    <h2 class="modal-title align__center">Sign In</h2>
+    <form name="signinForm" ng-submit="signin.login(signinForm.$valid);" class="modal-body modalForm" novalidate>
+        <section class="flexInput formSection">
+            <label class="text__faint">Username</label>
+            <div class="inputWrapper">
+                <input class="input__plain" required ng-model="signin.username" type="text"/>
+            </div>
+        </section>
+        <section class="flexInput formSection">
+            <label class="text__faint">Password</label>
+            <div class="inputWrapper">
+                <input class="input__plain" required ng-model="signin.password" type="password"/>
+            </div>
+        </section>
+        <section class="formSection __separate modal-options centeredButtons clearfix">
+            <button class="button button__primary button__cancel" ng-click="signin.cancel();" type="button">
+                Cancel
+            </button>
+            <button class="button button__primary" ng-class="{ 'state__invalid' : signinForm.$invalid }" type="submit">
+                Log In
+            </button>
+            <p class="message__error" ng-show="signin.states.error">Incorrect username or password.</p>
+        </section>
+    </form>
+    <div class="fullBusyOverlay show__busy"></div>
+</section>
