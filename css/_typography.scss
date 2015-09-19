@@ -20,7 +20,7 @@
 }
 
 body {
-  	font: 100%/1.2 sans-serif;
+  	font: 100%/1.2 "Open Sans", Helvetica, Arial, sans-serif;
 	@extend .typography__main;
 }
 
@@ -43,4 +43,9 @@ a {
   color: #FF5F19;
   font-size: .8em;
   margin-top: 10px;
+}
+
+.title__large {
+  font-size: 1.4em;
+  color: #4D495D;
 }

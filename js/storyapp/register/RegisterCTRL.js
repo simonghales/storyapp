@@ -2,10 +2,10 @@ angular
     .module('storyApp')
     .controller('RegisterCTRL', RegisterCTRL)
 
-    .$inject = ['$scope', 'AuthenticationService'];
+    .$inject = ['$scope', '$rootScope', 'AuthenticationService'];
 
 /* @ngInject */
-function RegisterCTRL($scope, AuthenticationService) {
+function RegisterCTRL($scope, $rootScope, AuthenticationService) {
     /* jshint validthis: true */
     var vm = this;
 
@@ -40,7 +40,41 @@ function RegisterCTRL($scope, AuthenticationService) {
         vm.states.busy = true;
         vm.states.error = false;
 
-        // TODO: Register thingy here
+        // TODO: Add error handling
+        AuthenticationService.Register(vm.email, vm.username, vm.password)
+            .then(function(data) {
+                if(data.success == false) {
+                    vm.states.error = true;
+                    vm.states.busy = false;
+                    console.log("Error: ", data);
+                }
+                else {
+
+                    AuthenticationService.Login(vm.username, vm.password)
+                        .then(function(data) {
+                            if(data.success == false) {
+                                vm.states.error = true;
+                                vm.states.busy = false;
+                                console.log("Error: ", data);
+                            }
+                            else {
+                                AuthenticationService.StoreAuth(vm.username, data.data.token);
+                                vm.states.busy = false;
+                                $rootScope.$broadcast('user-loggedIn');
+                                $scope.closeThisDialog();
+                            }
+                        }, function(error) {
+                            vm.states.error = true;
+                            vm.states.busy = false;
+                            console.log("Error: " + error);
+                        });
+
+                }
+            }, function(error) {
+                vm.states.error = true;
+                vm.states.busy = false;
+                console.log("Error: " + error);
+            });
 
     }
 

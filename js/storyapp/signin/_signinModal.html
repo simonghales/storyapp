@@ -14,10 +14,10 @@
             </div>
         </section>
         <section class="formSection __separate modal-options centeredButtons clearfix">
-            <button class="button button__primary button__cancel" ng-click="signin.cancel();" type="button">
+            <button class="button button__primary button__cancel button__focus" ng-click="signin.cancel();" type="button">
                 Cancel
             </button>
-            <button class="button button__primary" ng-class="{ 'state__invalid' : signinForm.$invalid }" type="submit">
+            <button class="button button__primary button__focus" ng-class="{ 'state__invalid' : signinForm.$invalid }" type="submit">
                 Log In
             </button>
             <p class="message__error" ng-show="signin.states.error">Incorrect username or password.</p>

@@ -1,4 +1,6 @@
 
+.show__signedOut,
+.show__loggedIn,
 .show__busy,
 .show__editing,
 .show__empty,
@@ -6,6 +8,8 @@
 	display: none;
 }
 
+.state__signedOut .show__signedOut,
+.state__loggedIn .show__loggedIn,
 .state__busy .show__busy,
 .state__editing .show__editing,
 .state__empty .show__empty,
@@ -18,6 +22,8 @@
 
 }
 
+.state__signedOut .hide__signedOut,
+.state__loggedIn .hide__loggedIn,
 .state__busy .hide__busy,
 .state__editing .hide__editing,
 .state__empty .hide__empty,

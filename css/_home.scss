@@ -54,15 +54,69 @@ $menu-width: 260px;
   margin: 15px;
 }
 
+.menuUserAccount {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+
+  .user-img {
+    position: relative;
+    z-index: 3;
+  }
+
+}
+
+.userAccountDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: -20px;
+  background-color: #FFFFFF;
+  padding: 10px 0;
+  z-index: 2;
+  width: 120px;
+  font-size: .9em;
+  @include border-radius(5px);
+  @include box-shadow(0 0 1px rgba(0,0,0,0.2));
+
+  .option {
+    display: block;
+    padding: 10px 20px;
+
+    &:hover {
+      background-color: #F0F0F0;
+      text-decoration: none;
+    }
+
+  }
+
+  .option__profile {
+
+    h4 {
+      font-size: .8em;
+      font-weight: 400;
+    }
+
+  }
+
+}
+
 .menuUserOptions {
   margin: 0 15px;
 
   .homeCreateLink {
-    margin-top: 15px;
     width: 100%;
     text-align: center;
   }
 
+}
+
+.menuUserOptions-accounts {
+  margin-bottom: 15px;
+}
+
+.menuUserDetails {
+  margin: 30px 15px;
 }
 
 .storyPreviews {
@@ -80,6 +134,26 @@ $menu-width: 260px;
 
   &.grid__big {
     flex: 2;
+  }
+
+  &.__placeholder {
+
+    .storyPreview-title {
+      display: none;
+    }
+
+    .storyPreview-img {
+      
+      &:hover {
+
+        .storyPreview-shade {
+          opacity: 0;
+        }
+        
+      }
+      
+    }
+
   }
 
 }
@@ -152,26 +226,51 @@ $menu-width: 260px;
 }
 
 $user-size: 22px;
+$user-size__medium: 32px;
+$user-size__large: 44px;
 .user {
   color: rgba(255,255,255,0.85);
   display: inline-flex;
   font-family: "Open Sans";
   font-weight: 600;
   text-shadow: 0 1px rgba(0,0,0,0.2);
+
+  &.user__large {
+    color: #FFFFFF;
+
+    .user-img {
+      width: $user-size__large;
+      height: $user-size__large;
+      margin-right: 8px;
+    }
+
+    span {
+      font-size: 1.2em;
+      line-height: $user-size__large;
+    }
+
+  }
   
   &:hover {
-    text-decoration: underline;
+    text-decoration: none;
   }
   
   span {
     font-size: .8em;
     display: inline-block;
     line-height: $user-size;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
   }
   
 }
 
 $userImg-size: $user-size;
+$userImg-size__medium: $user-size__medium;
+$userImg-size__large: $user-size__large;
 .user-img {
   @extend .bgImg;
   width: $userImg-size;
@@ -182,4 +281,17 @@ $userImg-size: $user-size;
   //border: 1px solid #FFFFFF;
   @include box-shadow(0 0 1px rgba(0,0,0,0.1));
   margin-right: 6px;
+
+  &.user-img__medium {
+    width: $userImg-size__medium;
+    height: $userImg-size__medium;
+    margin: 0;
+  }
+
+  &.user-img__large {
+    width: $userImg-size__large;
+    height: $userImg-size__large;
+    margin: 0;
+  }
+
 }

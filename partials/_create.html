@@ -1,7 +1,24 @@
-<section class="page__create">
-    <form class="simpleForm" ng-controller="CreateStoryCTRL as createStory">
-        <input ng-model="createStory.title" type="text" placeholder="Title"/>
-        <input ng-model="createStory.desc" type="text" placeholder="Description"/>
-        <button>Create</button>
+<section class="page__create" ng-class="{'state__busy' : create.states.busy}">
+    <h2 class="title__large">Create your Story</h2>
+    <form name="createForm" class="simpleForm" novalidate ng-submit="create.createStory(createForm.$valid);">
+        <section class="formSection">
+            <figure class="uploadStoryImage bgImg__emptyPlaceholder bgImg __noImage"></figure>
+        </section>
+        <section class="formBody">
+            <section class="formSection flexInput">
+                <label class="label__dark" for="">Story Title</label>
+                <input class="input__dark title" type="text" ng-model="create.form.title" required maxlength="50"/>
+            </section>
+            <section class="formSection flexInput">
+                <label class="label__dark" for="">Description</label>
+                <textarea class="input__dark" ng-model="create.form.desc" required maxlength="500"></textarea>
+            </section>
+            <section class="formSection align__center">
+                <button class="button button__major button__blue button__bigger button__full" ng-class="{ 'state__invalid' : createForm.$invalid }" type="submit">
+                    <span class="hide__busy __inline">Create Story</span>
+                    <span class="show__busy __inline">...processing...</span>
+                </button>
+            </section>
+        </section>
     </form>
 </section>

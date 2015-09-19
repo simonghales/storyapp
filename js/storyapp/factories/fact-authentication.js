@@ -3,14 +3,34 @@ angular.module('storyApp').factory('AuthenticationService', ['$http', '$rootScop
     var service = {};
 
     service.Login = Login;
+    service.Register = Register;
     service.StoreAuth = StoreAuth;
     service.SetCredentials = SetCredentials;
     service.ClearCredentials = ClearCredentials;
 
     return service;
 
-    function Login(data) {
+    function Login(username, password) {
+        var data = {
+            username: username,
+            password: password
+        };
+        data = JSON.stringify(data);
         return $http.post(API_URL + '/api-token-auth/.json', data).then(handleSuccess, handleError('Error signing in'));
+    }
+
+    function Register(email, username, password) {
+        var data = {
+            email: email,
+            username: username,
+            password: password,
+            userprofile: {
+                avatar_images: [],
+                bio: ""
+            }
+        };
+        data = JSON.stringify(data);
+        return $http.post(API_URL + '/api/users/create/.json', data).then(handleSuccess, handleError('Error registering'));
     }
 
     //function Login(username, password, callback) {
@@ -63,7 +83,7 @@ angular.module('storyApp').factory('AuthenticationService', ['$http', '$rootScop
     function ClearCredentials() {
         $rootScope.globals = {};
         $cookies.remove('globals');
-        $http.defaults.headers.common.Authorization = 'Basic ';
+        $http.defaults.headers.common.Authorization = '';
     }
 
     // private functions

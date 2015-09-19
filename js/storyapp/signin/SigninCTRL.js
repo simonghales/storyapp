@@ -2,10 +2,10 @@ angular
     .module('storyApp')
     .controller('SigninCTRL', SigninCTRL)
 
-.$inject = ['$scope', 'AuthenticationService'];
+.$inject = ['$scope', '$rootScope', 'AuthenticationService'];
 
 /* @ngInject */
-function SigninCTRL($scope, AuthenticationService) {
+function SigninCTRL($scope, $rootScope, AuthenticationService) {
     /* jshint validthis: true */
     var vm = this;
 
@@ -39,14 +39,7 @@ function SigninCTRL($scope, AuthenticationService) {
         vm.states.busy = true;
         vm.states.error = false;
 
-        var loginData = {
-            username : vm.username,
-            password : vm.password
-        }
-
-        loginData = JSON.stringify(loginData);
-
-        AuthenticationService.Login(loginData)
+        AuthenticationService.Login(vm.username, vm.password)
             .then(function(data) {
                 if(data.success == false) {
                     vm.states.error = true;
@@ -56,6 +49,7 @@ function SigninCTRL($scope, AuthenticationService) {
                 else {
                     AuthenticationService.StoreAuth(vm.username, data.data.token);
                     vm.states.busy = false;
+                    $rootScope.$broadcast('user-loggedIn');
                     $scope.closeThisDialog();
                 }
             }, function(error) {

@@ -1,4 +1,5 @@
 var gulp = require('gulp'),
+    sourcemaps = require('gulp-sourcemaps'),
     sass = require('gulp-sass'),
     concat    = require('gulp-concat'),
     watch    = require('gulp-watch'),
@@ -14,7 +15,9 @@ gulp.task('watch', function() {
 
 gulp.task('sass', function () {
     gulp.src('css/*.scss')
+        .pipe(sourcemaps.init())
         .pipe(sass())
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('css'))
         .pipe(concat('style.css'))
         .pipe(gulp.dest('css'))

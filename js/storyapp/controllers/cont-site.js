@@ -1,8 +1,24 @@
 angular.module('storyApp').controller('Site', ['$scope', '$rootScope', '$state',
-    'Author', 'AuthenticationService', 'ngDialog',
-    function($scope, $rootScope, $state, Author, AuthenticationService, ngDialog) {
+    'Author', 'AuthenticationService', 'ngDialog', 'AuthenticationService',
+    function($scope, $rootScope, $state, Author, AuthenticationService, ngDialog, AuthenticationService) {
 
     var site = this;
+    site.states = {
+      loggedIn : $rootScope.states.loggedIn
+    };
+
+    $rootScope.$on('user-loggedIn', function() {
+        site.states.loggedIn = true;
+    });
+
+    $rootScope.$on('user-signedOut', function() {
+        console.log("User signed out!");
+        site.states.loggedIn = false;
+    });
+
+    $rootScope.$on('user-prompt-login', function() {
+        site.openSignIn();
+    });
 
     site.logIn = function() {
         console.log("I want to sign in!");
@@ -16,6 +32,13 @@ angular.module('storyApp').controller('Site', ['$scope', '$rootScope', '$state',
                 console.log("Failed to log in :(((", response);
             }
         });
+    }
+
+    site.signOut = function() {
+
+        AuthenticationService.ClearCredentials();
+        $rootScope.$broadcast("user-signedOut");
+
     }
 
 

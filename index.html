@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="css/fontello.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
-<body class="" ng-controller="Site as site" ng-class="containerClass">
+<body class="{{ containerClass }}" ng-controller="Site as site" ng-class="{ 'state__loggedIn' : site.states.loggedIn, 'state__signedOut' : !site.states.loggedIn }">
 	<div id="siteWrapper" class="siteWrapper">
 		<!--<header class="siteHeader">-->
 			<!--<a class="homeLink" href="#/">yep.is</a>-->
@@ -114,6 +114,7 @@
 	<script src="js/storyapp/directives/directive-textEditor.js"></script>
 	<script src="js/storyapp/directives/directive-textMenu.js"></script>
 	<script src="js/storyapp/stories/preview/storyPreview.directive.js"></script>
+	<script src="js/storyapp/directives/uniqueUsername.directive.js"></script>
 	<!-- END Directives -->
 
 	<!-- Factories -->
@@ -137,6 +138,7 @@
 	<script src="js/storyapp/create/CreateStoryCTRL.js"></script>
 	<script src="js/storyapp/signin/SigninCTRL.js"></script>
 	<script src="js/storyapp/register/RegisterCTRL.js"></script>
+	<script src="js/storyapp/menu/MenuCTRL.js"></script>
 	<!-- END Controllers -->
 
 </body>

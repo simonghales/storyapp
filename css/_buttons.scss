@@ -28,6 +28,16 @@ a.button {
 
 }
 
+.button__full {
+  width: 100%;
+}
+
+.button__focus {
+  &:focus {
+    @include box-shadow(0 0 0px 2px #02A3FF);
+  }
+}
+
 .button__close {
   @extend .button__reset;
   position: absolute;
@@ -97,14 +107,22 @@ a.button {
   @include border-radius(4px);
   font-weight: bold;
 
-  &:focus {
-    @include box-shadow(0 0 0px 2px #02A3FF);
+  &.button__bigger {
+    padding: 12px 22px;
+    font-size: 1.2em;
   }
 
   &.state__invalid {
     cursor: default;
     background-color: #FFA076;
     border-color: #FFA076;
+    
+    &.button__invalidClear {
+      background: none;
+      color: rgba(0,0,0,0.5);
+      border-color: rgba(0,0,0,0.5);
+    }
+    
   }
 
   &.button__cancel {
@@ -192,6 +210,25 @@ a.button {
 
     &:hover {
       background-color: rgba(0, 120, 236, 0.55);
+    }
+
+    &.state__busy {
+      background-color: rgba(0, 120, 236, 0.55);
+      cursor: default;
+    }
+
+  }
+
+  &.state__invalid {
+    background-color: rgba(0, 120, 236, 0.2);
+    cursor: default;
+
+    &:hover {
+      background-color: rgba(0, 120, 236, 0.2);
+    }
+
+    &:active {
+      top: 0;
     }
 
   }
