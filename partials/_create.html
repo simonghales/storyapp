@@ -2,7 +2,14 @@
     <h2 class="title__large">Create your Story</h2>
     <form name="createForm" class="simpleForm" novalidate ng-submit="create.createStory(createForm.$valid);">
         <section class="formSection">
-            <figure class="uploadStoryImage bgImg__emptyPlaceholder bgImg __noImage"></figure>
+            <figure class="uploadStoryImage" ng-class="{ 'state__empty' : !create.form.image }" ng-click="create.uploadImage();">
+                <div class="bgImg__emptyPlaceholder bgImg __noImage" back-img="{{create.form.image}}">
+
+                </div>
+                <div class="uploadPrompt">
+                    <span class="icon icon-picture"></span> <span class="text">Upload a Preview Image</span>
+                </div>
+            </figure>
         </section>
         <section class="formBody">
             <section class="formSection flexInput">

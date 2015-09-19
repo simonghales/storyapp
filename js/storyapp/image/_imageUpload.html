@@ -1,0 +1,45 @@
+<section class="modalMain state__busy"> <!--  ng-class="{ 'state__busy' : imageUpload.states.busy }" -->
+    <h2 class="modal-title">Set up your background</h2>
+    <form name="imageForm" class="modal-body modalForm" novalidate>
+        <figure class="formSection imagePreview bgImg" back-img="{{imageUpload.image}}">
+            <div class="imagePreview-status show__busy">
+                <p ng-show="imageUpload.states.uploading">Uploading: <span class="percentage">{{imageUpload.uploadProgress}}%</span></p>
+                <p ng-show="imageUpload.states.processing">...processing...</p>
+            </div>
+        </figure>
+        <section class="formSection">
+            <button class="button__upload" ngf-select="imageUpload.uploadFile($file)">
+                <span class="button-text">
+                    <span class="icon icon-up-circled2"></span>
+                    Upload Image
+                </span>
+            </button>
+        </section>
+        <section class="flexInput uploadImageUrl formSection">
+            <label class="text__faint" for="imageUrl">Image Url</label>
+            <div class="inputWrapper">
+                <input name="imageUrl" class="input__plain" required ng-model="imageUpload.url" type="url" placeholder="http://www.website.com"/>
+            </div>
+            <button class="button__inputAction button__right" ng-disabled="imageForm$invalid" ng-click="imageUpload.uploadUrlCheck(imageForm.$valid, imageUpload.url);">
+                <span class="icon icon-up-circled2"></span>
+            </button>
+        </section>
+        <section class="flexInput formSection __separate">
+            <label class="text__faint" for="bgColor">Color</label>
+            <div class="inputWrapper">
+                <input name="bgColor" class="input__plain" type="text" placeholder="#FFFFFF"/>
+            </div>
+            <button class="button__inputAction button__right">
+                <span class="icon icon-eyedropper"></span>
+            </button>
+        </section>
+        <section class="formSection __separate modal-options centeredButtons clearfix">
+            <button class="button button__primary button__cancel" ng-click="imageUpload.cancel();">
+                Cancel
+            </button>
+            <button class="button button__primary" ng-click="imageUpload.confirm();">
+                Save
+            </button>
+        </section>
+    </form>
+</section>

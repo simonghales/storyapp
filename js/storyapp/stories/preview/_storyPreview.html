@@ -1,7 +1,7 @@
 <div class="storyPreviewWrapper">
     <article class="storyPreview">
         <a class="storyPreview-link" ng-href="#/s/{{::story.id}}">
-            <div class="storyPreview-img" style="background-image:url(images/street_2.jpg);">
+            <div class="storyPreview-img bgImg bgImg__emptyPlaceholder" back-img="{{story.profile_image_urls[0].medium}}">
                 <div class="storyPreview-shade"></div>
                 <div class="storyPreview-title">
                     <h3 ng-bind="::story.title"></h3>

@@ -1,6 +1,6 @@
 
 body {
-  background-color: #E0E0E0;
+  background-color: #B7BDB5;
 
   //&.page__home,
   //&.page__create {
@@ -290,6 +290,18 @@ body.ngdialog-open {
   height: 130px;
   background-color: #F0F0F0;
   @include border-radius(5px);
+
+  .imagePreview-status {
+	text-align: center;
+	line-height: 130px;
+	color: #999999;
+
+	.percentage {
+	  font-weight: bold;
+	}
+
+  }
+
 }
 
 // END Dialog

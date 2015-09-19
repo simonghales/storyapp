@@ -2,16 +2,18 @@ angular
     .module('storyApp')
     .controller('CreateStoryCTRL', CreateStoryCTRL)
 
-.$inject = ['$scope', '$rootScope', '$location', 'StoryService'];
+.$inject = ['$scope', '$rootScope', '$location', 'StoryService', 'ngDialog'];
 
 /* @ngInject */
-function CreateStoryCTRL($scope, $rootScope, $location, StoryService) {
+function CreateStoryCTRL($scope, $rootScope, $location, StoryService, ngDialog) {
     /* jshint validthis: true */
     var vm = this;
 
     vm.form = {
         title: '',
-        desc: ''
+        desc: '',
+        image: '',
+        imageObj: {}
     }
     vm.states = {
         busy: false,
@@ -19,6 +21,7 @@ function CreateStoryCTRL($scope, $rootScope, $location, StoryService) {
     }
 
     vm.activate = activate;
+    vm.uploadImage = uploadImage;
     vm.createStory = createStory;
 
     activate();
@@ -27,6 +30,26 @@ function CreateStoryCTRL($scope, $rootScope, $location, StoryService) {
 
     function activate() {
         console.log("Loaded create story ctrl");
+    }
+
+    function uploadImage() {
+
+        freezeSite();
+        ngDialog.open({
+            template: 'js/storyapp/image/_imageUpload.html',
+            className: 'yepDialog-theme-default',
+            controller: 'ImageUpload',
+            controllerAs: 'imageUpload',
+            preCloseCallback: function(newImage) {
+                unfreezeSite();
+                if(newImage && newImage.id) {
+                    vm.form.imageObj = newImage;
+                    vm.form.image = newImage.medium;
+                    console.log("Image result", newImage);
+                }
+            }
+        });
+
     }
 
     function createStory(formValid) {
@@ -48,6 +71,10 @@ function CreateStoryCTRL($scope, $rootScope, $location, StoryService) {
             banner_images: [],
             listed: true
         };
+
+        if(vm.form.imageObj) {
+            sendData.profile_images[0] = vm.form.imageObj.id;
+        }
 
         sendData = JSON.stringify(sendData);
 

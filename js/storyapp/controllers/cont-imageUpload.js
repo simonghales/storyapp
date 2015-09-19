@@ -4,11 +4,25 @@ angular.module('storyApp').controller('ImageUpload', ['$scope', 'Upload', 'Imgur
 
     var imageUpload = this;
 
+    imageUpload.states = {
+        busy: false,
+        error: false,
+        uploading: false,
+        processing: false
+    }
+    imageUpload.uploadProgress = 0;
     imageUpload.url = "";
     imageUpload.image = "";
     imageUpload.uploadedImage = null;
 
     imageUpload.uploadFile = function(file) {
+
+        if(!file || imageUpload.states.busy) return;
+
+        imageUpload.states.busy = true;
+        imageUpload.states.uploading = true;
+        imageUpload.uploadProgress = 0;
+        imageUpload.states.processing = false;
 
         file.upload = Upload.http({
             url: 'https://api.imgur.com/3/image',
@@ -26,6 +40,8 @@ angular.module('storyApp').controller('ImageUpload', ['$scope', 'Upload', 'Imgur
 
             console.log("Succes??", response);
 
+            imageUpload.states.uploading = false;
+            imageUpload.states.processing = true;
             imageUpload.uploadUrl(response.data.data.link);
 
             //file.result = response.data;
@@ -37,6 +53,11 @@ angular.module('storyApp').controller('ImageUpload', ['$scope', 'Upload', 'Imgur
 
         file.upload.progress(function (evt) {
             file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+            imageUpload.uploadProgress = file.progress;
+            if(file.progress == 100) {
+                imageUpload.states.uploading = false;
+                imageUpload.states.processing = true;
+            }
             console.log("Progress underway!", file.progress);
         });
 
@@ -47,10 +68,16 @@ angular.module('storyApp').controller('ImageUpload', ['$scope', 'Upload', 'Imgur
             console.log("Form is invalid");
             return;
         }
+
+        if(imageUpload.states.busy) return;
+        imageUpload.states.busy = true;
+
         imageUpload.uploadUrl(url);
     }
 
     imageUpload.uploadUrl = function(url) {
+        imageUpload.states.processing = true;
+
         var sendData = {
             original : null,
             remote_url : url
@@ -72,6 +99,9 @@ angular.module('storyApp').controller('ImageUpload', ['$scope', 'Upload', 'Imgur
     }
 
     imageUpload.updateImage = function() {
+        imageUpload.states.uploading = false;
+        imageUpload.states.processing = false;
+        imageUpload.states.busy = false;
         imageUpload.image = imageUpload.uploadedImage.remote_url;
     }
 

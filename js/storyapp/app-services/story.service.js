@@ -15,7 +15,7 @@ angular.module('storyApp').factory('StoryService', ['$http', 'API_URL', function
     return service;
 
     function GetAll() {
-        return $http.get(API_URL + '/api/stories/.json').then(handleSuccess, handleError('Error getting all stories'));
+        return $http.get(API_URL + '/api/stories/.json?limit=15&order=age').then(handleSuccess, handleError('Error getting all stories'));
     }
 
     function GetById(id) {

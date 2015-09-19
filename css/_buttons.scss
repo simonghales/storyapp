@@ -7,12 +7,13 @@ a.button {
 }
 
 .button__activeAnim {
-  position: relative;
-  top: 0;
-  @include transition(background-color 200ms, top 200ms);
+  //position: relative;
+  //top: 0;
+  @include transition(transform 200ms, top 200ms);
 
   &:active {
-    top: 2px;
+    //top: 2px;
+    transform: translateY(2px);
   }
 }
 
@@ -167,6 +168,7 @@ a.button {
 .button__major {
   @extend .button__reset;
   @extend .font__heading;
+  @extend .button__activeAnim;
   display: inline-block;
   font-weight: bold;
   background-color: rgba(236, 0, 69, 0.4);
@@ -174,14 +176,8 @@ a.button {
   text-shadow: 0 1px #AD2144;
   padding: 8px 12px;
   font-size: 1em;
-  top: 0;
-  position: relative;
   @include border-radius(5px);
-  @include transition(background-color 200ms, top 200ms);
-
-  &:active {
-    top: 2px;
-  }
+  @include transition(background-color 200ms, transform 200ms);
 
   &:hover {
     background-color: rgba(236, 0, 69, 0.55);
