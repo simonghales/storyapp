@@ -1,6 +1,7 @@
 .homeIntro {
   padding: 0 15px 15px 15px;
   margin: 30px 15px 15px 15px;
+  text-align: center;
   //border-bottom: 1px solid #979B8E;
 
   h1 {
@@ -35,19 +36,20 @@
 $menu-width: 260px;
 
 .sideMenu {
-  float: left;
+  //float: left;
   width: 100%;
-  max-width: $menu-width;
-  background-color: rgba(66, 66, 67, 0.1);
-  border-right: 1px solid rgba(79, 70, 65, 0.07);
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
+  margin-bottom: 30px;
+  //max-width: $menu-width;
+  //background-color: rgba(66, 66, 67, 0.1);
+  //border-right: 1px solid rgba(79, 70, 65, 0.07);
+  //position: fixed;
+  //top: 0;
+  //left: 0;
+  //bottom: 0;
 }
 
 .mainBodyWrapper {
-  padding-left: $menu-width;
+  //padding-left: $menu-width;
 }
 
 .mainBody {
@@ -56,8 +58,8 @@ $menu-width: 260px;
 
 .menuUserAccount {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 15px;
+  right: 15px;
 
   .user-img {
     position: relative;
@@ -103,6 +105,9 @@ $menu-width: 260px;
 
 .menuUserOptions {
   margin: 0 15px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
 
   .homeCreateLink {
     width: 100%;
@@ -126,6 +131,43 @@ $menu-width: 260px;
 
 .previewRow {
   display: flex;
+
+  &:nth-child(3n+1) {
+
+    .storyPreviewWrapper {
+
+      &:nth-child(3) {
+        flex: 2;
+      }
+
+    }
+
+  }
+
+  &:nth-child(3n+2) {
+
+    .storyPreviewWrapper {
+
+      &:nth-child(2) {
+        flex: 2;
+      }
+
+    }
+
+  }
+
+  &:nth-child(3n+3) {
+
+    .storyPreviewWrapper {
+
+      &:nth-child(1) {
+        flex: 2;
+      }
+
+    }
+
+  }
+
 }
 
 .storyPreviewWrapper {

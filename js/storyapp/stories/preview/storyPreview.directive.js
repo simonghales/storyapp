@@ -13,6 +13,6 @@ function storyPreview() {
 
     function link(scope, element, attrs) {
         /* */
-        console.log("Scope for this directive", scope);
+        //console.log("Scope for this directive", scope);
     }
 }
