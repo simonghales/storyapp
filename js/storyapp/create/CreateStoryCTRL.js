@@ -33,6 +33,10 @@ function CreateStoryCTRL($scope, $rootScope, $location, StoryService, ngDialog) 
     }
 
     function uploadImage() {
+        if(!$rootScope.states.loggedIn) {
+            $rootScope.$broadcast('user-prompt-login');
+            return;
+        }
 
         freezeSite();
         ngDialog.open({
