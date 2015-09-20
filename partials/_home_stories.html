@@ -226,7 +226,7 @@
         </div>
     </section>
     <section class="storyPreviews hide__loading">
-        <div class="previewRow" ng-repeat="row in ::storiesList.dataRows">
+        <div class="previewRow cols__{{::row.length}}" ng-repeat="row in ::storiesList.dataRows">
             <story-preview ng-repeat="story in ::row"></story-preview>
         </div>
     </section>

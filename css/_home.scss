@@ -50,6 +50,9 @@ $menu-width: 260px;
 
 .mainBodyWrapper {
   //padding-left: $menu-width;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .mainBody {

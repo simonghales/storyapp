@@ -254,3 +254,32 @@ a.button {
   }
 
 }
+
+.button__smooth {
+  @extend .button__reset;
+  @extend .font__heading;
+  background-color: #EEF0F3;
+  border: 1px solid #E3E5E8;
+  font-weight: 600;
+  font-size: .8em;
+  padding: 5px;
+  color: #BED0C7;
+  @include border-radius(3px);
+
+  &:hover {
+    //color: #8EA79A;
+    border-color: #BED0C7;
+  }
+
+  &.button__vibrant {
+    background-color: #2ABBFD;
+    border-color: #2ABBFD;
+    color: #FFFFFF;
+
+    &:hover {
+      border-color: #1898D2;
+    }
+
+  }
+
+}

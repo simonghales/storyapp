@@ -1,13 +1,37 @@
-<div data-ng-controller="Story as story" ng-class="{ 'state__editing' : site.editing, 'state__loading' : !story.states.loaded }">
-    <div id="globalEditControls" class="globalEditControls">
-        <span ng-click="site.toggleEditing()">Toggle Edit</span> | <span ng-click="site.saveEditing();">Save Changes</span> | <span ng-click="site.logIn();">Log In</span>
-    </div>
+<div data-ng-controller="StoryCTRL as story" ng-class="{ 'state__editing' : site.editing,
+'state__loading' : !story.states.loaded, 'state__owner' : story.states.owner, 'state__busy' : story.states.saving }">
+    <aside class="storyMenu show__owner show__admin hide__loading">
+        <a class="storyMenu-title" href="#/">yep.is</a>
+        <ul class="storyMenu-options">
+            <li>
+                <button class="button__smooth" ng-click="site.toggleEditing()">
+                    <span class="show__editing __inline">Preview</span>
+                    <span class="hide__editing __inline">Edit Mode</span>
+                </button>
+            </li>
+            <li>
+                <button class="button__smooth" ng-class="{ 'button__vibrant' : story.states.pendingChanges }" ng-click="story.saveChanges();">
+                    <span class="hide__busy __inline">Save</span>
+                    <span class="show__busy __inline">...updating...</span>
+                </button>
+            </li>
+            <li>
+                <button class="button__smooth" ng-click="story.cancelChanges();">Cancel</button>
+            </li>
+        </ul>
+    </aside>
     <div class="textEditor-wrapper show__editing">
         <text-editor drag-me="" drag-options="{{story.editorOptions}}"></text-editor>
         <!--<text-menu></text-menu>-->
     </div>
     <section class="show__loading">
-        <p>loading...</p>
+        <div class="flex__wrapper">
+            <ul class="loadingDots">
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
     </section>
     <div class="storyPage-wrapper" data-ng-repeat="storyPage in story.data.data.pages track by storyPage.id" data-ng-include="'partials/_storyPage.html'">
     </div>

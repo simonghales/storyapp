@@ -1,5 +1,47 @@
 $ui-zindex: 100;
 
+// Story Menu
+
+.storyMenu {
+  z-index: $ui-zindex * 2;
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  width: 120px;
+  padding: 10px;
+  background-color: #FFFFFF;
+  text-align: center;
+  @include border-radius(5px);
+  @include box-shadow(0 0 1px rgba(0,0,0,0.2));
+}
+
+.storyMenu-title {
+  @extend .font__fancy;
+  font-size: 2em;
+  color: #C7D8CF;
+  
+  &:hover {
+	text-decoration: none;
+	color: #9BBBB7;
+  }
+  
+}
+
+.storyMenu-options {
+  margin-top: 10px;
+
+  > li {
+	margin-top: 5px;
+  }
+
+  button {
+	width: 100%;
+  }
+
+}
+
+// END Story Menu
+
 .storyUi-inlineOptions {
 	$button-size: 22px;
 	$button-width: 20px;

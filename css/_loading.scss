@@ -1,0 +1,65 @@
+
+$blue: #40B0FF;
+$dotSize: 16px;
+$circleSize: 120px;
+
+.flex__wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loadingDots {
+  width: $circleSize;
+  height: $circleSize;
+  background-color: #FFFFFF;
+  @include border-radius(100%);
+  text-align: center;
+  line-height: $circleSize;
+
+  li {
+    width: $dotSize;
+    height: $dotSize;
+    display: inline-block;
+    background-color: $blue;
+    border: 2px solid $blue;
+    transform: transformZ(0);
+    animation: LOADING 2s infinite;
+    @include border-radius(100%);
+    margin: 0 5px;
+
+    &:nth-child(1n) {
+      animation-delay: 0s;
+    }
+    &:nth-child(2n) {
+      animation-delay: 0.2s;
+    }
+    &:nth-child(3n) {
+      animation-delay: 0.4s;
+    }
+
+  }
+
+}
+
+@keyframes  LOADING {
+  0%   {
+    transform: scale(0.5);
+    background: $blue;
+  }
+  50%   {
+    transform: scale(1);
+    background: rgba(0,0,0,0);
+  }
+  100% {
+    transform: scale(0.5);
+    background: $blue;
+  }
+}

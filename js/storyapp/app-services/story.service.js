@@ -1,5 +1,7 @@
 angular.module('storyApp').factory('StoryService', ['$http', 'API_URL', function($http, API_URL){
 
+    var updatingPages = {};
+
     var service = {};
 
     service.GetAll = GetAll;
@@ -23,7 +25,15 @@ angular.module('storyApp').factory('StoryService', ['$http', 'API_URL', function
     }
 
     function UpdatePageData(sendData, pageId) {
-        return $http.put(API_URL + '/api/storypages/' + pageId + '/.json', sendData).then(handleSuccess, handleError('Error adding image'));
+        return $http.put(API_URL + '/api/storypages/' + pageId + '/.json', sendData).then(handleSuccess, handleError('Error updating page'));
+    }
+
+    function UpdatingPage(pageId) {
+
+    }
+
+    function UpdatedPage(pageId) {
+
     }
 
     function UploadImage(sendData) {

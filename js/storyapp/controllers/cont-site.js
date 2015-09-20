@@ -1,6 +1,6 @@
 angular.module('storyApp').controller('Site', ['$scope', '$rootScope', '$state',
-    'Author', 'AuthenticationService', 'ngDialog', 'AuthenticationService',
-    function($scope, $rootScope, $state, Author, AuthenticationService, ngDialog, AuthenticationService) {
+    'Author', 'AuthenticationService', 'ngDialog', 'AuthenticationService', 'UserService',
+    function($scope, $rootScope, $state, Author, AuthenticationService, ngDialog, AuthenticationService, UserService) {
 
     var site = this;
     site.states = {
@@ -9,6 +9,7 @@ angular.module('storyApp').controller('Site', ['$scope', '$rootScope', '$state',
 
     $rootScope.$on('user-loggedIn', function() {
         site.states.loggedIn = true;
+        site.getCurrentUser();
     });
 
     $rootScope.$on('user-signedOut', function() {
@@ -20,20 +21,6 @@ angular.module('storyApp').controller('Site', ['$scope', '$rootScope', '$state',
         site.openSignIn();
     });
 
-    site.logIn = function() {
-        console.log("I want to sign in!");
-        AuthenticationService.Login("simon", "tum", function (response) {
-            if (response.token) {
-                AuthenticationService.StoreAuth("simon", response.token);
-                console.log("Successfully logged in!!!!", response);
-                //AuthenticationService.SetCredentials(vm.username, vm.password);
-                //$location.path('/');
-            } else {
-                console.log("Failed to log in :(((", response);
-            }
-        });
-    }
-
     site.signOut = function() {
 
         AuthenticationService.ClearCredentials();
@@ -41,15 +28,31 @@ angular.module('storyApp').controller('Site', ['$scope', '$rootScope', '$state',
 
     }
 
-
+    site.getCurrentUser = function() {
+        if(!$rootScope.states.loggedIn) {
+            return;
+        }
+        UserService.GetCurrentUser()
+            .then(function(data) {
+                if(data.success == false) {
+                    console.log("Error with loading current user :(");
+                }
+                UserService.StoreCurrentUser(data.data);
+                console.log("Loaded current user", data);
+            }, function(error) {
+                console.log("Error: " + error);
+            });
+    }
+    site.getCurrentUser();
 
     site.editing = Author.getEditing();
     $rootScope.$on('author-editingChanged', function(event, value) {
         site.editing = value;
     });
 
-    site.toggleEditing = function() {
-        Author.toggleEditing();
+    site.toggleEditing = function(statusBool) {
+        if(statusBool) Author.toggleEditing(statusBool);
+        else Author.toggleEditing();
     }
 
     site.saveEditing = function() {

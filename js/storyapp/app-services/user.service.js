@@ -1,7 +1,9 @@
-angular.module('storyApp').factory('UserService', ['$http', function($http){
+angular.module('storyApp').factory('UserService', ['$http', '$cookies', 'API_URL', function($http, $cookies, API_URL){
 
     var service = {};
 
+    service.GetCurrentUser = GetCurrentUser;
+    service.StoreCurrentUser = StoreCurrentUser;
     service.GetAll = GetAll;
     service.GetById = GetById;
     service.GetByUsername = GetByUsername;
@@ -10,6 +12,15 @@ angular.module('storyApp').factory('UserService', ['$http', function($http){
     service.Delete = Delete;
 
     return service;
+
+    function GetCurrentUser() {
+        return $http.get(API_URL + '/api/users/current/.json').then(handleSuccess, handleError('Error getting current user'));
+    }
+
+    function StoreCurrentUser(userData) {
+        var cookieData = JSON.stringify(userData);
+        $cookies.put('userData', cookieData);
+    }
 
     function GetAll() {
         return $http.get('/api/users').then(handleSuccess, handleError('Error getting all users'));

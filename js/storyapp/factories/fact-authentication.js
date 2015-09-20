@@ -33,25 +33,6 @@ angular.module('storyApp').factory('AuthenticationService', ['$http', '$rootScop
         return $http.post(API_URL + '/api/users/create/.json', data).then(handleSuccess, handleError('Error registering'));
     }
 
-    //function Login(username, password, callback) {
-    //
-    //    /* Use this for real authentication
-    //     ----------------------------------------------*/
-    //
-    //    var apiData = {
-    //        username: username,
-    //        password: password
-    //    }
-    //
-    //    apiData = JSON.stringify(apiData);
-    //
-    //    $http.post(API_URL + '/api-token-auth/.json', apiData)
-    //        .success(function (response) {
-    //            callback(response);
-    //        });
-    //
-    //}
-
     function StoreAuth(username, token) {
         $rootScope.globals = {
             currentUser: {

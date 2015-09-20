@@ -61,7 +61,8 @@ angular.module('storyApp').config(function($stateProvider, $locationProvider, $u
 angular.module('storyApp').run(function($rootScope, $http, $cookies) {
 
     $rootScope.states = {
-        loggedIn : false
+        loggedIn : false,
+        admin : false
     }
 
     $rootScope.$on('user-loggedIn', function() {
@@ -72,15 +73,22 @@ angular.module('storyApp').run(function($rootScope, $http, $cookies) {
         $rootScope.states.loggedIn = false;
     });
 
-    console.log("Checking for cookies...");
-
     if($cookies.get("globals")) {
         var globalData = $cookies.get("globals");
         globalData = JSON.parse(globalData); // TODO: This breaks the site if it doesn't parse correctly...
-        console.log("User's token", globalData.currentUser.token);
         $http.defaults.headers.common['Authorization'] = 'JWT ' + globalData.currentUser.token;
         $rootScope.globals = globalData;
         $rootScope.states.loggedIn = true;
+
+        if($cookies.get("userData")) {
+            var userData = $cookies.get("userData");
+            userData = JSON.parse(userData);
+            $rootScope.userData = userData;
+            if(userData.admin) {
+                $rootScope.states.admin = true;
+            }
+        }
+
     } else {
         console.log("User is not logged in!");
     }

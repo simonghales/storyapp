@@ -18,6 +18,12 @@ angular.module('storyApp').factory('PageData', function(){
 
         var providedMeasurements = JSON.parse(data.measurements);
 
+        for(var measurementType in safeData.measurements) {
+            console.log("Measurement type: " + measurementType);
+            if(providedMeasurements[measurementType]) {
+                safeData.measurements[measurementType] = providedMeasurements[measurementType];
+            }
+        }
         if(providedMeasurements.containerWidth) {
             console.log("Container width provided", providedMeasurements.containerWidth);
         }

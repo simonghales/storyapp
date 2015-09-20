@@ -1,4 +1,6 @@
 
+.show__admin,
+.show__owner,
 .show__signedOut,
 .show__loggedIn,
 .show__busy,
@@ -8,6 +10,8 @@
 	display: none;
 }
 
+.state__admin .show__admin,
+.state__owner .show__owner,
 .state__signedOut .show__signedOut,
 .state__loggedIn .show__loggedIn,
 .state__busy .show__busy,
@@ -22,6 +26,8 @@
 
 }
 
+.state__admin .hide__admin,
+.state__owner .hide__owner,
 .state__signedOut .hide__signedOut,
 .state__loggedIn .hide__loggedIn,
 .state__busy .hide__busy,

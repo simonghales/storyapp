@@ -1,45 +1,75 @@
-angular.module('storyApp').controller('Page', ['$scope', '$element', '$log', 'Author', 'Editor', 'ngDialog', 'PageData', 'StoryService', function($scope, $element, $log, Author, Editor, ngDialog, PageData, StoryService) {
-	var page = this;
-	page.data = $scope.storyPage;
+angular
+	.module('storyApp')
+	.controller('PageCTRL', PageCTRL)
 
-	page.safeData = PageData.GetSafeData(page.data);
+.$inject = ['$scope', '$rootScope', '$element', '$log', 'Author', 'Editor', 'ngDialog', 'PageData', 'StoryService'];
 
-	console.log("Safe data is:", page.safeData);
+/* @ngInject */
+function PageCTRL($scope, $rootScope, $element, $log, Author, Editor, ngDialog, PageData, StoryService) {
+	/* jshint validthis: true */
+	var vm = this;
+	vm.data;
+	vm.states = {
+		pendingChanges: false
+	}
 
-	page.dimensions = {
+	vm.activate = activate;
+	vm.pendingChange = pendingChange;
+	vm.saveChanges = saveChanges;
+	vm.initDimensions = initDimensions;
+	vm.updateMeasurements = updateMeasurements;
+	vm.setPageCSS = setPageCSS;
+	vm.setContentCSS = setContentCSS;
+	vm.setTextDimensions = setTextDimensions;
+	vm.setPositionClasses = setPositionClasses;
+	vm.changeDirection = changeDirection;
+	vm.setHeadingStyles = setHeadingStyles;
+	vm.setSubheadingStyles = setSubheadingStyles;
+	vm.setDescriptionStyles = setDescriptionStyles;
+	vm.openEditor = openEditor;
+	vm.updateImageModal = updateImageModal;
+	vm.updateImage = updateImage;
+	vm.removeAnimation = removeAnimation;
+
+	activate();
+
+	// Variable Settings //
+
+	vm.dimensions = {
 		containerWidth : "",
 		paddingVertical : "",
 		paddingHorizontal : ""
 	}
 
-	page.resizableContainer = {
+	vm.resizableContainer = {
 		configuration : {
 			handles : "w, e",
 			resize : function(event, ui) {
 				var newWidth = ui.originalSize.width+((ui.size.width - ui.originalSize.width)*2);
-		        $(this).width("auto").position({
-		            of: $(this).parent(),
-		            my: "center center",
-		            at: "center center"
-		        });
-		        $(this).css({
-		        	"left" : "auto",
-		        	"right" : "auto",
-		        	"width" : "auto",
-		        	"max-width" : newWidth
-		        });
+				$(this).width("auto").position({
+					of: $(this).parent(),
+					my: "center center",
+					at: "center center"
+				});
+				$(this).css({
+					"left" : "auto",
+					"right" : "auto",
+					"width" : "auto",
+					"max-width" : newWidth
+				});
 				ui.size.width = newWidth;
 				//console.log("EXECUTING RESIZE FUNCTION", newWidth);
-		    },
-		    stop : function(event, ui) {
+			},
+			stop : function(event, ui) {
 				//console.log("Finished resizing", ui.size.width);
-		    	page.safeData.measurements.containerWidth = ui.size.width;
-		    	$scope.$apply();
-		    }
+				vm.safeData.measurements.containerWidth = ui.size.width;
+				vm.updateMeasurements();
+				$scope.$apply();
+			}
 		}
 	};
 
-	page.resizableContent = {
+	vm.resizableContent = {
 		configuration : {
 			handles: "all",
 			resize: function(event, ui) {
@@ -73,97 +103,143 @@ angular.module('storyApp').controller('Page', ['$scope', '$element', '$log', 'Au
 					console.log("Fixed up vertical offset", verticalOffset, newHeight, ui.size.height, ui.originalSize.height);
 				}
 
-		        if(horizontalOffset < 10) {
-		        	horizontalOffset = 10;
-		        }
-		        if(verticalOffset < 10) {
-		        	verticalOffset = 10;
-		        };
-		        ui.size.height = "auto";
-		        ui.size.width = "auto";
-		        $(this).css({
-		        	"top" : verticalOffset, 
-		        	"bottom" : verticalOffset, 
-		        	"left" : horizontalOffset, 
-		        	"right" : horizontalOffset
-		        });
+				if(horizontalOffset < 10) {
+					horizontalOffset = 10;
+				}
+				if(verticalOffset < 10) {
+					verticalOffset = 10;
+				};
+				ui.size.height = "auto";
+				ui.size.width = "auto";
+				$(this).css({
+					"top" : verticalOffset,
+					"bottom" : verticalOffset,
+					"left" : horizontalOffset,
+					"right" : horizontalOffset
+				});
 				ui.size.verticalOffset = verticalOffset;
 				ui.size.horizontalOffset = horizontalOffset;
 				console.log("Resized", verticalOffset, horizontalOffset);
-		    },
-		    stop : function(event, ui) {
+			},
+			stop : function(event, ui) {
 				//var parentHeight = $(this).parent().height();
 				//var parentWidth = $(this).parent().width();
 				//var horizontalOffset = (parentWidth - ui.size.widthTemp) / 2;
 				//var verticalOffset = (parentHeight - ui.size.heightTemp) / 2;
 				var verticalOffset = ui.size.verticalOffset;
 				var horizontalOffset = ui.size.horizontalOffset;
-		    	page.safeData.measurements.paddingHorizontal = horizontalOffset;
-		    	page.safeData.measurements.paddingVertical = verticalOffset;
+				vm.safeData.measurements.paddingHorizontal = horizontalOffset;
+				vm.safeData.measurements.paddingVertical = verticalOffset;
+				vm.updateMeasurements();
 				console.log("Final", verticalOffset, horizontalOffset);
-		    	$scope.$apply();
-		    }
+				$scope.$apply();
+			}
 		}
 	};
 
-	page.resizableText = {
+	vm.resizableText = {
 		configuration : {
 			handles : "all",
 			// containment : "parent",
 			resize: function(event, ui) {
 				$(this).css({
-		        	"top" : "", 
-		        	"bottom" : "", 
-		        	"left" : "", 
-		        	"right" : ""
-		        });
-		    },
+					"top" : "",
+					"bottom" : "",
+					"left" : "",
+					"right" : ""
+				});
+			},
 			stop : function(event, ui) {
-		    	
-		    	// TODO: update relevant details
-		    	
-		    	$scope.$apply();
-		    }
+
+				// TODO: update relevant details
+
+				$scope.$apply();
+			}
 		}
 	}
 
-	page.initDimensions = function() {
+	// END Variable Settings //
+
+	////////////////
+
+	function activate() {
+		vm.data = $scope.storyPage;
+		vm.safeData = PageData.GetSafeData(vm.data);
+
+		$rootScope.$on('story-saveChanges', function() {
+			vm.saveChanges();
+		});
+
+	}
+
+	function pendingChange() {
+		vm.states.pendingChanges = true;
+		$rootScope.$broadcast('page-update-pending', vm.data.id);
+	}
+
+	function saveChanges() {
+		if(!vm.states.pendingChanges) {
+			$rootScope.$broadcast('page-update-success', vm.data.id);
+			return;
+		}
+		StoryService.UpdatePageData(vm.data, vm.data.id).then(function(data) {
+			console.log("Update page data", data);
+			if(data.success == false) {
+				$rootScope.$broadcast('page-update-error', vm.data.id);
+			} else {
+				$rootScope.$broadcast('page-update-success', vm.data.id);
+			}
+		}, function(error) {
+			$rootScope.$broadcast('page-update-error', vm.data.id);
+			console.log("Error: " + error);
+		});
+	}
+
+	function initDimensions() {
 		// set up width
 		// set up padding
 	}
 
-	page.setPageCSS = function() {
+	function updateMeasurements() {
+		// convert safe data back to thingy data
+		var updatedMeasurements = JSON.stringify(vm.safeData.measurements);
+		vm.data.measurements = updatedMeasurements;
+		vm.pendingChange();
+		console.log("Safe data", updatedMeasurements, vm.safeData);
+	}
+
+	function setPageCSS() {
 		var cssStyles = {};
-		if(page.data.backgroundColor) {
-			cssStyles["background-color"] = page.data.backgroundColor;
+		if(vm.data.backgroundColor) {
+			cssStyles["background-color"] = vm.data.backgroundColor;
 		}
 		return cssStyles;
 	}
 
-	page.setContentCSS = function() {
+	function setContentCSS() {
 		return {
-			top : page.safeData.measurements.paddingVertical,
-			bottom : page.safeData.measurements.paddingVertical,
-			left : page.safeData.measurements.paddingHorizontal,
-			right : page.safeData.measurements.paddingHorizontal,
+			top : vm.safeData.measurements.paddingVertical,
+			bottom : vm.safeData.measurements.paddingVertical,
+			left : vm.safeData.measurements.paddingHorizontal,
+			right : vm.safeData.measurements.paddingHorizontal,
 		}
 	}
 
-	page.setTextDimensions = function() {
+	function setTextDimensions() {
 		return {
-			width : page.safeData.measurements.textWidth,
-			height : page.safeData.measurements.textHeight
+			width : vm.safeData.measurements.textWidth,
+			height : vm.safeData.measurements.textHeight
 		};
 	}
 
-	page.setPositionClasses = function() {
+	function setPositionClasses() {
 		var classes = "";
-		if(page.safeData.measurements.positionVertical == 'top') {
+		if(vm.safeData.measurements.positionVertical == 'top') {
 			classes += " position__top";
 		} else {
 			classes += " position__bottom";
 		}
-		if(page.safeData.measurements.positionHorizontal == 'left') {
+		if(vm.safeData.measurements.positionHorizontal == 'left') {
 			classes += " position__left";
 		} else {
 			classes += " position__right";
@@ -171,39 +247,39 @@ angular.module('storyApp').controller('Page', ['$scope', '$element', '$log', 'Au
 		return classes;
 	}
 
-	page.changeDirection = function(newDirection, type) {
+	function changeDirection(newDirection, type) {
 		if(type == "horizontal") {
-			page.safeData.measurements.positionHorizontal = newDirection;
+			vm.safeData.measurements.positionHorizontal = newDirection;
 		} else {
-			page.safeData.measurements.positionVertical = newDirection;
+			vm.safeData.measurements.positionVertical = newDirection;
 		}
 	}
 
-	page.setHeadingStyles = function() {
+	function setHeadingStyles() {
 		return {
-			//"font-size" : page.data.headingDetails.fontSize,
-			//"color" : page.data.headingDetails.color,
-			//"text-align" : page.data.headingDetails.textAlign
+			//"font-size" : vm.data.headingDetails.fontSize,
+			//"color" : vm.data.headingDetails.color,
+			//"text-align" : vm.data.headingDetails.textAlign
 		}
 	}
 
-	page.setSubheadingStyles = function() {
+	function setSubheadingStyles() {
 		return {
-			//"font-size" : page.data.subheadingDetails.fontSize,
-			//"color" : page.data.subheadingDetails.color,
-			//"text-align" : page.data.subheadingDetails.textAlign
+			//"font-size" : vm.data.subheadingDetails.fontSize,
+			//"color" : vm.data.subheadingDetails.color,
+			//"text-align" : vm.data.subheadingDetails.textAlign
 		}
 	}
 
-	page.setDescriptionStyles = function() {
+	function setDescriptionStyles() {
 		return {
-			//"font-size" : page.data.descriptionDetails.fontSize,
-			//"color" : page.data.descriptionDetails.color,
-			//"text-align" : page.data.descriptionDetails.textAlign
+			//"font-size" : vm.data.descriptionDetails.fontSize,
+			//"color" : vm.data.descriptionDetails.color,
+			//"text-align" : vm.data.descriptionDetails.textAlign
 		}
 	}
 
-	page.openEditor = function(item, $event) {
+	function openEditor(item, $event) {
 		var offset = {
 			x : $event.pageX,
 			y : $event.pageY
@@ -212,37 +288,33 @@ angular.module('storyApp').controller('Page', ['$scope', '$element', '$log', 'Au
 		Editor.setEditingItem(item, offset);
 	}
 
-	page.updateImageModal = function() {
+	function updateImageModal() {
 
 		freezeSite();
 		ngDialog.open({
-			template: 'template-backgroundHandler',
+			template: 'js/storyapp/image/_imageUpload.html',
 			className: 'yepDialog-theme-default',
 			controller: 'ImageUpload',
 			controllerAs: 'imageUpload',
 			preCloseCallback: function(newImage) {
 				unfreezeSite();
 				if(newImage && newImage.id) {
-					page.updateImage(newImage);
+					vm.updateImage(newImage);
 				}
 			}
 		});
 
 	}
 
-	page.updateImage = function(newImage) {
-		console.log("Update this page's bg info with: ", newImage, page.data);
-		page.data.background_image_urls[0] = newImage;
-		page.data.background_images[0] = newImage.id;
-		StoryService.UpdatePageData(page.data, page.data.id).then(function(data) {
-			console.log("Update page data", data);
-		}, function(error) {
-			console.log("Error: " + error);
-		});
-		console.log("Updated bg", page.data.background_image_urls[0].remote_url);
+	function updateImage(newImage) {
+		//console.log("Update this page's bg info with: ", newImage, vm.data);
+		vm.data.background_image_urls[0] = newImage;
+		vm.data.background_images[0] = newImage.id;
+		vm.pendingChange();
+		//console.log("Updated bg", vm.data.background_image_urls[0].remote_url);
 	}
 
-	page.removeAnimation = function(callback) {
+	function removeAnimation(callback) {
 		console.log("Removing this page!");
 		var domElement = $($element);
 		domElement.parent().slideUp(300, function() {
@@ -250,4 +322,5 @@ angular.module('storyApp').controller('Page', ['$scope', '$element', '$log', 'Au
 		});
 	}
 
-}]);
+
+}

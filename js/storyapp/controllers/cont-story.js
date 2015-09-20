@@ -1,211 +1,32 @@
-angular.module('storyApp').controller('Story', ['$scope', '$rootScope', '$stateParams', 'Author', 'ngDialog', 'StoryService', function($scope, $rootScope, $stateParams, Author, ngDialog, StoryService) {
-	// Avoid using $scope, use story = this instead
-	var story = this;
+angular
+	.module('storyApp')
+	.controller('StoryCTRL', StoryCTRL)
 
-	story.states = {
+.$inject = ['$scope', '$rootScope', '$timeout', '$stateParams', 'Author', 'ngDialog', 'StoryService'];
+
+/* @ngInject */
+function StoryCTRL($scope, $rootScope, $timeout, $stateParams, Author, ngDialog, StoryService) {
+	/* jshint validthis: true */
+	var vm = this;
+
+	vm.states = {
 		loaded : false,
-		loading : true
+		loading : true,
+		error : false,
+		owner : false,
+		pendingChanges : false,
+		saving : false,
+		savingError : false
 	}
-
-	story.data = {};
-
-	story.id = $stateParams.id;
-
-	story.LoadStory = function() {
-		story.states.loading = true;
-		story.states.loaded = false;
-		StoryService.GetById(story.id)
-			.then(function(data) {
-				story.data = data;
-				story.states.loaded = true;
-				story.states.loading = false;
-				console.log("Successfully loaded story data", data);
-			}, function(error) {
-				console.log("Error: " + error);
-				story.states.loaded = true;
-				story.states.loading = false;
-			})
-	}
-
-	story.LoadStory();
-
-	// load story data
-	//story.data = {
-	//	pages : [
-	//		{
-	//			id : "1",
-	//			image : "images/boats.jpg",
-	//			headingDetails : {
-	//				text : "China Trip 2015",
-	//				color : "#000",
-	//				fontSize : "24px",
-	//				textAlign : "left"
-	//			},
-	//			subheadingDetails : {
-	//				text : "Animaliss peregrinatione!",
-	//				color : "#54616A",
-	//				fontSize : "14px",
-	//				textAlign : "left"
-	//			},
-	//			descriptionDetails : {
-	//				text : "Sunt byssuses experientia pius, flavum genetrixes. Varius, clemens paluss foris consumere de bi-color, salvus vortex.",
-	//				color : "#e27006",
-	//				fontSize : "12px",
-	//				textAlign : "left"
-	//			},
-	//			measurements : {
-	//				containerWidth : "1024px",
-	//				paddingVertical : "80px",
-	//				paddingHorizontal : "40px",
-	//				positionHorizontal : "right",
-	//				positionVertical : "top",
-	//				textWidth : "400px",
-	//				textHeight : "300px"
-	//			}
-	//		},
-	//		{
-	//			id : "4334",
-	//			image : "images/bg-lake.jpg",
-	//			heading : "New journey!",
-	//			headingDetails : {
-	//				text : "New journey!",
-	//				color : "#000",
-	//				fontSize : "34px",
-	//				textAlign : "right"
-	//			},
-	//			subheadingDetails : {
-	//				text : "Cum spatii velum, omnes elevatuses amor audax, varius imberes5",
-	//				color : "#000",
-	//				fontSize : "24px",
-	//				textAlign : "right"
-	//			},
-	//			descriptionDetails : {
-	//				text : "Advenas accelerare! Eheu, eleates! Pol. Frondators experimentum! Cum cotta persuadere, omnes ollaes manifestum camerarius, bi-color apolloniateses5",
-	//				color : "#54616A",
-	//				fontSize : "14px",
-	//				textAlign : "right"
-	//			},
-	//			measurements : {
-	//				containerWidth : "820px",
-	//				paddingVertical : "100px",
-	//				paddingHorizontal : "20px",
-	//				positionHorizontal : "left",
-	//				positionVertical : "top",
-	//				textWidth : "200px",
-	//				textHeight : "500px"
-	//			}
-	//		},
-	//		{
-	//			id : "4545",
-	//			image : "images/bg-glasses.jpg",
-	//			heading : "Chiao!",
-	//			headingDetails : {
-	//				text : "Chiao!",
-	//				color : "#54616A",
-	//				fontSize : "42px",
-	//				textAlign : "left"
-	//			},
-	//			subheadingDetails : {
-	//				text : "China Trip 2015",
-	//				color : "#000",
-	//				fontSize : "24px",
-	//				textAlign : "left"
-	//			},
-	//			descriptionDetails : {
-	//				text : "China Trip 2015",
-	//				color : "#54616A",
-	//				fontSize : "14px",
-	//				textAlign : "left"
-	//			},
-	//			subheading : "Yay",
-	//			description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-	//			measurements : {
-	//				containerWidth : "1080px",
-	//				paddingVertical : "40px",
-	//				paddingHorizontal : "40px",
-	//				positionHorizontal : "right",
-	//				positionVertical : "bottom",
-	//				textWidth : "700px",
-	//				textHeight : "300px"
-	//			}
-	//		},
-	//		{
-	//			id : "2331",
-	//			image : "images/bg-fields.jpg",
-	//			heading : "Dali",
-	//			headingDetails : {
-	//				text : "Dali",
-	//				color : "#000",
-	//				fontSize : "24px",
-	//				textAlign : "left"
-	//			},
-	//			subheadingDetails : {
-	//				text : "China Trip 2015",
-	//				color : "#000",
-	//				fontSize : "24px",
-	//				textAlign : "left"
-	//			},
-	//			descriptionDetails : {
-	//				text : "China Trip 2015",
-	//				color : "#000",
-	//				fontSize : "14px",
-	//				textAlign : "left"
-	//			},
-	//			subheading : "Woo",
-	//			description : "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-	//			measurements : {
-	//				containerWidth : "1024px",
-	//				paddingVertical : "80px",
-	//				paddingHorizontal : "40px",
-	//				positionHorizontal : "left",
-	//				positionVertical : "top",
-	//				textWidth : "100px",
-	//				textHeight : "200px"
-	//			}
-	//		},
-	//		{
-	//			id : "6565",
-	//			image : "images/bg-bbq.jpg",
-	//			heading : "Yum!",
-	//			headingDetails : {
-	//				text : "Yum!",
-	//				color : "#000",
-	//				fontSize : "24px",
-	//				textAlign : "left"
-	//			},
-	//			subheadingDetails : {
-	//				text : "China Trip 2015",
-	//				color : "#000",
-	//				fontSize : "24px",
-	//				textAlign : "left"
-	//			},
-	//			descriptionDetails : {
-	//				text : "China Trip 2015",
-	//				color : "#000",
-	//				fontSize : "14px",
-	//				textAlign : "left"
-	//			},
-	//			subheading : "Yeah",
-	//			description : "The orange really masks the salmonella.",
-	//			measurements : {
-	//				containerWidth : "720px",
-	//				paddingVertical : "120px",
-	//				paddingHorizontal : "40px",
-	//				positionHorizontal : "left",
-	//				positionVertical : "top",
-	//				textWidth : "400px",
-	//				textHeight : "300px"
-	//			}
-	//		},
-	//	]
-	//};
-
-
-
-	story.editorOptions = {
+	vm.data = {};
+	vm.preservedData = {};
+	vm.id;
+	vm.editorOptions = {
 		cancel: ".__noDrag",
 		containment: "window"
 	}
+
+	var pagesToBeSaved = 0;
 
 	var generateDefaultPage = function() {
 		var defaultPage = {
@@ -228,13 +49,110 @@ angular.module('storyApp').controller('Story', ['$scope', '$rootScope', '$stateP
 		return defaultPage;
 	}
 
-	story.addPage = function(index) {
-		var defaultPage = generateDefaultPage();
-		story.data.data.pages.splice(index + 1, 0, defaultPage);
-		console.log("Add Page at index: " + index, story.data.data.pages);
+	vm.activate = activate;
+	vm.PrepStory = PrepStory;
+	vm.LoadStory = LoadStory;
+	vm.storeStory = storeStory;
+	vm.saveChanges = saveChanges;
+	vm.cancelChanges = cancelChanges;
+	vm.addPage = addPage;
+	vm.removePage = removePage;
+
+	activate();
+
+	////////////////
+
+	function activate() {
+		vm.id = $stateParams.id;
+		vm.LoadStory();
+
+		$rootScope.$on('page-update-pending', function(event, pageId) {
+			vm.states.pendingChanges = true;
+		});
+
+		$rootScope.$on('page-update-success', function(event, pageId) {
+			pagesToBeSaved--;
+			if(pagesToBeSaved == 0) {
+				vm.states.saving = false;
+				vm.states.pendingChanges = false;
+			}
+			console.log("Page updated", pageId, pagesToBeSaved);
+		});
+
+		$rootScope.$on('page-update-error', function(event, pageId) {
+			pagesToBeSaved--;
+			if(pagesToBeSaved == 0) {
+				vm.states.saving = false;
+				vm.states.pendingChanges = false;
+			}
+			vm.states.savingError = true;
+			console.log("Page failed to update", pageId, pagesToBeSaved);
+		});
+
 	}
 
-	story.removePage = function(index, page) {
+	function PrepStory() {
+		if($rootScope.states.loggedIn &&
+			vm.data.data.author.username == $rootScope.globals.currentUser.username) {
+			vm.states.owner = true;
+			Author.toggleEditing(true);
+		}
+		if($rootScope.states.admin) {
+			vm.states.owner = true;
+			Author.toggleEditing(true);
+		}
+	}
+
+	function LoadStory() {
+		vm.states.loading = true;
+		vm.states.loaded = false;
+		StoryService.GetById(vm.id)
+			.then(function(data) {
+				vm.data = data;
+				vm.storeStory();
+				vm.PrepStory();
+				vm.states.loaded = true;
+				vm.states.loading = false;
+				console.log("Successfully loaded story data", data);
+			}, function(error) {
+				console.log("Error: " + error);
+				vm.states.error = true;
+				vm.states.loaded = true;
+				vm.states.loading = false;
+			})
+	}
+
+	function storeStory() {
+		vm.preservedData = angular.copy(vm.data);
+	}
+
+	function saveChanges() {
+		vm.states.saving = true;
+		pagesToBeSaved = vm.data.data.pages.length;
+		vm.storeStory();
+		$rootScope.$broadcast('story-saveChanges');
+		console.log("Number of pages to be saved", pagesToBeSaved);
+		// vm.states.saving = false;
+	}
+
+	function cancelChanges() {
+		console.log("Cancel changes!", vm.data, vm.preservedData);
+		//vm.data = angular.copy(vm.preservedData);
+		vm.data = {};
+		$timeout(function() {
+			vm.data = vm.preservedData;
+		});
+		//vm.data = vm.preservedData;
+		console.log("Story data", vm.data);
+	}
+
+	function addPage(index) {
+		var defaultPage = generateDefaultPage();
+		vm.data.data.pages.splice(index + 1, 0, defaultPage);
+		console.log("Add Page at index: " + index, vm.data.data.pages);
+	}
+
+	function removePage(index, page) {
 
 		freezeSite();
 
@@ -249,7 +167,7 @@ angular.module('storyApp').controller('Story', ['$scope', '$rootScope', '$stateP
 				if(confirmed == true) {
 					page.removeAnimation(function() {
 						console.log("Removing page!");
-						story.data.data.pages.splice(index, 1);
+						vm.data.data.pages.splice(index, 1);
 						$scope.$apply();
 					});
 				} else {
@@ -262,9 +180,10 @@ angular.module('storyApp').controller('Story', ['$scope', '$rootScope', '$stateP
 		//	title: 'Delete this Thing?',
 		//	message: 'Are you sure you want to do that?'
 		//}).then(function(){
-		//	story.data.pages.splice(index, 1);
+		//	vm.data.pages.splice(index, 1);
 		//});
 
 	}
 
-}]);
+
+}

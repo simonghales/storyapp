@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="css/fontello.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
-<body class="{{ containerClass }}" ng-controller="Site as site" ng-class="{ 'state__loggedIn' : site.states.loggedIn, 'state__signedOut' : !site.states.loggedIn }">
+<body class="{{ containerClass }}" ng-controller="Site as site" ng-class="{ 'state__loggedIn' : site.states.loggedIn, 'state__signedOut' : !site.states.loggedIn, 'state__admin' : states.admin }">
 	<div id="siteWrapper" class="siteWrapper">
 		<!--<header class="siteHeader">-->
 			<!--<a class="homeLink" href="#/">yep.is</a>-->
