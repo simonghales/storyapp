@@ -14,7 +14,11 @@
 	<link rel="stylesheet" href="css/fontello.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
-<body class="{{ containerClass }}" ng-controller="Site as site" ng-class="{ 'state__loggedIn' : site.states.loggedIn, 'state__signedOut' : !site.states.loggedIn, 'state__admin' : states.admin }">
+<body class="{{ containerClass }}" ng-controller="Site as site" ng-class="{ 'state__loggedIn' : site.states.loggedIn, 'state__signedOut' : !site.states.loggedIn, 'state__admin' : states.admin, 'state__stateChanging' : states.stateChanging }">
+	<div class="siteTransIndi show__stateChanging">
+		<span class="loader loader__pale"></span>
+		<span class="text">loading...</span>
+	</div>
 	<div id="siteWrapper" class="siteWrapper">
 		<!--<header class="siteHeader">-->
 			<!--<a class="homeLink" href="#/">yep.is</a>-->

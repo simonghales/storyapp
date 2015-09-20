@@ -30,6 +30,8 @@ function StoryCTRL($scope, $rootScope, $timeout, $stateParams, Author, ngDialog,
 
 	var generateDefaultPage = function() {
 		var defaultPage = {
+			defaultTemplate : true,
+			story: vm.id,
 			background_images : [],
 			background_image_urls : [],
 			measurements : "[]",
@@ -95,10 +97,16 @@ function StoryCTRL($scope, $rootScope, $timeout, $stateParams, Author, ngDialog,
 		if($rootScope.states.loggedIn &&
 			vm.data.data.author.username == $rootScope.globals.currentUser.username) {
 			vm.states.owner = true;
+			if(vm.data.data.pages.length == 0) {
+				vm.addPage(0);
+			}
 			Author.toggleEditing(true);
 		}
 		if($rootScope.states.admin) {
 			vm.states.owner = true;
+			if(vm.data.data.pages.length == 0) {
+				vm.addPage(0);
+			}
 			Author.toggleEditing(true);
 		}
 	}
@@ -141,6 +149,7 @@ function StoryCTRL($scope, $rootScope, $timeout, $stateParams, Author, ngDialog,
 		vm.data = {};
 		$timeout(function() {
 			vm.data = vm.preservedData;
+			vm.states.pendingChanges = false;
 		});
 		//vm.data = vm.preservedData;
 		console.log("Story data", vm.data);

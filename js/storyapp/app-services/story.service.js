@@ -7,6 +7,7 @@ angular.module('storyApp').factory('StoryService', ['$http', 'API_URL', function
     service.GetAll = GetAll;
     service.GetById = GetById;
     service.UpdatePageData = UpdatePageData;
+    service.CreatePage = CreatePage;
     service.UploadImage = UploadImage;
     service.CreateStory = CreateStory;
     service.GetByUsername = GetByUsername;
@@ -26,6 +27,10 @@ angular.module('storyApp').factory('StoryService', ['$http', 'API_URL', function
 
     function UpdatePageData(sendData, pageId) {
         return $http.put(API_URL + '/api/storypages/' + pageId + '/.json', sendData).then(handleSuccess, handleError('Error updating page'));
+    }
+
+    function CreatePage(pageData, storyId) {
+        return $http.post(API_URL + '/api/storypages/.json', pageData).then(handleSuccess, handleError('Error creating page'));
     }
 
     function UpdatingPage(pageId) {

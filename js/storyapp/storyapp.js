@@ -48,7 +48,14 @@ angular.module('storyApp').config(function($stateProvider, $locationProvider, $u
                 }
             }
         )
-         .state('story',
+        .state('story',
+            {
+                url: '/s/:id/:slug',
+                templateUrl: 'partials/_story.html',
+                activeTab: 'story'
+            }
+        )
+        .state('storyShort',
             {
                 url: '/s/:id',
                 templateUrl: 'partials/_story.html',
@@ -62,7 +69,8 @@ angular.module('storyApp').run(function($rootScope, $http, $cookies) {
 
     $rootScope.states = {
         loggedIn : false,
-        admin : false
+        admin : false,
+        stateChanging : false
     }
 
     $rootScope.$on('user-loggedIn', function() {
@@ -95,8 +103,19 @@ angular.module('storyApp').run(function($rootScope, $http, $cookies) {
 
     $rootScope.containerClass = "page__loading";
 
-    $rootScope.$on('$stateChangeSuccess',function(event, toState, toParams, fromState, fromParams){
-        $rootScope.containerClass = "page__" + toState.activeTab;
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        $rootScope.states.stateChanging = true;
     });
 
+    $rootScope.$on('$stateChangeSuccess',function(event, toState, toParams, fromState, fromParams){
+        $rootScope.containerClass = "page__" + toState.activeTab;
+        $rootScope.states.stateChanging = false;
+    });
+
+});
+
+angular.module('storyApp').filter('slugify', function ($sce) {
+    return function (val) {
+        return slugify(val);
+    };
 });

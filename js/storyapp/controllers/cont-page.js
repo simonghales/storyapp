@@ -170,6 +170,21 @@ function PageCTRL($scope, $rootScope, $element, $log, Author, Editor, ngDialog, 
 			vm.saveChanges();
 		});
 
+		if(vm.data.defaultTemplate) {
+			console.log("This page was just added, I need to get an ID for it!");
+			StoryService.CreatePage(vm.data, vm.data.story)
+				.then(function(data) {
+					if(data.success == false) {
+						console.log("Error with creating page", data);
+					} else {
+						console.log("Created page", data);
+						vm.data.id = data.data.id;
+					}
+				}, function(error) {
+					console.log("Error: " + error);
+				});
+		}
+
 	}
 
 	function pendingChange() {
