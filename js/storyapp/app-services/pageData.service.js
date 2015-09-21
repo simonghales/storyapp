@@ -12,23 +12,50 @@ angular.module('storyApp').factory('PageData', function(){
                 positionVertical : "top",
                 positionHorizontal : "left",
                 textWidth : "420px",
-                textHeight : "180px"
+                textHeight : "180px",
+                element_groups : [
+                    {
+                        elements : [
+                            {
+                                type : "heading",
+                                text : "",
+                                styles : ""
+                            },
+                            {
+                                type : "subheading",
+                                text : "",
+                                styles : ""
+                            },
+                            {
+                                type : "description",
+                                text : "",
+                                styles : ""
+                            },
+                        ]
+                    }
+                ]
             }
         }
 
         var providedMeasurements = JSON.parse(data.measurements);
 
         for(var measurementType in safeData.measurements) {
-            console.log("Measurement type: " + measurementType);
             if(providedMeasurements[measurementType]) {
                 safeData.measurements[measurementType] = providedMeasurements[measurementType];
             }
         }
-        if(providedMeasurements.containerWidth) {
-            console.log("Container width provided", providedMeasurements.containerWidth);
+
+        if(providedMeasurements.element_groups && providedMeasurements.element_groups.length > 0) {
+            safeData.element_groups = providedMeasurements.element_groups;
         }
 
-        console.log("Provided JSON data", providedMeasurements);
+        if(providedMeasurements.containerWidth) {
+            //console.log("Container width provided", providedMeasurements.containerWidth);
+        }
+
+        //console.log("Provided JSON data", providedMeasurements);
+
+        console.log("Final data", safeData);
 
         return safeData;
     }

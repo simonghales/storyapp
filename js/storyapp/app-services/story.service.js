@@ -8,8 +8,11 @@ angular.module('storyApp').factory('StoryService', ['$http', 'API_URL', function
     service.GetById = GetById;
     service.UpdatePageData = UpdatePageData;
     service.CreatePage = CreatePage;
+    service.DeletePage = DeletePage;
     service.UploadImage = UploadImage;
     service.CreateStory = CreateStory;
+    service.CreateElementGroup = CreateElementGroup;
+    service.CreateElement = CreateElement;
     service.GetByUsername = GetByUsername;
     service.Create = Create;
     service.Update = Update;
@@ -26,11 +29,17 @@ angular.module('storyApp').factory('StoryService', ['$http', 'API_URL', function
     }
 
     function UpdatePageData(sendData, pageId) {
+        console.log("Updating page", sendData, pageId);
         return $http.put(API_URL + '/api/storypages/' + pageId + '/.json', sendData).then(handleSuccess, handleError('Error updating page'));
     }
 
     function CreatePage(pageData, storyId) {
+        console.log("CREATING PAGE", pageData, storyId);
         return $http.post(API_URL + '/api/storypages/.json', pageData).then(handleSuccess, handleError('Error creating page'));
+    }
+
+    function DeletePage(pageId) {
+        return $http.delete(API_URL + '/api/storypages/' + pageId + '/.json').then(handleSuccess, handleError('Error deleting page'));
     }
 
     function UpdatingPage(pageId) {
@@ -47,6 +56,14 @@ angular.module('storyApp').factory('StoryService', ['$http', 'API_URL', function
 
     function CreateStory(sendData) {
         return $http.post(API_URL + '/api/stories/.json', sendData).then(handleSuccess, handleError('Error creating story'));
+    }
+
+    function CreateElementGroup(sendData) {
+        return $http.post(API_URL + '/api/elementgroups/.json', sendData).then(handleSuccess, handleError('Error creating element group'));
+    }
+
+    function CreateElement(sendData) {
+        return $http.post(API_URL + '/api/elements/.json', sendData).then(handleSuccess, handleError('Error creating element'));
     }
 
     function GetByUsername(username) {

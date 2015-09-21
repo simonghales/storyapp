@@ -5,9 +5,9 @@
 			<div class="storyContainer-slider storyContainer-slider--right"></div>
 			<div class="storyPadding padding__default">
 				<div class="storyContent storyContent__resizable" resizable resizable-config="page.resizableContent.configuration" ng-style="page.setContentCSS();">
-					<div class="storyText storyText__resizable" resizable resizable-config="page.resizableText.configuration" position-vertical="page.data.measurements.positionVertical" position-horizontal="page.data.measurements.positionHorizontal" ng-class="page.setPositionClasses();" ng-style="page.setTextDimensions();">
-						<div class="headingContainer">
-							<h2 class="heading hide__editing" ng-style="page.setHeadingStyles();">{{page.data.headingDetails.text}}</h2>
+					<div ng-repeat="elementGroup in page.safeData.measurements.element_groups" class="storyText storyText__resizable" resizable resizable-config="page.resizableText.configuration" position-vertical="page.data.measurements.positionVertical" position-horizontal="page.data.measurements.positionHorizontal" ng-class="page.setPositionClasses();" ng-style="page.setTextDimensions();">
+						<div ng-repeat="element in elementGroup.elements" class="headingContainer">
+							<h2 class="heading hide__editing" ng-style="page.setHeadingStyles();">{{element.text}}</h2>
 							<div class="inputWrapper show__editing">
 								<div class="storyUi-inlineOptions storyUi-inlineOptions__heading">
 									<button class="storyUi-button" ng-click="page.openEditor(page.data.headingDetails, $event);" tooltips title="Edit font size, alignment and color" tooltip-side="left">
@@ -17,37 +17,7 @@
 										<!--<span class="icon icon-eyedropper"></span>-->
 									<!--</button>-->
 								</div>
-								<h2 class="heading editable editableElem" data-ph="Enter a heading" contenteditable="true" ng-model="page.data.headingDetails.text" tabindex="1" ng-style="page.setHeadingStyles();"></h2>
-							</div>
-						</div>
-						<div class="subHeadingContainer">
-							<h3 class="subHeading hide__editing" ng-style="page.setSubheadingStyles();">{{page.data.subheadingDetails.text}}</h3>
-							<div class="inputWrapper show__editing">
-								<div class="storyUi-inlineOptions storyUi-inlineOptions__subheading">
-									<button class="storyUi-button" ng-click="page.openEditor(page.data.subheadingDetails, $event);" tooltips title="Edit font size, alignment and color" tooltip-side="left">
-										<span class="icon icon-font"></span>
-									</button>
-									<!--<button class="storyUi-button">-->
-										<!--<span class="icon icon-eyedropper"></span>-->
-									<!--</button>-->
-								</div>
-								<h3 class="subHeading editable editableElem" data-ph="Enter a subheading" contenteditable="true" ng-model="page.data.subheadingDetails.text" tabindex="2" ng-style="page.setSubheadingStyles();"></h3>
-							</div>
-						</div>
-						<div class="descriptionContainer">
-							<p class="description hide__editing" ng-style="page.setDescriptionStyles();">
-								{{page.data.descriptionDetails.text}}
-							</p>
-							<div class="inputWrapper show__editing">
-								<div class="storyUi-inlineOptions storyUi-inlineOptions__description">
-									<button class="storyUi-button" ng-click="page.openEditor(page.data.descriptionDetails, $event);" tooltips title="Edit font size, alignment and color" tooltip-side="left">
-										<span class="icon icon-font"></span>
-									</button>
-									<!--<button class="storyUi-button">-->
-										<!--<span class="icon icon-eyedropper"></span>-->
-									<!--</button>-->
-								</div>
-								<p class="description editable editableElem" data-ph="Enter text" contenteditable="true" ng-model="page.data.descriptionDetails.text" tabindex="3" ng-style="page.setDescriptionStyles();"></p>
+								<h2 ng-model="element.text" ng-change="page.elementUpdated();" class="heading editable editableElem" data-ph="Enter a heading" contenteditable="true" tabindex="1" ng-style="page.setHeadingStyles();"></h2>
 							</div>
 						</div>
 						<div class="editControls show__editing">

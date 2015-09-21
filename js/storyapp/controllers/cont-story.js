@@ -68,11 +68,18 @@ function StoryCTRL($scope, $rootScope, $timeout, $stateParams, Author, ngDialog,
 		vm.id = $stateParams.id;
 		vm.LoadStory();
 
-		$rootScope.$on('page-update-pending', function(event, pageId) {
+		$scope.$on('$destroy', function () {
+			console.log("Destroy this story and unsubscribe!!");
+			updatePendingListener();
+			updateSuccessListener();
+			updateErrorListener();
+		});
+
+		var updatePendingListener = $rootScope.$on('page-update-pending', function(event, pageId) {
 			vm.states.pendingChanges = true;
 		});
 
-		$rootScope.$on('page-update-success', function(event, pageId) {
+		var updateSuccessListener = $rootScope.$on('page-update-success', function(event, pageId) {
 			pagesToBeSaved--;
 			if(pagesToBeSaved == 0) {
 				vm.states.saving = false;
@@ -81,7 +88,7 @@ function StoryCTRL($scope, $rootScope, $timeout, $stateParams, Author, ngDialog,
 			console.log("Page updated", pageId, pagesToBeSaved);
 		});
 
-		$rootScope.$on('page-update-error', function(event, pageId) {
+		var updateErrorListener = $rootScope.$on('page-update-error', function(event, pageId) {
 			pagesToBeSaved--;
 			if(pagesToBeSaved == 0) {
 				vm.states.saving = false;
@@ -116,12 +123,19 @@ function StoryCTRL($scope, $rootScope, $timeout, $stateParams, Author, ngDialog,
 		vm.states.loaded = false;
 		StoryService.GetById(vm.id)
 			.then(function(data) {
+				console.log("Successfully loaded story data", data);
+				// Get rid of deleted pages
+				for(var i = 0; i < data.data.pages.length; i++) {
+					if(data.data.pages[i].deleted) {
+						data.data.pages.splice(i, 1);
+						i--;
+					}
+				}
 				vm.data = data;
 				vm.storeStory();
 				vm.PrepStory();
 				vm.states.loaded = true;
 				vm.states.loading = false;
-				console.log("Successfully loaded story data", data);
 			}, function(error) {
 				console.log("Error: " + error);
 				vm.states.error = true;

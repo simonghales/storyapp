@@ -10,12 +10,16 @@ function PageCTRL($scope, $rootScope, $element, $log, Author, Editor, ngDialog, 
 	var vm = this;
 	vm.data;
 	vm.states = {
-		pendingChanges: false
+		pendingChanges: false,
+		busyCount: 0
 	}
 
 	vm.activate = activate;
 	vm.pendingChange = pendingChange;
 	vm.saveChanges = saveChanges;
+	vm.CreateElementGroup = CreateElementGroup;
+	vm.AddElement = AddElement;
+	vm.elementUpdated = elementUpdated;
 	vm.initDimensions = initDimensions;
 	vm.updateMeasurements = updateMeasurements;
 	vm.setPageCSS = setPageCSS;
@@ -166,7 +170,12 @@ function PageCTRL($scope, $rootScope, $element, $log, Author, Editor, ngDialog, 
 		vm.data = $scope.storyPage;
 		vm.safeData = PageData.GetSafeData(vm.data);
 
-		$rootScope.$on('story-saveChanges', function() {
+		$scope.$on('$destroy', function () {
+			console.log("Destroy this page and unsubscribe!!");
+			saveChangesListener();
+		});
+
+		var saveChangesListener = $rootScope.$on('story-saveChanges', function() {
 			vm.saveChanges();
 		});
 
@@ -179,10 +188,17 @@ function PageCTRL($scope, $rootScope, $element, $log, Author, Editor, ngDialog, 
 					} else {
 						console.log("Created page", data);
 						vm.data.id = data.data.id;
+						//vm.CreateElementGroup();
 					}
 				}, function(error) {
 					console.log("Error: " + error);
 				});
+		} else {
+
+			//if(vm.data.element_groups.length == 0) {
+			//	vm.CreateElementGroup();
+			//}
+
 		}
 
 	}
@@ -193,10 +209,12 @@ function PageCTRL($scope, $rootScope, $element, $log, Author, Editor, ngDialog, 
 	}
 
 	function saveChanges() {
+		console.log("Update this page", vm.data, this, $scope);
 		if(!vm.states.pendingChanges) {
 			$rootScope.$broadcast('page-update-success', vm.data.id);
 			return;
 		}
+		vm.updateMeasurements();
 		StoryService.UpdatePageData(vm.data, vm.data.id).then(function(data) {
 			console.log("Update page data", data);
 			if(data.success == false) {
@@ -208,6 +226,57 @@ function PageCTRL($scope, $rootScope, $element, $log, Author, Editor, ngDialog, 
 			$rootScope.$broadcast('page-update-error', vm.data.id);
 			console.log("Error: " + error);
 		});
+	}
+
+	function CreateElementGroup() {
+		vm.states.busyCount++;
+		var elementGroup = {
+			page: vm.data.id,
+			style: ""
+		}
+		elementGroup = JSON.stringify(elementGroup);
+		StoryService.CreateElementGroup(elementGroup).then(function(data) {
+			console.log("Created element group", data);
+			if(data.success == false) {
+				console.log("Error: Failed to create element group");
+			} else {
+				console.log("Successfully created element group");
+				vm.data.element_groups.push(data.data);
+				vm.AddElement(data.data.id);
+			}
+			vm.states.busyCount--;
+		}, function(error) {
+			vm.states.busyCount--;
+			console.log("Error: " + error);
+		});
+	}
+
+	function AddElement(groupId) {
+		var element = {
+			group : groupId,
+			text : "",
+			type : "heading",
+			style : ""
+		}
+		element = JSON.stringify(element);
+		vm.states.busyCount++;
+		StoryService.CreateElement(element).then(function(data) {
+			console.log("Created element", data);
+			if(data.success == false) {
+				console.log("Error: Failed to create element");
+			} else {
+				console.log("Successfully created element");
+				vm.data.element_groups[0].elements.push(data.data);
+			}
+			vm.states.busyCount--;
+		}, function(error) {
+			vm.states.busyCount--;
+			console.log("Error: " + error);
+		});
+	}
+
+	function elementUpdated() {
+		vm.pendingChange();
 	}
 
 	function initDimensions() {
@@ -331,6 +400,16 @@ function PageCTRL($scope, $rootScope, $element, $log, Author, Editor, ngDialog, 
 
 	function removeAnimation(callback) {
 		console.log("Removing this page!");
+		StoryService.DeletePage(vm.data.id).then(function(data) {
+			console.log("Delete page data", data);
+			if(data.success == false) {
+				console.log("Error, failed to delete page");
+			} else {
+				console.log("Deleted page!");
+			}
+		}, function(error) {
+			console.log("Error: " + error);
+		});
 		var domElement = $($element);
 		domElement.parent().slideUp(300, function() {
 			callback();
