@@ -155,7 +155,9 @@ function PageCTRL($scope, $rootScope, $element, $log, Author, Editor, ngDialog, 
 			},
 			stop : function(event, ui) {
 
-				// TODO: update relevant details
+				vm.safeData.measurements.textHeight = ui.size.height;
+				vm.safeData.measurements.textWidth = ui.size.width;
+				vm.updateMeasurements();
 
 				$scope.$apply();
 			}
