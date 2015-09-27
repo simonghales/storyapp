@@ -87,6 +87,7 @@
 .editableElem:empty:not(:focus):before{
   content:attr(data-ph);
   font-style:italic;
+  cursor: text;
 }
 
 // END Plain

@@ -62,6 +62,13 @@ angular.module('storyApp').config(function($stateProvider, $locationProvider, $u
                 activeTab: 'story'
             }
         )
+        .state('testing',
+            {
+                url: '/testing/:id',
+                templateUrl: 'partials/_testing.html',
+                activeTab: 'testing'
+            }
+        )
 
 });
 

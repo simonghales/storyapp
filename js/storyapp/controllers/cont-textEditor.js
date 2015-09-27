@@ -29,6 +29,9 @@ angular.module('storyApp').controller('TextEditor', ['$scope', '$rootScope', 'Ed
             "20px",
             "22px",
             "24px",
+            "26px",
+            "28px",
+            "30px",
         ],
         textAlign : [
             "left",

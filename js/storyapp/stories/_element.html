@@ -1,0 +1,14 @@
+<div class="headingContainer">
+    <h2 class="heading hide__editing" ng-style="page.setElementStyles(element);">{{element.text}}</h2>
+    <div class="inputWrapper show__editing">
+        <div class="storyUi-inlineOptions storyUi-inlineOptions__heading">
+            <button class="storyUi-button" ng-click="page.openEditor(element, $event);" tooltips title="Edit font size, alignment and color" tooltip-side="left">
+                <span class="icon icon-font"></span>
+            </button>
+            <!--<button class="storyUi-button">-->
+            <!--<span class="icon icon-eyedropper"></span>-->
+            <!--</button>-->
+        </div>
+        <h2 ng-model="element.text" ng-change="page.elementUpdated();" class="heading editable editableElem" data-ph="Enter a heading" contenteditable="true" tabindex="1" ng-style="page.setElementStyles(element);"></h2>
+    </div>
+</div>

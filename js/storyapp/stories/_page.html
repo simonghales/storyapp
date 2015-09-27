@@ -1,0 +1,55 @@
+<div class="storyPageWrapper">
+    <article class="storyPage" back-img="{{page.data.background_image_urls[0].original}}" ng-style="page.setPageCSS();">
+        <div class="storyContainer storyContainer__resizable size__default" resizable resizable-config="page.resizableContainer.configuration" ng-style="{ 'max-width' : page.safeData.measurements.containerWidth }">
+            <div class="storyContainer-slider storyContainer-slider--left"></div>
+            <div class="storyContainer-slider storyContainer-slider--right"></div>
+            <div class="storyPadding padding__default">
+                <div class="storyContent storyContent__resizable" resizable resizable-config="page.resizableContent.configuration" ng-style="page.setContentCSS();">
+                    <div ng-repeat="elementGroup in page.safeData.measurements.element_groups" class="storyText storyText__resizable" resizable resizable-config="page.resizableText.configuration" position-vertical="page.data.measurements.positionVertical" position-horizontal="page.data.measurements.positionHorizontal" ng-class="page.setPositionClasses();" ng-style="page.setTextDimensions();">
+                        <text-element ng-repeat="element in elementGroup.elements">
+                        </text-element>
+                        <div class="editControls show__editing">
+                            <div class="storyText-slider slider__left"></div>
+                            <div class="storyText-slider slider__top"></div>
+                            <div class="storyText-slider slider__right"></div>
+                            <div class="storyText-slider slider__bottom"></div>
+                            <div class="storyText-corner corner__topLeft"></div>
+                            <div class="storyText-corner corner__topRight"></div>
+                            <div class="storyText-corner corner__bottomLeft"></div>
+                            <div class="storyText-corner corner__bottomRight"></div>
+                        </div>
+                        <div class="storyUi-positionControls show__editing">
+                            <button class="storyUi-positionButton direction__left" ng-click="page.changeDirection('left', 'horizontal');">
+                                <span class="icon icon-left-big"></span>
+                            </button>
+                            <button class="storyUi-positionButton direction__right" ng-click="page.changeDirection('right', 'horizontal');">
+                                <span class="icon icon-right-big"></span>
+                            </button>
+                            <button class="storyUi-positionButton direction__up" ng-click="page.changeDirection('top', 'vertical');">
+                                <span class="icon icon-up-big"></span>
+                            </button>
+                            <button class="storyUi-positionButton direction__down" ng-click="page.changeDirection('bottom', 'vertical');">
+                                <span class="icon icon-down-big"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+    <div class="show__editing"> <!-- show__editing -->
+        <div class="pageTopOptions">
+            <button class="deletePageButton button button__round" ng-click="page.updateImageModal();"> <!-- tooltips title="Delete this page" tooltip-side="left" tooltip-try="0" -->
+                <span class="button-icon icon icon-picture"></span>
+            </button>
+            <button class="deletePageButton button button__round" ng-click="story.removePage($index, page)"> <!-- tooltips title="Delete this page" tooltip-side="left" tooltip-try="0" -->
+                <span class="button-icon icon icon-trash"></span>
+            </button>
+        </div>
+        <div class="addPage">
+            <button class="button addPage-button" tooltips title="Add Page" ng-click="story.addPage($index)">
+                <span class="button-icon icon icon-plus"></span>
+            </button>
+        </div>
+    </div>
+</div>
