@@ -27,7 +27,7 @@ function PageCTRL($scope, $rootScope, $element, $log, Author, Editor, ngDialog, 
 	vm.setTextDimensions = setTextDimensions;
 	vm.setPositionClasses = setPositionClasses;
 	vm.changeDirection = changeDirection;
-	vm.setHeadingStyles = setHeadingStyles;
+	vm.setElementStyles = setElementStyles;
 	vm.setSubheadingStyles = setSubheadingStyles;
 	vm.setDescriptionStyles = setDescriptionStyles;
 	vm.openEditor = openEditor;
@@ -288,6 +288,7 @@ function PageCTRL($scope, $rootScope, $element, $log, Author, Editor, ngDialog, 
 
 	function updateMeasurements() {
 		// convert safe data back to thingy data
+		console.log("UPDATING MEASUREMENTS!");
 		var updatedMeasurements = JSON.stringify(vm.safeData.measurements);
 		vm.data.measurements = updatedMeasurements;
 		vm.pendingChange();
@@ -341,11 +342,11 @@ function PageCTRL($scope, $rootScope, $element, $log, Author, Editor, ngDialog, 
 		}
 	}
 
-	function setHeadingStyles() {
+	function setElementStyles(element) {
 		return {
-			//"font-size" : vm.data.headingDetails.fontSize,
-			//"color" : vm.data.headingDetails.color,
-			//"text-align" : vm.data.headingDetails.textAlign
+			"font-size" : element.styles.fontSize,
+			"color" : element.styles.color,
+			"text-align" : element.styles.textAlign
 		}
 	}
 
@@ -372,6 +373,7 @@ function PageCTRL($scope, $rootScope, $element, $log, Author, Editor, ngDialog, 
 		}
 		console.log("Event returned", $event);
 		Editor.setEditingItem(item, offset);
+		vm.pendingChange();
 	}
 
 	function updateImageModal() {

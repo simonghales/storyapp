@@ -84,6 +84,8 @@ function StoryCTRL($scope, $rootScope, $timeout, $stateParams, Author, ngDialog,
 			if(pagesToBeSaved == 0) {
 				vm.states.saving = false;
 				vm.states.pendingChanges = false;
+				vm.storeStory();
+				console.log("Finished updating story!");
 			}
 			console.log("Page updated", pageId, pagesToBeSaved);
 		});
@@ -132,10 +134,10 @@ function StoryCTRL($scope, $rootScope, $timeout, $stateParams, Author, ngDialog,
 					}
 				}
 				vm.data = data;
-				vm.storeStory();
 				vm.PrepStory();
 				vm.states.loaded = true;
 				vm.states.loading = false;
+				vm.storeStory();
 			}, function(error) {
 				console.log("Error: " + error);
 				vm.states.error = true;
@@ -145,24 +147,29 @@ function StoryCTRL($scope, $rootScope, $timeout, $stateParams, Author, ngDialog,
 	}
 
 	function storeStory() {
-		vm.preservedData = angular.copy(vm.data);
+		console.log("Storing story!", vm.data);
+		angular.copy(vm.data, vm.preservedData);
+		console.log("Preserved data", vm.data.data.pages[0].measurements, vm.preservedData.data.pages[0].measurements);
 	}
 
 	function saveChanges() {
 		vm.states.saving = true;
 		pagesToBeSaved = vm.data.data.pages.length;
-		vm.storeStory();
+		//vm.storeStory();
 		$rootScope.$broadcast('story-saveChanges');
 		console.log("Number of pages to be saved", pagesToBeSaved);
 		// vm.states.saving = false;
 	}
 
 	function cancelChanges() {
+		if(!vm.states.pendingChanges) {
+			return;
+		}
 		console.log("Cancel changes!", vm.data, vm.preservedData);
 		//vm.data = angular.copy(vm.preservedData);
 		vm.data = {};
 		$timeout(function() {
-			vm.data = vm.preservedData;
+			vm.data = angular.copy(vm.preservedData);
 			vm.states.pendingChanges = false;
 		});
 		//vm.data = vm.preservedData;

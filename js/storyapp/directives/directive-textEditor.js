@@ -28,9 +28,9 @@ angular.module('storyApp').directive('textEditor', ['$rootScope', 'Editor', func
                 topOffset = 10;
             }
 
-            if(topOffset > (windowHeight - height)) {
-                topOffset = windowHeight - height;
-            }
+            //if(topOffset > (windowHeight - height)) {
+            //    topOffset = windowHeight - height;
+            //}
 
             if(leftOffset < 10) {
                 console.log("This is going offscreen!");

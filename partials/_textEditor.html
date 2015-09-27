@@ -9,15 +9,15 @@
 		<section class="inputSection">
 			<label class="label__plain">Colour</label>
 			<div class="inputWrapper">
-				<input type="text" class="input__plain" ng-model="textEditor.data.color" readonly/>
+				<input type="text" class="input__plain" ng-model="textEditor.data.styles.color" readonly/>
 			</div>
-			<color-picker ng-model="textEditor.data.color"></color-picker>
+			<color-picker ng-model="textEditor.data.styles.color"></color-picker>
 		</section>
 		<section class="inputSection" ng-class="{ 'state__dropdown' : textEditor.states.dropdown_fontSize }">
 			<label class="label__plain" for="textEditor-fontSize">Font-size</label>
 			<div class="input__dropdown inputWrapper">
 				<input class="input__plain" id="textEditor-fontSize" type="text"
-					   ng-model="textEditor.data.fontSize" readonly
+					   ng-model="textEditor.data.styles.fontSize" readonly
 					   ng-click="textEditor.toggleDropdownFont();" />
 				<span class="icon icon-down-dir" ng-click="textEditor.toggleDropdownFont();"></span>
 				<ul class="dropdown dropdown__input">
@@ -32,7 +32,7 @@
 			<label class="label__plain" for="textEditor-alignment">Text-align</label>
 			<div class="input__dropdown inputWrapper">
 				<input class="input__plain" id="textEditor-alignment" type="text"
-					   ng-model="textEditor.data.textAlign" readonly
+					   ng-model="textEditor.data.styles.textAlign" readonly
 					   ng-click="textEditor.toggleDropdownAlign();" />
 				<span class="icon icon-down-dir" ng-click="textEditor.toggleDropdownAlign();"></span>
 				<ul class="dropdown dropdown__input">

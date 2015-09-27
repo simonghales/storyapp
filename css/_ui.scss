@@ -1,5 +1,13 @@
 $ui-zindex: 100;
 
+.state__preview {
+
+  .ui-resizable-handle {
+	display: none !important;
+  }
+
+}
+
 // Story Menu
 
 .storyMenu {

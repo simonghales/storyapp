@@ -8,9 +8,11 @@ angular.module('storyApp').controller('TextEditor', ['$scope', '$rootScope', 'Ed
     // get data
 
     textEditor.data = {
-        color : "#000000",
-        fontSize : "18px",
-        textAlign : "left"
+        styles: {
+            color : "#000000",
+            fontSize : "18px",
+            textAlign : "left"
+        }
     }
 
     textEditor.states = {
@@ -37,6 +39,7 @@ angular.module('storyApp').controller('TextEditor', ['$scope', '$rootScope', 'Ed
 
     $rootScope.$on('editor-display', function(event, value) {
         textEditor.data = Editor.getEditingItem();
+        console.log("Text editor data", textEditor.data);
         textEditor.states.open = true;
     });
 
@@ -49,7 +52,7 @@ angular.module('storyApp').controller('TextEditor', ['$scope', '$rootScope', 'Ed
     }
 
     textEditor.selectOption = function(option, model, dropdown) {
-        textEditor.data[model] = option;
+        textEditor.data.styles[model] = option;
         textEditor.states[dropdown] = false;
     }
 

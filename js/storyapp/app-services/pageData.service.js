@@ -19,17 +19,29 @@ angular.module('storyApp').factory('PageData', function(){
                             {
                                 type : "heading",
                                 text : "",
-                                styles : ""
+                                styles : {
+                                    color : "#000000",
+                                    fontSize : "18px",
+                                    textAlign : "left"
+                                }
                             },
                             {
                                 type : "subheading",
                                 text : "",
-                                styles : ""
+                                styles : {
+                                    color : "#000000",
+                                    fontSize : "18px",
+                                    textAlign : "left"
+                                }
                             },
                             {
                                 type : "description",
                                 text : "",
-                                styles : ""
+                                styles : {
+                                    color : "#000000",
+                                    fontSize : "18px",
+                                    textAlign : "left"
+                                }
                             },
                         ]
                     }
@@ -46,7 +58,21 @@ angular.module('storyApp').factory('PageData', function(){
         }
 
         if(providedMeasurements.element_groups && providedMeasurements.element_groups.length > 0) {
-            safeData.element_groups = providedMeasurements.element_groups;
+            safeData.measurements.element_groups = providedMeasurements.element_groups;
+        } else {
+            console.log("Elements haven't been provided", safeData);
+        }
+
+        // temp adding in styles : ""
+        for(var i = 0; i < safeData.measurements.element_groups[0].elements.length; i++) {
+            console.log("Checking styles", safeData.measurements.element_groups[0].elements[i]);
+            if(safeData.measurements.element_groups[0].elements[i].styles == "") {
+                safeData.measurements.element_groups[0].elements[i].styles = {
+                    color : "#000000",
+                    fontSize : "18px",
+                    textAlign : "left"
+                };
+            }
         }
 
         if(providedMeasurements.containerWidth) {

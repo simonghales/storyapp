@@ -7,17 +7,17 @@
 				<div class="storyContent storyContent__resizable" resizable resizable-config="page.resizableContent.configuration" ng-style="page.setContentCSS();">
 					<div ng-repeat="elementGroup in page.safeData.measurements.element_groups" class="storyText storyText__resizable" resizable resizable-config="page.resizableText.configuration" position-vertical="page.data.measurements.positionVertical" position-horizontal="page.data.measurements.positionHorizontal" ng-class="page.setPositionClasses();" ng-style="page.setTextDimensions();">
 						<div ng-repeat="element in elementGroup.elements" class="headingContainer">
-							<h2 class="heading hide__editing" ng-style="page.setHeadingStyles();">{{element.text}}</h2>
+							<h2 class="heading hide__editing" ng-style="page.setElementStyles(element);">{{element.text}}</h2>
 							<div class="inputWrapper show__editing">
 								<div class="storyUi-inlineOptions storyUi-inlineOptions__heading">
-									<button class="storyUi-button" ng-click="page.openEditor(page.data.headingDetails, $event);" tooltips title="Edit font size, alignment and color" tooltip-side="left">
+									<button class="storyUi-button" ng-click="page.openEditor(element, $event);" tooltips title="Edit font size, alignment and color" tooltip-side="left">
 										<span class="icon icon-font"></span>
 									</button>
 									<!--<button class="storyUi-button">-->
 										<!--<span class="icon icon-eyedropper"></span>-->
 									<!--</button>-->
 								</div>
-								<h2 ng-model="element.text" ng-change="page.elementUpdated();" class="heading editable editableElem" data-ph="Enter a heading" contenteditable="true" tabindex="1" ng-style="page.setHeadingStyles();"></h2>
+								<h2 ng-model="element.text" ng-change="page.elementUpdated();" class="heading editable editableElem" data-ph="Enter a heading" contenteditable="true" tabindex="1" ng-style="page.setElementStyles(element);"></h2>
 							</div>
 						</div>
 						<div class="editControls show__editing">

@@ -1,4 +1,4 @@
-<div data-ng-controller="StoryCTRL as story" ng-class="{ 'state__editing' : site.editing,
+<div data-ng-controller="StoryCTRL as story" ng-class="{ 'state__editing' : site.editing, 'state__preview' : !site.editing,
 'state__loading' : !story.states.loaded, 'state__owner' : story.states.owner, 'state__busy' : story.states.saving }">
     <aside class="storyMenu show__owner show__admin hide__loading">
         <a class="storyMenu-title" href="#/">yep.is</a>
