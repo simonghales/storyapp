@@ -181,7 +181,8 @@ function PageCTRL($scope, $rootScope, $element, $log, Author, Editor, ngDialog, 
 			vm.saveChanges();
 		});
 
-		if(vm.data.defaultTemplate) {
+		console.log("RUNNING PAGE ACTIVATE FUNCTION");
+		if(vm.data.defaultTemplate == true) {
 			console.log("This page was just added, I need to get an ID for it!");
 			StoryService.CreatePage(vm.data, vm.data.story)
 				.then(function(data) {
@@ -190,6 +191,7 @@ function PageCTRL($scope, $rootScope, $element, $log, Author, Editor, ngDialog, 
 					} else {
 						console.log("Created page", data);
 						vm.data.id = data.data.id;
+						vm.data.defaultTemplate = false;
 						//vm.CreateElementGroup();
 					}
 				}, function(error) {
@@ -415,7 +417,7 @@ function PageCTRL($scope, $rootScope, $element, $log, Author, Editor, ngDialog, 
 			console.log("Error: " + error);
 		});
 		var domElement = $($element);
-		domElement.parent().slideUp(300, function() {
+		domElement.slideUp(300, function() {
 			callback();
 		});
 	}
