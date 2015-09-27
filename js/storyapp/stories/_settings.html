@@ -1,0 +1,14 @@
+<section class="modalMain" ng-class="{ 'state__busy' : settings.states.busy }">
+    <h2 class="modal-title">Story Settings</h2>
+    <form name="settingsForm" class="modal-body modalForm">
+        <section class="formSection">
+            <label class="text__faint __block">Delete Story</label>
+            <div class="inputWrapper">
+                <button class="button button__primary" ng-click="settings.deleteStory();">
+                    <span class="hide__busy __inline">Delete</span>
+                    <span class="show__busy __inline">...deleting...</span>
+                </button>
+            </div>
+        </section>
+    </form>
+</section>

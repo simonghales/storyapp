@@ -4,19 +4,24 @@
         <a class="storyMenu-title" href="#/">yep.is</a>
         <ul class="storyMenu-options">
             <li>
+                <button class="button__smooth button__vibrant" ng-click="story.storySettings();">
+                    <span>Settings</span>
+                </button>
+            </li>
+            <li>
                 <button class="button__smooth button__vibrant" ng-click="site.toggleEditing()">
                     <span class="show__editing __inline">Preview</span>
                     <span class="hide__editing __inline">Edit Mode</span>
                 </button>
             </li>
             <li>
-                <button class="button__smooth" ng-class="{ 'button__vibrant' : story.states.pendingChanges }" ng-click="story.saveChanges();">
+                <button class="button__smooth __orange" ng-class="{ 'button__vibrant' : story.states.pendingChanges }" ng-click="story.saveChanges();">
                     <span class="hide__busy __inline">Save</span>
                     <span class="show__busy __inline">...updating...</span>
                 </button>
             </li>
             <li>
-                <button class="button__smooth" ng-click="story.cancelChanges();">Cancel</button>
+                <button class="button__smooth" ng-class="{ 'button__vibrant' : story.states.pendingChanges }" ng-click="story.cancelChanges();">Cancel</button>
             </li>
         </ul>
     </aside>

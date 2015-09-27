@@ -280,6 +280,16 @@ a.button {
       border-color: #1898D2;
     }
 
+    &.__orange {
+      background-color: #FD2A5D;
+      border-color: #E61222;
+
+      &:hover {
+        border-color: #C50D1A;
+      }
+
+    }
+
   }
 
 }

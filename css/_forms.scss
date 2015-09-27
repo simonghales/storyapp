@@ -1,6 +1,15 @@
 
 // Plain
 
+label {
+
+  &.__block {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+}
+
 .label__plain {
   font-size: .8em;
   font-weight: bold;

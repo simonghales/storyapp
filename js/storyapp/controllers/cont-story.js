@@ -58,6 +58,7 @@ function StoryCTRL($scope, $rootScope, $timeout, $stateParams, Author, ngDialog,
 	vm.saveChanges = saveChanges;
 	vm.cancelChanges = cancelChanges;
 	vm.addPage = addPage;
+	vm.storySettings = storySettings;
 	vm.removePage = removePage;
 
 	activate();
@@ -180,6 +181,23 @@ function StoryCTRL($scope, $rootScope, $timeout, $stateParams, Author, ngDialog,
 		var defaultPage = generateDefaultPage();
 		vm.data.data.pages.splice(index + 1, 0, defaultPage);
 		console.log("Add Page at index: " + index, vm.data.data.pages);
+	}
+
+	function storySettings() {
+		freezeSite();
+
+		ngDialog.open({
+			template: 'js/storyapp/stories/_settings.html',
+			className: 'yepDialog-theme-default',
+			controller: 'SettingsCTRL',
+			controllerAs: 'settings',
+			data: {
+				id: vm.id
+			},
+			preCloseCallback: function() {
+				unfreezeSite();
+			}
+		});
 	}
 
 	function removePage(index, page) {

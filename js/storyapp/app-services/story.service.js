@@ -14,6 +14,7 @@ angular.module('storyApp').factory('StoryService', ['$http', 'API_URL', function
     service.CreateElementGroup = CreateElementGroup;
     service.CreateElement = CreateElement;
     service.GetByUsername = GetByUsername;
+    service.DeleteStory = DeleteStory;
     service.Create = Create;
     service.Update = Update;
     service.Delete = Delete;
@@ -64,6 +65,10 @@ angular.module('storyApp').factory('StoryService', ['$http', 'API_URL', function
 
     function CreateElement(sendData) {
         return $http.post(API_URL + '/api/elements/.json', sendData).then(handleSuccess, handleError('Error creating element'));
+    }
+
+    function DeleteStory(storyId) {
+        return $http.delete(API_URL + '/api/stories/' + storyId + '/.json').then(handleSuccess, handleError('Error deleting story by id'));
     }
 
     function GetByUsername(username) {
