@@ -1,0 +1,46 @@
+.shimmerAnimation {
+  background: linear-gradient(to right, rgba(0,0,0,0.2) 2%, rgba(0,0,0,0.15) 21%, rgba(0,0,0,0.2) 55%);
+  background-size: 740px 350px;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  -moz-animation-duration: 1s;
+  -moz-animation-fill-mode: forwards;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-name: placeHolderShimmer;
+  -moz-animation-timing-function: linear;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-name: placeHolderShimmer;
+  -webkit-animation-timing-function: linear;
+}
+
+@keyframes placeHolderShimmer{
+  0%{
+    background-position: 0 0;
+  }
+  100%{
+    background-position: 740px 0;
+  }
+}
+
+@-moz-keyframes placeHolderShimmer{
+  0%{
+    background-position: 0 0;
+  }
+  100%{
+    background-position: 740px 0;
+  }
+}
+
+@-webkit-keyframes placeHolderShimmer{
+  0%{
+    background-position: 0 0;
+  }
+  100%{
+    background-position: 740px 0;
+  }
+}

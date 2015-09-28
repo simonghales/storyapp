@@ -15,6 +15,49 @@ angular.module('storyApp').controller('ImageUpload', ['$scope', 'Upload', 'Imgur
     imageUpload.image = "";
     imageUpload.uploadedImage = null;
 
+    imageUpload.resizeImage = function(file) {
+
+        console.log("Provided file", file);
+
+        var reader = new FileReader();
+        reader.onloadend = function() {
+
+            var tempImg = new Image();
+            tempImg.src = reader.result;
+            tempImg.onload = function() {
+
+                var MAX_WIDTH = 1920;
+                var MAX_HEIGHT = 1920;
+                var tempW = tempImg.width;
+                var tempH = tempImg.height;
+                if (tempW > tempH) {
+                    if (tempW > MAX_WIDTH) {
+                        tempH *= MAX_WIDTH / tempW;
+                        tempW = MAX_WIDTH;
+                    }
+                } else {
+                    if (tempH > MAX_HEIGHT) {
+                        tempW *= MAX_HEIGHT / tempH;
+                        tempH = MAX_HEIGHT;
+                    }
+                }
+
+                var canvas = document.createElement('canvas');
+                canvas.width = tempW;
+                canvas.height = tempH;
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(this, 0, 0, tempW, tempH);
+                var dataURL = canvas.toDataURL("image/jpeg");
+                var data = 'image=' + dataURL;
+
+                console.log("Image data", data, dataURL);
+
+            }
+
+        }
+        reader.readAsDataURL(file);
+    }
+
     imageUpload.uploadFile = function(file) {
 
         if(!file || imageUpload.states.busy) return;
@@ -23,6 +66,10 @@ angular.module('storyApp').controller('ImageUpload', ['$scope', 'Upload', 'Imgur
         imageUpload.states.uploading = true;
         imageUpload.uploadProgress = 0;
         imageUpload.states.processing = false;
+
+        imageUpload.resizeImage(file);
+
+        /**
 
         file.upload = Upload.http({
             url: 'https://api.imgur.com/3/image',
@@ -60,6 +107,8 @@ angular.module('storyApp').controller('ImageUpload', ['$scope', 'Upload', 'Imgur
             }
             console.log("Progress underway!", file.progress);
         });
+
+        **/
 
     }
 

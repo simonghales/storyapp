@@ -188,6 +188,7 @@ $menu-width: 260px;
     }
 
     .storyPreview-img {
+      @extend .shimmerAnimation;
       
       &:hover {
 
