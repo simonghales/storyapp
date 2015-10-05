@@ -10,11 +10,11 @@ var gulp = require('gulp'),
 
 gulp.task('watch', function() {
     livereload.listen();
-    gulp.watch('css/*.scss', ['sass']);
+    gulp.watch('css/**/*.scss', ['sass']);
 });
 
 gulp.task('sass', function () {
-    gulp.src('css/*.scss')
+    gulp.src('css/**/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(sourcemaps.write())

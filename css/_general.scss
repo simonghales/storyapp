@@ -1,19 +1,11 @@
 
 body {
-  background-color: #B7BDB5;
+  background-color: #e5eaed;
+}
 
-  //&.page__home,
-  //&.page__create {
-	background-image: url(../images/bg-home.jpg);
-	background-size: cover;
-	background-attachment: fixed;
-
-	.siteHeader {
-	  //background: none;
-	}
-
-  //}
-
+img {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .siteTransIndi {

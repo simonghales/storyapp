@@ -293,3 +293,32 @@ a.button {
   }
 
 }
+
+.btn__simple {
+  @extend .button__reset;
+  @extend .font__heading;
+  font-weight: 600;
+  background-color: #03D6AC;
+  color: #FFFFFF;
+  padding: 10px 20px;
+  @include border-radius(20px);
+
+  &:hover {
+  }
+
+  &:active {
+    @include gradient(#03C19B, #03D6AC);
+  }
+
+  &.__plain {
+    background-color: #FFFFFF;
+    color: #A0A0A0;
+    @include box-shadow(inset 0 0 1px rgba(0, 0, 0, 0.17));
+
+    &:active {
+      @include gradient(#FAFAFA, #FFFFFF);
+    }
+
+  }
+
+}

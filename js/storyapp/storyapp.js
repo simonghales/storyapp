@@ -23,31 +23,32 @@ angular.module('storyApp').config(function($stateProvider, $locationProvider, $u
         .state('home',
             {
                 url: '/',
-                templateUrl: 'partials/_home.html',
+                templateUrl: 'partials/_home_dev.html',
                 activeTab: 'home',
-                abstract: true
-            }
-        ).state('home.stories',
-            {
-                url: '',
-                views: {
-                    "home": {
-                        templateUrl: 'partials/_home_stories.html',
-                    }
-                }
-            }
-        ).state('home.create',
-            {
-                url: 'create',
-                views: {
-                    "home": {
-                        templateUrl: 'partials/_create.html',
-                        controller: 'CreateStoryCTRL',
-                        controllerAs: 'create',
-                    }
-                }
+                //abstract: true
             }
         )
+        //.state('home.stories',
+        //    {
+        //        url: '',
+        //        views: {
+        //            "home": {
+        //                templateUrl: 'partials/_home_stories.html',
+        //            }
+        //        }
+        //    }
+        //).state('home.create',
+        //    {
+        //        url: 'create',
+        //        views: {
+        //            "home": {
+        //                templateUrl: 'partials/_create.html',
+        //                controller: 'CreateStoryCTRL',
+        //                controllerAs: 'create',
+        //            }
+        //        }
+        //    }
+        //)
         .state('story',
             {
                 url: '/s/:id/:slug',

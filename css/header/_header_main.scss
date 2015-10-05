@@ -1,0 +1,39 @@
+.header__main {
+  width: 100%;
+  height: 60px;
+  background-color: #FFFFFF;
+  position: fixed;
+  z-index: 100;
+  @include box-shadow(0 0px 2px rgba(0, 0, 0, 0.15));
+
+  h1 {
+    @extend .font__heading;
+    font-size: 1.2em;
+    float: left;
+    color: #AAAAAA;
+
+    a {
+      color: inherit;
+      line-height: 60px;
+
+      &:hover {
+        text-decoration: none;
+        color: #03D6AC;
+      }
+
+    }
+
+  }
+
+}
+
+.header-options {
+  float: right;
+
+  .btn {
+    margin-top: 10px;
+    margin-left: 5px;
+    display: inline-block;
+  }
+
+}
