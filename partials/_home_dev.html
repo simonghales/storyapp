@@ -1,4 +1,6 @@
-<section class="page__home">
+<section class="page__home"
+         ng-controller="StoriesList as storiesList"
+         ng-class="{ 'state__loading' : storiesList.states.loading }">
     <header class="header__main">
         <div class="__maxSize clearfix">
             <h1><a href="">yep.is</a></h1>
@@ -39,15 +41,31 @@
         </article>
         <section class="homeStories">
             <div class="__maxSize">
-                <article>
-                    STORY PREVIEW
-                </article>
-                <article>
-                    STORY PREVIEW
-                </article>
-                <article>
-                    STORY PREVIEW
-                </article>
+                <ul class="list__threeCol show__loading"> <!-- show__loading -->
+                    <li>
+                        <story-preview-card class="state__placeholder"></story-preview-card>
+                    </li>
+                    <li>
+                        <story-preview-card class="state__placeholder"></story-preview-card>
+                    </li>
+                    <li>
+                        <story-preview-card class="state__placeholder"></story-preview-card>
+                    </li>
+                    <li>
+                        <story-preview-card class="state__placeholder"></story-preview-card>
+                    </li>
+                    <li>
+                        <story-preview-card class="state__placeholder"></story-preview-card>
+                    </li>
+                    <li>
+                        <story-preview-card class="state__placeholder"></story-preview-card>
+                    </li>
+                </ul>
+                <ul class="list__threeCol hide__loading">
+                    <li ng-repeat="story in ::storiesList.data.data.results">
+                        <story-preview-card></story-preview-card>
+                    </li>
+                </ul>
             </div>
         </section>
     </section>

@@ -1,6 +1,27 @@
-angular.module('storyApp', ['ui.router', 'mp.colorPicker', 'offClick',
-    '720kb.tooltips', 'ngDialog', 'ngCookies', 'ui.router',
-    'ngFileUpload']); // , 'ui.bootstrap', 'cgPrompt'
+angular.module('storyApp',
+        [
+            'storyApp.story',
+            'ui.router',
+            'mp.colorPicker',
+            'offClick',
+            '720kb.tooltips',
+            'ngDialog',
+            'ngCookies',
+            'ui.router',
+            'ngFileUpload',
+        ]);
+
+angular
+    .module('storyApp.story', [
+        'storyApp.story.controllers',
+        'storyApp.story.directives',
+    ]);
+
+angular
+    .module('storyApp.story.controllers', []);
+
+angular
+    .module('storyApp.story.directives', []);
 
 angular.module('storyApp').constant('API_URL', 'https://morning-mountain-1547.herokuapp.com');
 
@@ -124,6 +145,7 @@ angular.module('storyApp').run(function($rootScope, $http, $cookies) {
 
 angular.module('storyApp').filter('slugify', function ($sce) {
     return function (val) {
+        if(!val) return;
         return slugify(val);
     };
 });

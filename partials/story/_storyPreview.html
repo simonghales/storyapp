@@ -1,0 +1,10 @@
+<article class="storyPreviewCard">
+    <div class="storyPreviewCard-img" back-img="{{story.profile_image_urls[0].medium}}">
+        <a ng-href="#/s/{{::story.id}}/{{::story.title | slugify}}"></a>
+    </div>
+    <div class="storyPreviewCard-info">
+        <a class="storyPreviewCard-title"
+           ng-href="#/s/{{::story.id}}/{{::story.title | slugify}}"
+           ng-bind="::story.title"></a>
+    </div>
+</article>
