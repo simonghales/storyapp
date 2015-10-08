@@ -11,7 +11,8 @@ angular.module('app', [
     'ngCookies',
     'ui.router',
     'ngFileUpload',
-    'restangular'
+    'restangular',
+    'ngAnimate'
 ]);
 
 angular.module('app.filters', []);

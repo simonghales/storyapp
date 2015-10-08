@@ -1,41 +1,37 @@
+$states-list: deleted stateChanging admin owner signedOut signedIn busy editing empty loading;
 
-.show__stateChanging,
-.show__admin,
-.show__owner,
-.show__signedOut,
-.show__loggedIn,
-.show__busy,
-.show__editing,
-.show__empty,
-.show__loading {
-	display: none;
+%state-show {
+  display: none;
 }
 
-.state__stateChanging .show__stateChanging,
-.state__admin .show__admin,
-.state__owner .show__owner,
-.state__signedOut .show__signedOut,
-.state__loggedIn .show__loggedIn,
-.state__busy .show__busy,
-.state__editing .show__editing,
-.state__empty .show__empty,
-.state__loading .show__loading {
-	display: block;
+%state-active {
+  display: block;
 
-	&.__inline {
-		display: inline-block;
-	}
+  &.__inline {
+	display: inline-block;
+  }
 
+  &.__tbody {
+	display: table-row-group;
+  }
 }
 
-.state__stateChanging .hide__stateChanging,
-.state__admin .hide__admin,
-.state__owner .hide__owner,
-.state__signedOut .hide__signedOut,
-.state__loggedIn .hide__loggedIn,
-.state__busy .hide__busy,
-.state__editing .hide__editing,
-.state__empty .hide__empty,
-.state__loading .hide__loading {
-	display: none;
+%state-hide {
+  display: none;
+}
+
+@each $current-state in $states-list {
+
+  .show__#{$current-state} {
+	@extend %state-show;
+  }
+
+  .state__#{$current-state} .show__#{$current-state} {
+	@extend %state-active;
+  }
+
+  .state__#{$current-state} .hide__#{$current-state} {
+	@extend %state-hide;
+  }
+
 }

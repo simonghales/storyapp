@@ -19,6 +19,7 @@
     "gulp": "~3.9.0"
   },
   "dependencies": {
+    "angular-animate": "~1.4.7",
     "angular-bootstrap": "~0.13.4",
     "angular-cookies": "~1.4.5",
     "angular-prompt": "~1.1.1",

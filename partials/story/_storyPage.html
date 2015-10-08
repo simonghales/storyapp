@@ -1,3 +1,9 @@
-<article class="story-page">
-PAGE
+<article class="story-page" ng-class="{ 'state__deleted' : page.deleted }">
+    <div class="story-page-img" back-img="{{page.background_image_urls[0].original}}">
+        <div class="story-page-width">
+            <div class="story-page-container">
+                <story-text vertical="top" horizontal="right"></story-text>
+            </div>
+        </div>
+    </div>
 </article>

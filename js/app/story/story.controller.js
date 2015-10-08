@@ -34,7 +34,7 @@ function StoryCTRL($stateParams, StoryResource) {
         vm.states.loading = true;
         console.log("Get story", StoryResource);
         StoryResource.one($stateParams.id).get().then(function(data) {
-            vm.data.story = data;
+            vm.data.story = StoryResource.prep(data);
             vm.states.loaded = true;
             vm.states.loading = false;
             console.log("Loaded data", data);
