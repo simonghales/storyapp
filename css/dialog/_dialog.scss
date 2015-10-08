@@ -1,0 +1,51 @@
+// Dialog
+
+html {
+  overflow-y: scroll;
+}
+
+body.state__siteFrozen {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.state__siteFrozen #siteWrapper {
+  position: absolute;
+  width: 100%;
+}
+
+html.ngdialog-open {
+  overflow-y: scroll;
+}
+
+body.ngdialog-open {
+  padding-right: 0 !important;
+}
+
+.ngdialog-content {
+  position: relative;
+}
+
+.yepDialog-theme-default {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+
+  .ngdialog-content {
+
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    background: none;
+  }
+
+}

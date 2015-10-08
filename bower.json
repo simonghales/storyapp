@@ -25,6 +25,7 @@
     "angular-tooltips": "~0.1.22",
     "angular-ui-router": "~0.2.15",
     "ng-file-upload": "~7.2.0",
-    "ngDialog": "~0.5.1"
+    "ngDialog": "~0.5.1",
+    "restangular": "~1.5.1"
   }
 }

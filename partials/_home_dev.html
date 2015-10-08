@@ -1,69 +1,44 @@
-<section class="page__home"
-         ng-controller="StoriesList as storiesList"
-         ng-class="{ 'state__loading' : storiesList.states.loading }">
-    <header class="header__main">
-        <div class="__maxSize clearfix">
-            <h1><a href="">yep.is</a></h1>
-            <div class="header-options">
-                <button class="btn btn--create btn__simple __plain">
-                    <span>Sign In</span>
-                </button>
-                <button class="btn btn--create btn__simple">
-                    <span>Create Story</span>
-                    <span class="icon icon-picture"></span>
-                </button>
-            </div>
-        </div>
-    </header>
+<section class="page__home" ng-class="{ 'state__loading' : home.states.loading }">
     <section class="homeBody">
         <article class="featuredStory parallax">
-            <a href="">
-                <div class="bgWrapper parallax__layer parallax__layer--back">
+            <a href="#/s/z1rA2/china-trip-2015">
+                <div class="bgWrapper parallax__layer parallax__layer--back bgImg" style="background-image:url(images/boats.jpg);">
                     <div class="anotherWrapper">
-                        <img class="bg" src="images/boats.jpg" alt="Story Image"/>
+                        <!--<img class="bg" src="images/boats.jpg" alt="Story Image"/>-->
                     </div>
                 </div>
                 <div class="contentWrapper parallax__layer parallax__layer--base">
                     <div class="content">
                         <h2>China Trip 2015</h2>
                     </div>
-                    <!--<div class="featuredStory-preview info">-->
-                        <!--<a class="title" href="">China Trip 2015</a>-->
-                        <!--&lt;!&ndash;<div class="details">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<div class="author">&ndash;&gt;-->
-                                <!--&lt;!&ndash;<figure class="thumb"></figure>&ndash;&gt;-->
-                                <!--&lt;!&ndash;<a href="">Simon</a>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--</div>-->
                 </div>
             </a>
         </article>
         <section class="homeStories">
             <div class="__maxSize">
-                <ul class="list__threeCol show__loading"> <!-- show__loading -->
+                <ul class="list__threeCol show__loading">
                     <li>
-                        <story-preview-card class="state__placeholder"></story-preview-card>
+                        <story-preview class="state__placeholder"></story-preview>
                     </li>
                     <li>
-                        <story-preview-card class="state__placeholder"></story-preview-card>
+                        <story-preview class="state__placeholder"></story-preview>
                     </li>
                     <li>
-                        <story-preview-card class="state__placeholder"></story-preview-card>
+                        <story-preview class="state__placeholder"></story-preview>
                     </li>
                     <li>
-                        <story-preview-card class="state__placeholder"></story-preview-card>
+                        <story-preview class="state__placeholder"></story-preview>
                     </li>
                     <li>
-                        <story-preview-card class="state__placeholder"></story-preview-card>
+                        <story-preview class="state__placeholder"></story-preview>
                     </li>
                     <li>
-                        <story-preview-card class="state__placeholder"></story-preview-card>
+                        <story-preview class="state__placeholder"></story-preview>
                     </li>
                 </ul>
                 <ul class="list__threeCol hide__loading">
-                    <li ng-repeat="story in ::storiesList.data.data.results">
-                        <story-preview-card></story-preview-card>
+                    <li ng-repeat="story in home.data.stories">
+                        <story-preview></story-preview>
                     </li>
                 </ul>
             </div>

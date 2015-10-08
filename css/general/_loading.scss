@@ -1,4 +1,38 @@
 
+.siteTransIndi {
+  $siteTransIndi-width: 100px;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 50%;
+  width: 100px;
+  background-color: white;
+  margin-left: - $siteTransIndi-width / 2;
+  text-align: center;
+  padding: 5px;
+  @include border-radius(0 0 5px 5px);
+
+  .text {
+    display: inline-block;
+    font-size: .8em;
+    font-weight: bold;
+    color: #ACD3DA;
+  }
+
+  .loader {
+    margin-bottom: -3px;
+    margin-right: 3px;
+  }
+
+}
+
+.loader__pale {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background-image: url(../images/loader-pale-18.GIF);
+}
+
 $blue: #40B0FF;
 $dotSize: 16px;
 $circleSize: 120px;

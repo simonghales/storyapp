@@ -1,0 +1,12 @@
+<article class="story" ng-class="{ 'state__loading' : story.states.loading }">
+    <section class="show__loading">
+        <div class="flex__wrapper">
+            <ul class="loadingDots">
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </section>
+    <story-page ng-repeat="page in story.data.story.pages"></story-page>
+</article>

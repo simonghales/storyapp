@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="storyApp">
+<html lang="en" data-ng-app="app">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
@@ -14,87 +14,30 @@
 	<link rel="stylesheet" href="css/fontello.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
-<body class="{{ containerClass }}" ng-controller="Site as site" ng-class="{ 'state__loggedIn' : site.states.loggedIn, 'state__signedOut' : !site.states.loggedIn, 'state__admin' : states.admin, 'state__stateChanging' : states.stateChanging }">
+<body class="{{ containerClass }}" ng-class="{ 'state__loggedIn' : site.states.loggedIn, 'state__signedOut' : !site.states.loggedIn, 'state__admin' : states.admin, 'state__stateChanging' : states.stateChanging }">
 	<div class="siteTransIndi show__stateChanging">
 		<span class="loader loader__pale"></span>
 		<span class="text">loading...</span>
 	</div>
 	<div id="siteWrapper" class="siteWrapper">
-		<!--<header class="siteHeader">-->
-			<!--<a class="homeLink" href="#/">yep..is</a>-->
-		<!--</header>-->
+		<header class="header__main">
+			<div class="__maxSize clearfix">
+				<h1><a href="#/">yep.is</a></h1>
+				<div class="header-options">
+					<button class="btn btn--create btn__simple __plain">
+						<span>Sign In</span>
+					</button>
+					<button class="btn btn--create btn__simple">
+						<span>Create Story</span>
+						<span class="icon icon-picture"></span>
+					</button>
+				</div>
+			</div>
+		</header>
 		<div ui-view="">
 
 		</div>
 	</div>
-
-	<!-- Templates -->
-
-	<script type="text/ng-template" id="template-backgroundHandler">
-		<section class="modalMain">
-			<h2 class="modal-title">Set up your background</h2>
-			<form name="imageForm" class="modal-body modalForm" novalidate>
-				<figure class="formSection imagePreview bgImg" back-img="{{imageUpload.image}}"></figure>
-				<section class="formSection">
-					<button class="button__upload" ngf-select="imageUpload.uploadFile($file)">
-						<span class="button-text">
-							<span class="icon icon-up-circled2"></span>
-							Upload Image
-						</span>
-					</button>
-				</section>
-				<section class="flexInput uploadImageUrl formSection">
-					<label class="text__faint" for="imageUrl">Image Url</label>
-					<div class="inputWrapper">
-						<input name="imageUrl" class="input__plain" required ng-model="imageUpload.url" type="url" placeholder="http://www.website.com"/>
-					</div>
-					<button class="button__inputAction button__right" ng-disabled="imageForm$invalid" ng-click="imageUpload.uploadUrlCheck(imageForm.$valid, imageUpload.url);">
-						<span class="icon icon-up-circled2"></span>
-					</button>
-				</section>
-				<section class="flexInput formSection __separate">
-					<label class="text__faint" for="bgColor">Color</label>
-					<div class="inputWrapper">
-						<input name="bgColor" class="input__plain" type="text" placeholder="#FFFFFF"/>
-					</div>
-					<button class="button__inputAction button__right">
-						<span class="icon icon-eyedropper"></span>
-					</button>
-				</section>
-				<section class="formSection __separate modal-options centeredButtons clearfix">
-					<button class="button button__primary button__cancel" ng-click="imageUpload.cancel();">
-						Cancel
-					</button>
-					<button class="button button__primary" ng-click="imageUpload.confirm();">
-						Save
-					</button>
-				</section>
-			</form>
-		</section>
-	</script>
-
-	<script type="text/ng-template" id="template-confirmation">
-		<section class="modalConfirmation">
-			<header class="modal-header">
-				<h2>Delete Page</h2>
-			</header>
-			<section class="modal-body">
-				<p class="message">
-					Are you sure you want to delete this page?
-				</p>
-				<div class="modal-options clearfix">
-					<button class="button button__primary button__cancel" ng-click="confirmation.cancel();">
-						Nope
-					</button>
-					<button class="button button__primary" ng-click="confirmation.confirm();">
-						Yes
-					</button>
-				</div>
-			</section>
-		</section>
-	</script>
-
-	<!-- END Templates -->
 
 	<script src="js/libraries/jquery-2.1.4.min.js"></script>
 	<script src="dependencies/jqueryui/jquery-ui.min.js"></script>
@@ -107,50 +50,29 @@
 	<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
 	<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 	<script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
-	<script src="js/storyapp/storyapp.js"></script>
-	<script src="js/storyapp/main.js"></script>
+	<script src="bower_components/lodash/lodash.min.js"></script>
+	<script src="bower_components/restangular/dist/restangular.min.js"></script>
 
-	<!-- Directives -->
-	<script src="js/storyapp/directives/directive-backimg.js"></script>
-	<script src="js/storyapp/directives/directive-contenteditable.js"></script>
-	<script src="js/storyapp/directives/directive-resizable.js"></script>
-	<script src="js/storyapp/directives/directive-draggable.js"></script>
-	<script src="js/storyapp/directives/directive-textEditor.js"></script>
-	<script src="js/storyapp/directives/directive-textMenu.js"></script>
-	<script src="js/storyapp/stories/preview/storyPreview.directive.js"></script>
-	<script src="js/storyapp/directives/uniqueUsername.directive.js"></script>
-	<script src="js/storyapp/stories/story.directive.js"></script>
-	<script src="js/storyapp/stories/page.directive.js"></script>
-	<script src="js/storyapp/stories/element.directive.js"></script>
-	<!-- END Directives -->
 
-	<!-- Factories -->
-	<script src="js/storyapp/factories/fact-author.js"></script>
-	<script src="js/storyapp/factories/fact-editor.js"></script>
-	<script src="js/storyapp/factories/fact-authentication.js"></script>
-	<script src="js/storyapp/app-services/user.service.js"></script>
-	<script src="js/storyapp/app-services/story.service.js"></script>
-	<script src="js/storyapp/app-services/pageData.service.js"></script>
-	<script src="js/storyapp/app-services/imgur.service.js"></script>
-	<!-- END Factories -->
+	<!-- App -->
+	<script src="js/app/app.main.js"></script>
+	<script src="js/app/app.modules.js"></script>
+	<script src="js/app/app.routes.js"></script>
+	<script src="js/app/app.config.js"></script>
+	<script src="js/app/app.filters.js"></script>
 
-	<!-- Controllers -->
-	<script src="js/storyapp/controllers/cont-site.js"></script>
-	<script src="js/storyapp/controllers/cont-story.js"></script>
-	<script src="js/storyapp/controllers/cont-page.js"></script>
-	<script src="js/storyapp/controllers/cont-textEditor.js"></script>
-	<script src="js/storyapp/controllers/cont-confirmation.js"></script>
-	<script src="js/storyapp/controllers/cont-imageUpload.js"></script>
-	<script src="js/storyapp/stories/storiesList-controller.js"></script>
-	<script src="js/storyapp/create/CreateStoryCTRL.js"></script>
-	<script src="js/storyapp/signin/SigninCTRL.js"></script>
-	<script src="js/storyapp/register/RegisterCTRL.js"></script>
-	<script src="js/storyapp/menu/MenuCTRL.js"></script>
-	<script src="js/storyapp/stories/SettingsCTRL.js"></script>
-	<!-- END Controllers -->
+	<!-- General -->
+	<script src="js/app/general/app.backImg.directive.js"></script>
 
 	<!-- Story -->
-	<script src="js/storyapp/story/story.preview.directive.js"></script>
+	<script src="js/app/story/story.service.js"></script>
+	<script src="js/app/story/story.home.controller.js"></script>
+	<script src="js/app/story/story.controller.js"></script>
+	<script src="js/app/story/story.preview.directive.js"></script>
+	<script src="js/app/story/story.page.directive.js"></script>
+
+	<!--<script src="js/storyapp/storyapp.js"></script>-->
+	<!--<script src="js/storyapp/main.js"></script>-->
 
 </body>
 </html>
