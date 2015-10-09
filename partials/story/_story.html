@@ -1,6 +1,6 @@
 <article class="story" ng-class="{ 'state__loading' : story.states.loading }">
     <section class="show__loading">
-        <div class="flex__wrapper">
+        <div class="flex__wrapper __positionAbsolute">
             <ul class="loadingDots">
                 <li></li>
                 <li></li>
@@ -8,5 +8,14 @@
             </ul>
         </div>
     </section>
-    <story-page ng-repeat="page in story.data.story.pages"></story-page>
+    <div class="story__pages">
+        <story-page ng-repeat="page in story.data.story.pages"></story-page>
+    </div>
+    <footer class="story__footer hide__loading">
+        <div class="__maxSize">
+            <h4>
+                <a href="#/">yep.is</a>
+            </h4>
+        </div>
+    </footer>
 </article>

@@ -1,6 +1,5 @@
 @import 'general/reset';
 @import 'general/mixins';
-@import 'general/states';
 @import 'general/animation';
 @import 'typography/typography';
 @import 'general/basics';
@@ -10,8 +9,11 @@
 @import 'general/loading';
 @import 'header/header_main';
 @import 'home/home_main';
+@import 'story/story';
 @import 'story/storyPage';
 @import 'transitions/transitions';
+
+@import 'general/states';
 
 
 // OLD

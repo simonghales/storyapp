@@ -1,8 +1,16 @@
 <article class="story-page" ng-class="{ 'state__deleted' : page.deleted }">
     <div class="story-page-img" back-img="{{page.background_image_urls[0].original}}">
-        <div class="story-page-width">
-            <div class="story-page-container">
-                <story-text vertical="top" horizontal="right"></story-text>
+        <div class="story-page-width"
+             page-width="page.measurements_prepped.container_width">
+            <div class="story-page-container"
+                 page-offsets
+                 page-vertical="page.measurements_prepped.vertical_offset"
+                 page-horizontal="page.measurements_prepped.horizontal_offset">
+                <story-text
+                        vertical="page.measurements_prepped.text_vertical"
+                        horizontal="page.measurements_prepped.text_horizontal"
+                        elements="page.elements_prepped">
+                </story-text>
             </div>
         </div>
     </div>

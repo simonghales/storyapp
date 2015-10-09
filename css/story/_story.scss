@@ -1,0 +1,24 @@
+
+.story__pages {
+  @include box-shadow(0 1px 2px rgba(0,0,0,0.1));
+  position: relative;
+}
+
+.story__footer {
+  @extend .bgImg;
+  //border-top: 1px solid #000000;
+  //background-color: #1D1A22;
+  background-image: url(../images/bg-home.jpg);
+  //background-attachment: fixed;
+  padding: 30px;
+  
+  h4 {
+    color: #FFFFFF;
+    text-align: center;
+  }
+  
+  a {
+    color: inherit;
+  }
+  
+}

@@ -1,6 +1,13 @@
 <article class="storyPreviewCard">
     <div class="storyPreviewCard-img" back-img="{{story.profile_image_urls[0].medium}}">
-        <a ng-href="#/s/{{::story.id}}/{{::story.title | slugify}}"></a>
+        <a class="hide__placeholder" ng-href="#/s/{{::story.id}}/{{::story.title | slugify}}"></a>
+        <div class="flex__wrapper show__placeholder __flex">
+            <ul class="loadingDots">
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
     </div>
     <div class="storyPreviewCard-info">
         <a class="storyPreviewCard-title"

@@ -25,15 +25,17 @@
             //controllerAs: 'externalModel',
             templateUrl: 'partials/story/_storyText.html',
             replace: true,
-            //scope: {
-            //    playlist: "="
-            //}
+            scope: {
+                horizontal: "=",
+                vertical: "=",
+                elements: "=",
+            }
         }
 
         directive.link = function(scope, element, attributes) {
 
-            element.addClass("posHorizontal__" + attributes.horizontal);
-            element.addClass("posVertical__" + attributes.vertical);
+            element.addClass("posHorizontal__" + scope.horizontal);
+            element.addClass("posVertical__" + scope.vertical);
 
         }
 
