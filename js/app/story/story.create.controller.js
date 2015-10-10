@@ -2,10 +2,10 @@ angular
     .module('app.story.controllers')
     .controller('CreateStoryCTRL', CreateStoryCTRL);
 
-CreateStoryCTRL.$inject = ['$rootScope', '$scope', 'Upload', 'ImageService'];
+CreateStoryCTRL.$inject = ['$rootScope', '$scope', '$http', 'Upload', 'ImageService', 'API_URL'];
 
 /* @ngInject */
-function CreateStoryCTRL($rootScope, $scope, Upload, ImageService) {
+function CreateStoryCTRL($rootScope, $scope, $http, Upload, ImageService, API_URL) {
     /* jshint validthis: true */
     var vm = this;
 
@@ -15,9 +15,11 @@ function CreateStoryCTRL($rootScope, $scope, Upload, ImageService) {
         success: false,
         image: {
             busy: false,
+            prepping: false,
             uploading: false,
             processing: false,
-            error: false
+            error: false,
+            uploadProgress: 0
         }
     }
 
@@ -41,72 +43,90 @@ function CreateStoryCTRL($rootScope, $scope, Upload, ImageService) {
     }
 
     function uploadImage(file) {
+        if(!file || vm.states.image.busy) return;
 
-        ImageService.resizeImage();
+        vm.states.image.busy = true;
+        vm.states.image.prepping = true;
+        vm.states.image.processing = false;
+        vm.states.image.uploading = false;
 
-        //if(!file || vm.states.image.busy) return;
-        //vm.states.image.busy = true;
-        //vm.states.image.uploading = true;
-    }
+        //ImageService.resizeImage(file, function(dataURL) {
 
-    function uploadFile(file) {
+            //var fileBlob = ImageService.dataURItoBlob(dataURL);
 
-        if(!file || vm.states.busy) return;
+            // TODO reimplement fileBlob
 
-        vm.states.busy = true;
-        vm.states.uploading = false;
-        vm.uploadProgress = 0;
-        vm.states.processing = true;
+            console.log("File", file);
 
-        vm.resizeImage(file, function(dataURL) {
-            vm.states.processing = false;
-            vm.states.uploading = true;
+            vm.states.image.prepping = false;
+            vm.states.image.uploading = true;
 
-            console.log("Image data", dataURL);
-
-            file.upload = Upload.http({
-                url: 'https://api.imgur.com/3/image',
-                method: 'POST',
-                headers: {
-                    //'Content-Type': file.type,
-                    Accept: 'application/json',
-                    'Authorization': "Client-ID bc7544395115c3b"
+            var fileUpload = Upload.upload({
+                url: API_URL + 'api/image/.json',
+                file: file,
+                fields: {
+                    //'original': file,
+                    'remote_url':''
                 },
-                data: {
-                    image: dataURL.split(',')[1],
-                    type: "base64"
+                //data: {
+                //    original: file,
+                //    remote_url: ''
+                //},
+                headers: {
+                    //'Content-Type': 'multipart/form-data',
+                    //'Accept': 'application/json',
+                    //'Content-Type': 'multipart/form-data; boundary=6ff46e0b6b5148d984f148b6542e5a5d',
+                    Authorization: $http.defaults.headers.common['Authorization']
+                },
+                fileFormDataName : 'original',
+            })
+
+            //file.upload = Upload.http({
+            //    url: API_URL + 'api/image/.json',
+            //    method: 'POST',
+            //    headers: {
+            //        Accept: 'application/json',
+            //        'Authorization': $http.defaults.headers.common['Authorization']
+            //    },
+            //    data: {
+            //        original: file,
+            //        remote_url: ''
+            //    },
+            //    //file: file,
+            //    //fields: { 'remote_url': '' },
+            //    //fileFormDataName : 'original'
+            //});
+
+            fileUpload.progress(function (evt) {
+                file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+                vm.states.image.uploadProgress = file.progress;
+                console.log("Progress: " + file.progress);
+                if(file.progress == 100) {
+                    vm.states.image.uploading = false;
+                    vm.states.image.processing = true;
                 }
             });
 
-            file.upload.then(function (response) {
-
-                // TODO: Check if successfull response
+            fileUpload.then(function (response) {
 
                 console.log("Succes??", response);
 
-                vm.states.uploading = false;
-                vm.states.processing = true;
-                vm.uploadUrl(response.data.data.link);
+                vm.states.image.prepping = false;
+                vm.states.image.processing = false;
+                vm.states.image.uploading = false;
+                vm.states.image.busy = false;
 
-                //file.result = response.data;
             }, function (response) {
                 if (response.status > 0) {
                     console.log("Something went wrong :(");
+                    vm.states.image.prepping = false;
+                    vm.states.image.processing = false;
+                    vm.states.image.uploading = false;
+                    vm.states.image.busy = false;
                 }
             });
 
-            file.upload.progress(function (evt) {
-                file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-                vm.uploadProgress = file.progress;
-                if(file.progress == 100) {
-                    vm.states.uploading = false;
-                    vm.states.processing = true;
-                }
-                console.log("Progress underway!", file.progress);
-            });
-
-        });
-
+        //});
     }
 
     function isValidForm() {

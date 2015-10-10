@@ -1,4 +1,4 @@
-<form class="modal modal--wideAction modal--rounded" ng-submit="modalVM.submit();" novalidate>
+<section class="modal modal--wideAction modal--rounded" ng-submit="modalVM.submit();" novalidate>
     <h3 class="modal__title title--default">Create a Story</h3>
     <div class="modal__body form--createStory form--light clearfix">
         <section class="createStory__inputs">
@@ -25,7 +25,9 @@
             <article class="createStoryCard">
                 <figure class="image">
                     <button class="button button--medium"
-                            ng-click="modalVM.uploadImage();">Upload a Preview Image</button>
+                            ngf-select="modalVM.uploadImage($file);">
+                        Upload a Preview Image
+                    </button>
                 </figure>
                 <p class="title" ng-bind="modalVM.input.title"></p>
             </article>
@@ -36,4 +38,4 @@
                 ng-class="{ 'state__disabled' : !modalVM.isValidForm() }"
                 type="submit">Create Story</button>
     </section>
-</form>
+</section>

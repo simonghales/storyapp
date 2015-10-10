@@ -43,6 +43,7 @@ function SiteCTRL($rootScope, ModalsService) {
     }
 
     function promptCreateStory() {
+        if(!$rootScope.states.signedIn) return vm.promptSignIn();
         freezeSite();
         var createStory_modal = ModalsService.createStory();
     }
