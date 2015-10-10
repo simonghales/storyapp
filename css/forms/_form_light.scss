@@ -1,0 +1,47 @@
+
+%text--light {
+  color: #999999;
+}
+
+%input--light {
+  background-color: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  padding: 8px;
+  font-weight: 600;
+  @include border-radius(3px);
+
+  @include placeholder {
+    //font-weight: bold;
+    color: #CCCCCC;
+  }
+
+  &:focus {
+    border-color: $colour--focus;
+
+    @include placeholder {
+      color: $colour--focus;
+    }
+
+  }
+
+}
+
+.form--light {
+
+  label {
+    @extend %text--light;
+  }
+
+  textarea,
+  input {
+    @extend %input--light;
+    width: 100%;
+    display: block;
+  }
+
+  textarea {
+    resize: none;
+    height: 137px;
+  }
+
+}

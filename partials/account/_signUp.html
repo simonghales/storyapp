@@ -1,0 +1,50 @@
+<form class="modal modal--rounded modal--bigAction"
+      ng-class="{
+            'state__busy' : modalVM.states.busy,
+            'state__error' : modalVM.states.error }"
+      name="SignUpForm"
+      ng-submit="modalVM.submit(SignUpForm.$valid)" novalidate>
+    <div class="modal__body form--light">
+        <h3 class="modal__title title--default">Register for Yep.is</h3>
+        <div class="form__section">
+            <label class="labelAndInput">
+                <div>
+                    <input ng-model="modalVM.input.username"
+                           placeholder="Username"
+                           type="text" required/>
+                </div>
+            </label>
+        </div>
+        <div class="form__section">
+            <label class="labelAndInput">
+                <div>
+                    <input ng-model="modalVM.input.email"
+                           placeholder="Email"
+                           type="email" required/>
+                </div>
+            </label>
+        </div>
+        <div class="form__section">
+            <label class="labelAndInput">
+                <div>
+                    <input ng-model="modalVM.input.password"
+                           placeholder="Password"
+                           type="password" required/>
+                </div>
+            </label>
+        </div>
+        <div class="form__section">
+            <a ng-click="modalVM.changeModal();" class="link--small">Already have an account?</a>
+        </div>
+        <div class="form__section show__error">
+            <p class="msg--error">Failed to register. Check your details and try again.</p>
+        </div>
+    </div>
+    <div class="modal__bottom">
+        <button class="submitButton button--fullAction"
+                type="submit">
+            <span class="hide__busy">Register</span>
+            <span class="show__busy __inline">Registering <span class="loader loader--miniBlue"></span></span>
+        </button>
+    </div>
+</form>

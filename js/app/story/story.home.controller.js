@@ -38,10 +38,7 @@ function StoryHomeCTRL(StoryResource, Restangular) {
             vm.data.stories = data;
             vm.states.loaded = true;
             vm.states.loading = false;
-            console.log("Loaded data", data, vm.data.stories);
-            for(var i = 0; i < vm.data.stories.length; i++) {
-                console.log("Story", vm.data.stories[i]);
-            }
+            console.log("Loaded data", data);
         }, function(error) {
             console.log("Error", error);
             vm.states.loaded = true;

@@ -1,28 +1,30 @@
-$states-list: placeholder deleted stateChanging admin owner signedOut signedIn busy editing empty loading;
+$states-list: error placeholder deleted stateChanging admin
+              owner signedOut signedIn busy editing empty
+              loading;
 
 %state-show {
-  display: none;
+  display: none !important;
 }
 
 %state-active {
-  display: block;
+  display: block !important;
 
   &.__inline {
-	display: inline-block;
+	display: inline-block !important;
   }
 
   &.__tbody {
-	display: table-row-group;
+	display: table-row-group !important;
   }
 
   &.__flex {
-    display: flex;
+    display: flex !important;
   }
 
 }
 
 %state-hide {
-  display: none;
+  display: none !important;
 }
 
 @each $current-state in $states-list {

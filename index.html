@@ -14,26 +14,18 @@
 	<link rel="stylesheet" href="css/fontello.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
-<body class="{{ containerClass }}" ng-class="{ 'state__loggedIn' : site.states.loggedIn, 'state__signedOut' : !site.states.loggedIn, 'state__admin' : states.admin, 'state__stateChanging' : states.stateChanging }">
-	<div class="siteTransIndi show__stateChanging">
-		<span class="loader loader__pale"></span>
-		<span class="text">loading...</span>
-	</div>
+<body class="{{ containerClass }}"
+	  ng-controller="SiteCTRL as siteVM"
+	  ng-class="{ 'state__signedIn' : states.signedIn,
+	  'state__signedOut' : !states.signedIn,
+	  'state__admin' : states.admin,
+	  'state__stateChanging' : states.stateChanging }">
+	<!--<div class="siteTransIndi show__stateChanging">-->
+		<!--<span class="loader loader__pale"></span>-->
+		<!--<span class="text">loading...</span>-->
+	<!--</div>-->
 	<div id="siteWrapper" class="siteWrapper">
-		<header class="header__main">
-			<div class="__maxSize clearfix">
-				<h1><a href="#/">yep.is</a></h1>
-				<div class="header-options">
-					<button class="btn btn--create btn__simple __plain">
-						<span>Sign In</span>
-					</button>
-					<button class="btn btn--create btn__simple">
-						<span>Create Story</span>
-						<span class="icon icon-picture"></span>
-					</button>
-				</div>
-			</div>
-		</header>
+		<site-header></site-header>
 		<div class="site-view" ui-view="">
 
 		</div>
@@ -64,6 +56,22 @@
 
 	<!-- General -->
 	<script src="js/app/general/app.backImg.directive.js"></script>
+	<script src="js/app/general/app.modals.service.js"></script>
+
+	<!-- Image -->
+	<script src="js/app/image/image.service.js"></script>
+
+	<!-- Account -->
+	<script src="js/app/account/account.signIn.controller.js"></script>
+	<script src="js/app/account/account.signUp.controller.js"></script>
+	<script src="js/app/account/account.authentication.service.js"></script>
+
+	<!-- Site -->
+	<script src="js/app/site/site.controller.js"></script>
+	<script src="js/app/site/site.header.directive.js"></script>
+
+	<!-- User -->
+	<script src="js/app/user/user.service.js"></script>
 
 	<!-- Story -->
 	<script src="js/app/story/story.service.js"></script>
@@ -72,6 +80,8 @@
 	<script src="js/app/story/story.preview.directive.js"></script>
 	<script src="js/app/story/story.page.controller.js"></script>
 	<script src="js/app/story/story.page.directive.js"></script>
+
+	<script src="js/app/story/story.create.controller.js"></script>
 
 	<script src="js/app/story/story.page.width.directive.js"></script>
 	<script src="js/app/story/story.page.offsets.directive.js"></script>

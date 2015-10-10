@@ -16,7 +16,7 @@
      * @returns {Factory}
      */
     function StoryResource(Restangular) {
-        var service = Restangular.service('stories');
+        var service = Restangular.service('api/stories');
         service.prep = prep;
         service.stringifyElements = stringifyElements;
         return service;

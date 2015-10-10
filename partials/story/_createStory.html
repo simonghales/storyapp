@@ -1,0 +1,39 @@
+<form class="modal modal--wideAction modal--rounded" ng-submit="modalVM.submit();" novalidate>
+    <h3 class="modal__title title--default">Create a Story</h3>
+    <div class="modal__body form--createStory form--light clearfix">
+        <section class="createStory__inputs">
+            <div class="form__section">
+                <label class="labelAndInput">
+                    <div>
+                        <input ng-model="modalVM.input.title"
+                               placeholder="Story Title"
+                               type="text" required/>
+                    </div>
+                </label>
+            </div>
+            <div class="form__section">
+                <label class="labelAndInput">
+                    <div>
+                        <textarea ng-model="modalVM.input.description"
+                               placeholder="Description"
+                               required></textarea>
+                    </div>
+                </label>
+            </div>
+        </section>
+        <section class="createStory__preview">
+            <article class="createStoryCard">
+                <figure class="image">
+                    <button class="button button--medium"
+                            ng-click="modalVM.uploadImage();">Upload a Preview Image</button>
+                </figure>
+                <p class="title" ng-bind="modalVM.input.title"></p>
+            </article>
+        </section>
+    </div>
+    <section class="modal__bottom">
+        <button class="btn btn--create btn__simple"
+                ng-class="{ 'state__disabled' : !modalVM.isValidForm() }"
+                type="submit">Create Story</button>
+    </section>
+</form>

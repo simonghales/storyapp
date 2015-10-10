@@ -40,6 +40,15 @@ $parallax-ios         : true !default;
   height: 450px;
   background-color: #E0E0E0;
   position: relative;
+  overflow: hidden;
+
+  &:hover {
+
+    .bgWrapper {
+      //transform: scale(1);
+    }
+
+  }
 
   > a {
     display: block;
@@ -87,6 +96,9 @@ $parallax-ios         : true !default;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    //transform: scale(1.025);
+    //@include transition(transform 200ms ease-in);
+
   }
 
   .bg {

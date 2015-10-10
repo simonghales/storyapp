@@ -26,6 +26,18 @@
 
 }
 
+.loader {
+  display: inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.loader--miniBlue {
+  width: 15px;
+  height: 15px;
+  background-image: url(../images/loader-blue-15.GIF);
+}
+
 .loader__pale {
   display: inline-block;
   width: 18px;

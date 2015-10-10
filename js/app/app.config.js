@@ -1,5 +1,6 @@
 
-angular.module('app').constant('API_URL', 'https://morning-mountain-1547.herokuapp.com/api/');
+//angular.module('app').constant('API_URL', 'https://morning-mountain-1547.herokuapp.com/api/');
+angular.module('app').constant('API_URL', 'https://morning-mountain-1547.herokuapp.com/');
 
 angular.module('app').config(function(RestangularProvider, API_URL) {
     RestangularProvider.setBaseUrl(API_URL);
@@ -24,23 +25,56 @@ angular.module('app').config(function(RestangularProvider, API_URL) {
 
 });
 
-angular.module('app').run(function($rootScope, $http, $cookies) {
+angular.module('app').run(function($rootScope, $http, $cookies, ngDialog, AuthenticationResource, UserResource) {
 
     $rootScope.states = {
-        loggedIn : true,
+        signedIn : false,
         admin : true,
         stateChanging : false
     }
 
+    $rootScope.user = null;
+
     $rootScope.containerClass = "page__loading";
 
-    //$rootScope.$on('user-loggedIn', function() {
-    //    $rootScope.states.loggedIn = true;
-    //});
-    //
-    //$rootScope.$on('user-signedOut', function() {
-    //    $rootScope.states.loggedIn = false;
-    //});
+    (function() {
+
+        if(AuthenticationResource.isAuth()) {
+            var token = AuthenticationResource.getAuth();
+            AuthenticationResource.setAuth(token);
+            $rootScope.states.signedIn = true;
+
+            if(UserResource.isStoredUser()) {
+                $rootScope.user = UserResource.getStoredUser();
+                console.log("Retrieved user from cookie", $rootScope.user);
+            }
+
+            UserResource.getCurrentUserAndStore();
+
+        } else {
+            $rootScope.states.signedIn = false;
+        }
+
+    })();
+
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        $rootScope.states.stateChanging = true;
+        ngDialog.closeAll();
+    });
+
+    $rootScope.$on('$stateChangeSuccess',function(event, toState, toParams, fromState, fromParams){
+        $rootScope.containerClass = "page__" + toState.activeTab;
+        $rootScope.states.stateChanging = false;
+    });
+
+    $rootScope.$on('user-signedIn', function() {
+        $rootScope.states.signedIn = true;
+    });
+
+    $rootScope.$on('user-signedOut', function() {
+        $rootScope.states.signedIn = false;
+        AuthenticationResource.clearAuth();
+    });
 
     //if($cookies.get("globals")) {
     //    var globalData = $cookies.get("globals");
@@ -61,14 +95,5 @@ angular.module('app').run(function($rootScope, $http, $cookies) {
     //} else {
     //    console.log("User is not logged in!");
     //}
-
-    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-        $rootScope.states.stateChanging = true;
-    });
-
-    $rootScope.$on('$stateChangeSuccess',function(event, toState, toParams, fromState, fromParams){
-        $rootScope.containerClass = "page__" + toState.activeTab;
-        $rootScope.states.stateChanging = false;
-    });
 
 });

@@ -1,0 +1,42 @@
+<form class="modal modal--rounded modal--bigAction"
+        ng-class="{
+            'state__busy' : modalVM.states.busy,
+            'state__error' : modalVM.states.error }"
+        name="SignInForm"
+        ng-submit="modalVM.submit(SignInForm.$valid)" novalidate>
+    <div class="modal__body form--light">
+        <h3 class="modal__title title--default">Sign into Yep.is</h3>
+        <div class="form__section">
+            <label class="labelAndInput">
+                <div>
+                    <input ng-model="modalVM.input.username"
+                           placeholder="Username"
+                           type="text" required/>
+                </div>
+            </label>
+        </div>
+        <div class="form__section">
+            <label class="labelAndInput">
+                <div>
+                    <input ng-model="modalVM.input.password"
+                           placeholder="Password"
+                           type="password" required/>
+                </div>
+            </label>
+        </div>
+        <div class="form__section">
+            <a ng-click="modalVM.changeModal();" class="link--small">Don't have an account?</a>
+        </div>
+        <div class="form__section show__error">
+            <p class="msg--error">Unable to sign in. Check your username and password and try again.</p>
+        </div>
+    </div>
+    <div class="modal__bottom">
+        <button ng-click="modalVM.submit();"
+                class="submitButton button--fullAction"
+                type="submit">
+            <span class="hide__busy">Sign In</span>
+            <span class="show__busy __inline">Signing In <span class="loader loader--miniBlue"></span></span>
+        </button>
+    </div>
+</form>

@@ -3,6 +3,7 @@
   src: url("../font/Lobster_1.3.otf") format("opentype");
 }
 
+.font--default,
 .font__main,
 .font__heading {
 	font-family: "Open Sans", Helvetica, Arial, sans-serif;
@@ -17,6 +18,13 @@
 	font-size: 13pt;
 	line-height: 17pt;
 	font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+.truncate {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 body {
@@ -48,4 +56,32 @@ a {
 .title__large {
   font-size: 1.4em;
   color: #313036;
+}
+
+
+
+%fontSize--small {
+  font-size: .8em;
+}
+
+
+
+
+// titles
+
+.title--default {
+  color: $colour--medium;
+}
+
+// links
+
+.link--small {
+  @extend %fontSize--small;
+}
+
+// errors
+
+.msg--error {
+  @extend %fontSize--small;
+  color: $colour--error;
 }

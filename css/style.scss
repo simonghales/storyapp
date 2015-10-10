@@ -1,6 +1,7 @@
 @import 'general/reset';
 @import 'general/mixins';
 @import 'general/animation';
+@import 'general/colors';
 @import 'typography/typography';
 @import 'general/basics';
 @import 'buttons/buttons';
@@ -12,6 +13,10 @@
 @import 'story/story';
 @import 'story/storyPage';
 @import 'transitions/transitions';
+
+@import 'forms/forms';
+@import 'forms/form_light';
+@import 'forms/form_createStory';
 
 @import 'general/states';
 

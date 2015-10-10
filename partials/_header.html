@@ -1,0 +1,23 @@
+<header class="header__main">
+    <div class="__maxSize clearfix">
+        <h1><a href="#/">yep.is</a></h1>
+        <div class="header-options">
+            <button class="btn btn--create btn__simple"
+                    ng-click="siteVM.promptCreateStory();">
+                <span>Create Story</span>
+                <span class="icon icon-picture"></span>
+            </button>
+            <button ng-click="siteVM.promptSignIn();"
+                    class="btn btn--create btn__simple __plain show__signedOut __inline">
+                <span>Sign In</span>
+            </button>
+            <button ng-click="siteVM.promptSignUp();"
+                    class="btn btn--create btn__simple __plain __noOutline show__signedOut __inline">
+                <span>Not Registered?</span>
+            </button>
+            <a ng-click="siteVM.signOut();" class="header__userOptions show__signedIn __inline">
+                <figure class="user__thumb" style="background-image:url(images/simon.jpg);"></figure>
+            </a>
+        </div>
+    </div>
+</header>

@@ -320,5 +320,63 @@ a.button {
     }
 
   }
+  
+  &.__noOutline {
+    padding-left: 0;
+    padding-right: 0;
+    @include box-shadow(none);
+    
+    &:hover {
+      text-decoration: underline;
+    }
+    
+  }
 
+  &.state__disabled {
+    background-color: #F0F0F0;
+    color: #A9A9A9;
+    cursor: default;
+
+    &:active {
+      @include gradient(#F0F0F0, #F0F0F0);
+    }
+
+  }
+
+}
+
+.button--fullAction {
+  @extend .button__reset;
+  width: 100%;
+  background-color: $colour--action;
+  color: #FFFFFF;
+  font-size: 1em;
+  font-weight: 600;
+  padding: 20px;
+
+  &:active {
+    @include gradient(darken($colour--action, 2%), $colour--action);
+  }
+
+  .loader {
+    position: relative;
+    top: 2px;
+    margin-left: 2px;
+  }
+
+}
+
+.button--medium {
+  @extend .button__reset;
+  @extend .button__activeAnim;
+  font-weight: 600;
+  color: #FFF;
+  background-color: $colour--action;
+  padding: 10px 16px;
+  border-radius: 20px;
+}
+
+.button--large {
+  @extend .button--medium;
+  font-size: 1em;
 }
