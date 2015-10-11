@@ -2,17 +2,18 @@ angular
     .module('app.story.controllers')
     .controller('StoryCTRL', StoryCTRL);
 
-StoryCTRL.$inject = ['$stateParams', 'StoryResource'];
+StoryCTRL.$inject = ['$rootScope', '$stateParams', 'StoryResource'];
 
 /* @ngInject */
-function StoryCTRL($stateParams, StoryResource) {
+function StoryCTRL($rootScope, $stateParams, StoryResource) {
     /* jshint validthis: true */
     var vm = this;
 
     vm.states = {
         loading: false,
         loaded: false,
-        error: false
+        error: false,
+        owner: false
     }
 
     vm.data = {
@@ -35,6 +36,7 @@ function StoryCTRL($stateParams, StoryResource) {
         console.log("Get story", StoryResource);
         StoryResource.one($stateParams.id).get().then(function(data) {
             vm.data.story = StoryResource.prep(data);
+            _prepStory();
             vm.states.loaded = true;
             vm.states.loading = false;
             console.log("Loaded data", data);
@@ -44,6 +46,21 @@ function StoryCTRL($stateParams, StoryResource) {
             vm.states.loading = false;
             vm.states.error = true;
         });
+    }
+
+    // Private functions
+
+    function _prepStory() {
+        _checkOwner();
+    }
+
+    function _checkOwner() {
+        if(!$rootScope.user) return;
+        if(vm.data.story.author.id == $rootScope.user.id) {
+            vm.states.owner = true;
+        } else {
+            vm.states.owner = false;
+        }
     }
 
 

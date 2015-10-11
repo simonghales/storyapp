@@ -1,0 +1,13 @@
+<aside class="story__menu">
+    <a class="title"
+       ng-href="#/s/{{::story.data.story.id}}/{{::story.data.story.title | slugify}}"
+       ng-bind="::story.data.story.title"></a>
+    <ul class="options">
+        <li>
+            <button class="option button button--listed">
+                <span class="icon icon-trash"></span>
+                <span class="text">Delete Story</span>
+            </button>
+        </li>
+    </ul>
+</aside>

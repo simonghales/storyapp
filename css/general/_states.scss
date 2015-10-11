@@ -1,4 +1,5 @@
-$states-list: error placeholder deleted stateChanging admin
+$states-list: emptyStory prepping uploading processing error
+              placeholder deleted stateChanging admin
               owner signedOut signedIn busy editing empty
               loading;
 

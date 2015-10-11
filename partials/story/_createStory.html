@@ -1,4 +1,6 @@
-<section class="modal modal--wideAction modal--rounded" ng-submit="modalVM.submit();" novalidate>
+<form class="modal modal--wideAction modal--rounded"
+      ng-class="{ 'state__busy' : modalVM.states.busy }"
+      ng-submit="modalVM.submit();" novalidate>
     <h3 class="modal__title title--default">Create a Story</h3>
     <div class="modal__body form--createStory form--light clearfix">
         <section class="createStory__inputs">
@@ -21,12 +23,23 @@
                 </label>
             </div>
         </section>
-        <section class="createStory__preview">
+        <section class="createStory__preview"
+                 ng-class="{ 'state__processing' : modalVM.states.image.processing,
+                 'state__uploading' : modalVM.states.image.uploading,
+                  'state__prepping' : modalVM.states.image.prepping}">
             <article class="createStoryCard">
-                <figure class="image">
+                <figure class="image" back-img="{{modalVM.input.imageObj.thumbnail}}">
                     <button class="button button--medium"
                             ngf-select="modalVM.uploadImage($file);">
-                        Upload a Preview Image
+                        <span ng-hide="modalVM.states.image.busy">Upload a Preview Image</span>
+                        <span class="show__prepping">
+                            Preparing... <span class="loader loader--miniBlue"></span>
+                        </span><span class="show__processing">
+                            Processing... <span class="loader loader--miniBlue"></span>
+                        </span>
+                        <span class="show__uploading">
+                            Uploading <span ng-bind="modalVM.states.image.uploadProgress"></span>%
+                        </span>
                     </button>
                 </figure>
                 <p class="title" ng-bind="modalVM.input.title"></p>
@@ -36,6 +49,9 @@
     <section class="modal__bottom">
         <button class="btn btn--create btn__simple"
                 ng-class="{ 'state__disabled' : !modalVM.isValidForm() }"
-                type="submit">Create Story</button>
+                type="submit">
+            <span class="hide__busy">Create Story</span>
+            <span class="show__busy">Creating Story <span class="loader loader--miniGreen __down"></span></span>
+        </button>
     </section>
-</section>
+</form>

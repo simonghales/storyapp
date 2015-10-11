@@ -38,6 +38,19 @@
   background-image: url(../images/loader-blue-15.GIF);
 }
 
+.loader--miniGreen {
+  width: 14px;
+  height: 14px;
+  background-image: url(../images/loader-green-14.GIF);
+
+  &.__down {
+    position: relative;
+    top: 2px;
+    margin-left: 2px;
+  }
+
+}
+
 .loader__pale {
   display: inline-block;
   width: 18px;

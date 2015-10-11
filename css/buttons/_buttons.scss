@@ -6,6 +6,15 @@ a.button {
 
 }
 
+.button--animGrow {
+  @include transition(transform 200ms ease-out);
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+}
+
 .button__activeAnim {
   //position: relative;
   //top: 0;
@@ -379,4 +388,34 @@ a.button {
 .button--large {
   @extend .button--medium;
   font-size: 1em;
+}
+
+.button--round {
+  @extend .button__reset;
+  @extend .button--animGrow;
+  background-color: #FFFFFF;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  line-height: 32px;
+  font-size: 14px;
+  color: $colour--medium;
+  @include border-radius(50%);
+}
+
+.button--listed {
+  @extend .button__reset;
+  width: 100%;
+  padding: 10px 5px;
+  font-weight: 600;
+  color: $colour--light;
+
+  .icon {
+    font-size: 1.1em;
+  }
+
+  &:hover {
+    color: $colour--dark;
+  }
+
 }

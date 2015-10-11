@@ -1,4 +1,8 @@
-<article class="story" ng-class="{ 'state__loading' : story.states.loading }">
+<article class="story"
+         ng-class="{ 'state__loading' : story.states.loading,
+         'state__owner' : story.states.owner,
+         'state__emptyStory' : !story.states.loading && story.data.story.pages.length == 0 }">
+    <story-menu class="hide__loading"></story-menu>
     <section class="show__loading">
         <div class="flex__wrapper __positionAbsolute">
             <ul class="loadingDots">
@@ -11,6 +15,15 @@
     <div class="story__pages">
         <story-page ng-repeat="page in story.data.story.pages"></story-page>
     </div>
+    <section class="story__empty show__emptyStory">
+        <div class="__maxSize show__owner">
+            Add a page!
+        </div>
+        <div class="__maxSize hide__owner">
+            <h3>This story is empty</h3>
+            <h4>The owner hasn't added any content yet.</h4>
+        </div>
+    </section>
     <footer class="story__footer hide__loading">
         <div class="__maxSize">
             <h4>
