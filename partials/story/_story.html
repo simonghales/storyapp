@@ -15,7 +15,7 @@
         </div>
     </section>
     <div class="story__pages">
-        <story-page ng-repeat="page in story.data.story.pages"></story-page>
+        <story-page ng-controller="StoryPageCTRL as pageVM" ng-repeat="page in story.data.story.pages"></story-page>
     </div>
     <section class="story__empty show__deleted">
         <div class="__maxSize">

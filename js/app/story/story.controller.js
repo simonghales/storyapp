@@ -2,10 +2,10 @@ angular
     .module('app.story.controllers')
     .controller('StoryCTRL', StoryCTRL);
 
-StoryCTRL.$inject = ['$rootScope', '$stateParams', 'StoryResource', 'ModalsService'];
+StoryCTRL.$inject = ['$rootScope', '$stateParams', 'StoryResource', 'PageResource', 'ModalsService'];
 
 /* @ngInject */
-function StoryCTRL($rootScope, $stateParams, StoryResource, ModalsService) {
+function StoryCTRL($rootScope, $stateParams, StoryResource, PageResource, ModalsService) {
     /* jshint validthis: true */
     var vm = this;
 
@@ -23,6 +23,7 @@ function StoryCTRL($rootScope, $stateParams, StoryResource, ModalsService) {
 
     vm.activate = activate;
     vm.getStory = getStory;
+    vm.addPage = addPage;
     vm.deleteStoryPrompt = deleteStoryPrompt;
     vm.removePage = removePage;
 
@@ -54,6 +55,15 @@ function StoryCTRL($rootScope, $stateParams, StoryResource, ModalsService) {
             vm.states.loading = false;
             vm.states.error = true;
         });
+    }
+
+    function addPage(index) {
+        var page = PageResource.newPageTemplate($stateParams.id);
+        page = StoryResource.prepPage(page);
+        if(vm.data.story.pages[index + 1] && vm.data.story.pages[index + 1].id) {
+            page.insert_before = vm.data.story.pages[index + 1].id;
+        }
+        vm.data.story.pages.splice(index + 1, 0, page);
     }
 
     function deleteStoryPrompt() {

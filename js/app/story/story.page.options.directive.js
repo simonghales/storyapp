@@ -21,8 +21,8 @@
          */
         var directive = {
             restrict: 'E',
-            controller: 'PageOptionsCTRL',
-            controllerAs: 'pageOptionsVM',
+            //controller: 'PageOptionsCTRL',
+            //controllerAs: 'pageOptionsVM',
             templateUrl: 'partials/story/_storyPageOptions.html',
             replace: true,
             //scope: {

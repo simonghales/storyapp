@@ -84,3 +84,12 @@
   }
 
 }
+
+.story-page-bottom {
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 50;
+}

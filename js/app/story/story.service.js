@@ -18,6 +18,7 @@
     function StoryResource(Restangular) {
         var service = Restangular.service('api/stories');
         service.prep = prep;
+        service.prepPage = prepPage;
         service.stringifyElements = stringifyElements;
         return service;
 
@@ -30,6 +31,10 @@
             }
 
             return data;
+        }
+
+        function prepPage(page) {
+            return _prepPage(page);
         }
 
         function stringifyElements(elements) {
