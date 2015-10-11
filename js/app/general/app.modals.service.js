@@ -20,6 +20,7 @@
 
         service.signIn = signIn;
         service.signUp = signUp;
+        service.uploadImage = uploadImage;
         service.createStory = createStory;
         service.deleteStory = deleteStory;
         service.deleteStoryPage = deleteStoryPage;
@@ -55,6 +56,19 @@
                 template: 'partials/story/_createStory.html',
                 className: 'yepDialog-theme-default yepDialog-theme--wide',
                 controller: 'CreateStoryCTRL',
+                controllerAs: 'modalVM',
+                preCloseCallback: function() {
+                    unfreezeSite();
+                }
+            });
+        }
+
+        function uploadImage(data) {
+            return ngDialog.open({
+                template: 'partials/image/_uploadImage.html',
+                className: 'yepDialog-theme-default yepDialog-theme--wide __fullWidth',
+                data: data,
+                controller: 'UploadImageCTRL',
                 controllerAs: 'modalVM',
                 preCloseCallback: function() {
                     unfreezeSite();

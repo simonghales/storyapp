@@ -1,0 +1,32 @@
+<section class="modal modal--rounded modal--confirm"
+         ng-class="{ 'state__busy' : modalVM.states.busy,
+          'state__error' : modalVM.states.error,
+          'state__prepping' : modalVM.states.prepping,
+          'state__processing' : modalVM.states.processing,
+          'state__uploading' : modalVM.states.uploading
+          }">
+    <h3 class="title--default">Upload an Image</h3>
+    <div class="modal__body">
+        <figure back-img="{{modalVM.image.original}}"
+                class="bgImagePreview flex--centered"
+                ngf-select="modalVM.uploadImage($file);">
+            <button class="button button--medium">
+                <span ng-hide="modalVM.states.busy">Upload an Image</span>
+                        <span class="show__prepping">
+                            Preparing... <span class="loader loader--miniBlue"></span>
+                        </span><span class="show__processing">
+                            Processing... <span class="loader loader--miniBlue"></span>
+                        </span>
+                        <span class="show__uploading">
+                            Uploading <span ng-bind="modalVM.states.uploadProgress"></span>%
+                        </span>
+            </button>
+        </figure>
+        <div class="modal__majorButtons">
+            <button class="btn btn__simple __plain" ng-click="closeThisDialog();">Cancel</button>
+            <button class="btn btn__simple __warning" ng-click="modalVM.confirm();">
+                <span>Save</span>
+            </button>
+        </div>
+    </div>
+</section>

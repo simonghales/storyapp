@@ -1,5 +1,6 @@
 <aside class="storyPage__options">
-    <button class="option button button--round __hover--cool">
+    <button ng-click="pageOptionsVM.changeImage(page);"
+            class="option button button--round __hover--cool">
         <span class="icon icon-picture"></span>
     </button>
     <button ng-click="pageOptionsVM.deletePage(page, $index);"

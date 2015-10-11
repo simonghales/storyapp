@@ -81,7 +81,10 @@ angular.module('app.story.directives', []);
 
 angular.module('app.image', [
     'app.image.services',
+    'app.image.controllers',
 ]);
 
 angular.module('app.image.services', []);
+
+angular.module('app.image.controllers', []);
 
