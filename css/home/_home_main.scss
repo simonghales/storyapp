@@ -223,7 +223,9 @@ $parallax-ios         : true !default;
     &:nth-of-type(1),
     &:nth-of-type(5),
     &:nth-of-type(9),
-    &:nth-of-type(13) {
+    &:nth-of-type(13),
+    &:nth-of-type(17),
+    &:nth-of-type(21) {
       width: 50%;
     }
 

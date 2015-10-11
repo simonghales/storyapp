@@ -33,7 +33,7 @@ function StoryHomeCTRL(StoryResource, Restangular) {
     function getStories() {
         vm.states.loading = true;
         StoryResource.getList({
-            random: 9
+            //random: 9
         }).then(function(data) {
             vm.data.stories = data;
             vm.states.loaded = true;
