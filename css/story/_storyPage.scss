@@ -1,6 +1,7 @@
 .story-page {
   height: 100vh;
   width: 100%;
+  position: relative;
 
   &.state__deleted {
     display: none;

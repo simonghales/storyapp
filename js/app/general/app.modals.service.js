@@ -21,6 +21,8 @@
         service.signIn = signIn;
         service.signUp = signUp;
         service.createStory = createStory;
+        service.deleteStory = deleteStory;
+        service.deleteStoryPage = deleteStoryPage;
 
         return service;
 
@@ -53,6 +55,32 @@
                 template: 'partials/story/_createStory.html',
                 className: 'yepDialog-theme-default yepDialog-theme--wide',
                 controller: 'CreateStoryCTRL',
+                controllerAs: 'modalVM',
+                preCloseCallback: function() {
+                    unfreezeSite();
+                }
+            });
+        }
+
+        function deleteStory(data) {
+            return ngDialog.open({
+                template: 'partials/story/_deleteStory.html',
+                className: 'yepDialog-theme-default',
+                data: data,
+                controller: 'DeleteStoryCTRL',
+                controllerAs: 'modalVM',
+                preCloseCallback: function() {
+                    unfreezeSite();
+                }
+            });
+        }
+
+        function deleteStoryPage(data) {
+            return ngDialog.open({
+                template: 'partials/story/_deletePage.html',
+                className: 'yepDialog-theme-default',
+                data: data,
+                controller: 'DeleteStoryPageCTRL',
                 controllerAs: 'modalVM',
                 preCloseCallback: function() {
                     unfreezeSite();

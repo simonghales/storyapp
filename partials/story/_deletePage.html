@@ -1,0 +1,12 @@
+<section class="modal modal--rounded modal--confirm"
+         ng-class="{ 'state__busy' : modalVM.states.busy }">
+    <h3 class="title--default">Delete Page</h3>
+    <h4 class="title--default">This is permanent and can't be undone.</h4>
+    <div class="modal__body">
+        <button class="btn btn__simple __plain" ng-click="closeThisDialog();">Cancel</button>
+        <button class="btn btn__simple __warning" ng-click="modalVM.confirm();">
+            <span class="hide__busy">Delete</span>
+            <span class="show__busy">Deleting...</span>
+        </button>
+    </div>
+</section>

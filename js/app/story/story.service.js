@@ -23,7 +23,7 @@
 
         function prep(data) {
             //var preppedData = data;
-            //
+
             for(var i = 0, len = data.pages.length; i < len; i++) {
                 var page = data.pages[i];
                 page = _prepPage(page);

@@ -2,6 +2,7 @@ var siteFrozen = false;
 
 
 function freezeSite() {
+    console.log("Freeze the site");
     siteFrozen = true;
     var scrollOffset = $(window).scrollTop();
     $("#siteWrapper").attr("data-scroll", scrollOffset)
@@ -16,10 +17,10 @@ function calculateSiteHeight() {
 }
 
 function unfreezeSite() {
+    console.log("Unfreeze the site");
     $("body").css("height", "auto");
     siteFrozen = false;
     $("body").removeClass("state__siteFrozen");
-    //$("#siteWrapper").css("top", "auto");
     var scrollOffset = $("#siteWrapper").attr("data-scroll");
     $("body").scrollTop($("body").scrollTop() + scrollOffset);
 }

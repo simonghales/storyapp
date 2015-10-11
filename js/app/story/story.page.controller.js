@@ -17,7 +17,7 @@ function StoryPageCTRL($scope, StoryResource) {
     ////////////////
 
     function activate() {
-        console.log("Page's scope", vm.page);
+        //console.log("Page's scope", vm.page);
 
         //console.log("Stringified", StoryResource.stringifyElements(vm.page.elements_prepped));
     }

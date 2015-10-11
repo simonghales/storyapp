@@ -7,10 +7,14 @@ a.button {
 }
 
 .button--animGrow {
-  @include transition(transform 200ms ease-out);
+  @include transition(all 200ms ease-out);
 
   &:hover {
     transform: scale(1.2);
+  }
+
+  &:active {
+    transform: translateY(2px);
   }
 
 }
@@ -319,6 +323,16 @@ a.button {
     @include gradient(#03C19B, #03D6AC);
   }
 
+  &.__warning {
+    background-color: $colour--warning;
+    color: #FFFFFF;
+
+    &:active {
+      @include gradient(darken($colour--warning, 2%), $colour--warning);
+    }
+
+  }
+
   &.__plain {
     background-color: #FFFFFF;
     color: #A0A0A0;
@@ -401,6 +415,26 @@ a.button {
   font-size: 14px;
   color: $colour--medium;
   @include border-radius(50%);
+  @include box-shadow(0 1px 1px rgba(0,0,0,0.2));
+
+  &.__hover--warning {
+
+    &:hover {
+      color: #FFFFFF;
+      background-color: $colour--warning;
+    }
+
+  }
+
+  &.__hover--cool {
+
+    &:hover {
+      color: #FFFFFF;
+      background-color: $colour--action;
+    }
+
+  }
+
 }
 
 .button--listed {

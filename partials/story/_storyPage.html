@@ -1,4 +1,5 @@
 <article class="story-page" ng-class="{ 'state__deleted' : page.deleted }">
+    <page-options ng-if="story.states.owner"></page-options>
     <div class="story-page-img" back-img="{{page.background_image_urls[0].original}}">
         <div class="story-page-width"
              page-width="page.measurements_prepped.container_width">

@@ -1,0 +1,13 @@
+
+.storyPage__options {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 50;
+
+  .option {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+}

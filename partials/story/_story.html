@@ -1,8 +1,10 @@
 <article class="story"
          ng-class="{ 'state__loading' : story.states.loading,
          'state__owner' : story.states.owner,
-         'state__emptyStory' : !story.states.loading && story.data.story.pages.length == 0 }">
-    <story-menu class="hide__loading"></story-menu>
+         'state__emptyStory' : !story.states.loading && story.data.story.pages.length == 0,
+         'state__deleted' : story.states.deleted }">
+    <story-menu
+            ng-show="!story.states.loading && story.states.owner && !story.states.deleted"></story-menu>
     <section class="show__loading">
         <div class="flex__wrapper __positionAbsolute">
             <ul class="loadingDots">
@@ -15,6 +17,11 @@
     <div class="story__pages">
         <story-page ng-repeat="page in story.data.story.pages"></story-page>
     </div>
+    <section class="story__empty show__deleted">
+        <div class="__maxSize">
+            <h3>This story has been deleted</h3>
+        </div>
+    </section>
     <section class="story__empty show__emptyStory">
         <div class="__maxSize show__owner">
             Add a page!
