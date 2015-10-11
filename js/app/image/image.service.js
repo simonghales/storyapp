@@ -54,9 +54,10 @@
                     var ctx = canvas.getContext("2d");
                     ctx.drawImage(this, 0, 0, tempW, tempH);
                     var dataURL = canvas.toDataURL("image/jpeg");
+                    var blob = canvas.toBlob();
                     var data = 'image=' + dataURL;
 
-                    callback(dataURL);
+                    callback(dataURL, blob);
 
 
                 }
