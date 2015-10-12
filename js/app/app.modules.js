@@ -17,7 +17,8 @@ angular.module('app', [
     'ui.router',
     'ngFileUpload',
     'restangular',
-    'ngAnimate'
+    'ngAnimate',
+    'templates',
 ]);
 
 angular.module('app.filters', []);
@@ -87,4 +88,9 @@ angular.module('app.image', [
 angular.module('app.image.services', []);
 
 angular.module('app.image.controllers', []);
+
+// Templates
+
+angular
+    .module('templates', []);
 
