@@ -14,7 +14,8 @@ function StoryCTRL($rootScope, $stateParams, StoryResource, PageResource, Modals
         loading: false,
         loaded: false,
         error: false,
-        owner: false
+        owner: false,
+        editing: false,
     }
 
     vm.data = {
@@ -26,6 +27,7 @@ function StoryCTRL($rootScope, $stateParams, StoryResource, PageResource, Modals
     vm.addPage = addPage;
     vm.deleteStoryPrompt = deleteStoryPrompt;
     vm.removePage = removePage;
+    vm.toggleEditing = toggleEditing;
 
     activate();
 
@@ -77,6 +79,10 @@ function StoryCTRL($rootScope, $stateParams, StoryResource, PageResource, Modals
         console.log("I should remove page at index:", index);
     }
 
+    function toggleEditing() {
+        vm.states.editing = !vm.states.editing;
+    }
+
     // Private functions
 
     function _prepStory() {
@@ -87,8 +93,10 @@ function StoryCTRL($rootScope, $stateParams, StoryResource, PageResource, Modals
         if(!$rootScope.user) return;
         if(vm.data.story.author.id == $rootScope.user.id) {
             vm.states.owner = true;
+            vm.states.editing = true;
         } else {
             vm.states.owner = false;
+            vm.states.editing = false;
         }
     }
 

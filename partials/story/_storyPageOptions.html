@@ -7,4 +7,13 @@
             class="option button button--round __hover--warning">
         <span class="icon icon-trash"></span>
     </button>
+    <button ng-click="pageVM.savePage();"
+            ng-class="{
+                'state__active' : pageVM.states.pendingChanges,
+                'state__busy' : pageVM.states.updating
+            }"
+            class="option button button--round">
+        <span class="icon icon-floppy hide__busy"></span>
+        <span class="loader loader--miniBlue show__busy __inline"></span>
+    </button>
 </aside>

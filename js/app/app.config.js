@@ -25,7 +25,7 @@ angular.module('app').config(function(RestangularProvider, API_URL) {
 
 });
 
-angular.module('app').run(function($rootScope, $http, $cookies, ngDialog, AuthenticationResource, UserResource) {
+angular.module('app').run(function($rootScope, $http, $state, $cookies, ngDialog, AuthenticationResource, UserResource) {
 
     $rootScope.states = {
         signedIn : false,
@@ -69,11 +69,13 @@ angular.module('app').run(function($rootScope, $http, $cookies, ngDialog, Authen
 
     $rootScope.$on('user-signedIn', function() {
         $rootScope.states.signedIn = true;
+        $state.go($state.current, {}, {reload: true});
     });
 
     $rootScope.$on('user-signedOut', function() {
         $rootScope.states.signedIn = false;
         AuthenticationResource.clearAuth();
+        $state.go($state.current, {}, {reload: true});
     });
 
     //if($cookies.get("globals")) {

@@ -29,13 +29,60 @@
                 horizontal: "=",
                 vertical: "=",
                 elements: "=",
+                measurements: "=",
+                config: "=",
+                owner: "=",
+                editing: "=",
+                pending: "="
             }
         }
 
         directive.link = function(scope, element, attributes) {
 
-            element.addClass("posHorizontal__" + scope.horizontal);
-            element.addClass("posVertical__" + scope.vertical);
+            _calculatePosition();
+
+            element.css({
+                width: scope.measurements.text_width,
+                height: scope.measurements.text_height
+            });
+
+            scope.moveText = function(direction, type) {
+                if(type == 'v') {
+                    scope.vertical = direction;
+                } else {
+                    scope.horizontal = direction;
+                }
+                _calculatePosition();
+                scope.pending();
+            }
+
+            if(scope.owner) {
+                element.resizable(scope.config);
+
+                if(!scope.editing) {
+                    element.resizable("disable");
+                }
+
+                scope.$watch('editing', function (enabled, oldValue) {
+                    if(enabled) {
+                        element.resizable("enable");
+                    } else {
+                        element.resizable("disable");
+                    }
+                }, true);
+
+            }
+
+            // Private function
+
+            function _calculatePosition() {
+                element.removeClass("posHorizontal__left " +
+                    "posHorizontal__right " +
+                    "posVertical__top " +
+                    "posVertical__bottom")
+                    .addClass("posHorizontal__" + scope.horizontal)
+                    .addClass("posVertical__" + scope.vertical);
+            }
 
         }
 

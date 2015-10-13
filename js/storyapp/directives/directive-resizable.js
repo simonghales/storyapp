@@ -16,7 +16,7 @@ angular.module('storyApp').directive('resizable', ['$rootScope', 'Author', funct
             elem.resizable(resizableConfig);
 
             if(!scope.editing) {
-                elem.resizable("disable");
+                elem.resizable().resizable("disable");
             }
 
             scope.$on('$destroy',function() {

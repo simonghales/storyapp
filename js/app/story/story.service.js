@@ -20,6 +20,7 @@
         service.prep = prep;
         service.prepPage = prepPage;
         service.stringifyElements = stringifyElements;
+        service.prepSavePage = prepSavePage;
         return service;
 
         function prep(data) {
@@ -35,6 +36,16 @@
 
         function prepPage(page) {
             return _prepPage(page);
+        }
+
+        function prepSavePage(page) {
+
+            page.measurements = JSON.stringify(page.measurements_prepped);
+            page.elements = angular.toJson(page.elements_prepped);
+            //page = angular.toJson(page);
+
+            return page;
+
         }
 
         function stringifyElements(elements) {
@@ -56,7 +67,7 @@
         function _prepMeasurements(measurementsString) {
 
             var measurements = {
-                container_width: "1024px",
+                container_width: "804px",
                 vertical_offset: "50px",
                 horizontal_offset: "80px",
                 text_width: "300px",
@@ -66,7 +77,10 @@
             }
 
             if(measurementsString) {
-                //measurements = JSON.parse(measurementsString); todo add back
+                var providedMeasurements = JSON.parse(measurementsString);
+                if(providedMeasurements.container_width) {
+                    measurements = JSON.parse(measurementsString);
+                }
             }
 
             return measurements;
@@ -76,14 +90,16 @@
         function _prepElements(elementsString) {
             var elements_prepped = [];
 
-            elementsString = '[' +
-                '{"text":"Lorem ipsum woopum","font_size":"42px","color":"#000000","text_align":"left"},' +
+            var defaultString = '[' +
+                '{"text":"Default ipsum woopum","font_size":"42px","color":"#000000","text_align":"left"},' +
                 '{"text":"Bananananana","font_size":"22px","color":"#004892","text_align":"center"},' +
                 '{"text":"Small writing!","font_size":"14px","color":"#000000","text_align":"right"}' +
                 ']';
 
             if(elementsString) {
                 elements_prepped = JSON.parse(elementsString);
+            } else {
+                elements_prepped = JSON.parse(defaultString);
             }
 
             return elements_prepped;

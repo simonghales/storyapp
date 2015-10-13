@@ -22,7 +22,10 @@
         var directive = {
             restrict: 'A',
             scope: {
-                pageWidth: "="
+                pageWidth: "=",
+                owner: "=",
+                editing: "=",
+                config: "=",
             }
         }
 
@@ -31,6 +34,23 @@
             element.css({
                 "max-width": scope.pageWidth
             });
+
+            if(scope.owner) {
+                element.resizable(scope.config);
+
+                if(!scope.editing) {
+                    element.resizable("disable");
+                }
+
+                scope.$watch('editing', function (enabled, oldValue) {
+                    if(enabled) {
+                        element.resizable("enable");
+                    } else {
+                        element.resizable("disable");
+                    }
+                }, true);
+
+            }
 
         }
 

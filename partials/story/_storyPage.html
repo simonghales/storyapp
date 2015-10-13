@@ -1,16 +1,31 @@
-<article class="story-page" ng-class="{ 'state__deleted' : page.deleted }">
-    <page-options ng-if="::story.states.owner"></page-options>
-    <div class="story-page-img" back-img="{{page.background_image_urls[0].original}}">
+<article class="story-page"
+         ng-class="{ 'state__deleted' : pageVM.page.deleted,
+         'state__updating' : pageVM.states.updating }">
+    <page-options ng-if="::story.states.owner" class="show__editing"></page-options>
+    <div class="story-page-img" back-img="{{pageVM.page.background_image_urls[0].original}}">
         <div class="story-page-width"
-             page-width="page.measurements_prepped.container_width">
+             config="pageVM.widthConfig"
+             owner="story.states.owner"
+             editing="story.states.editing"
+             page-width="pageVM.page.measurements_prepped.container_width">
+            <div class="page__width__slider __left"></div>
+            <div class="page__width__slider __right"></div>
             <div class="story-page-container"
                  page-offsets
-                 page-vertical="page.measurements_prepped.vertical_offset"
-                 page-horizontal="page.measurements_prepped.horizontal_offset">
+                 config="pageVM.offsetsConfig"
+                 owner="story.states.owner"
+                 editing="story.states.editing"
+                 page-vertical="pageVM.page.measurements_prepped.vertical_offset"
+                 page-horizontal="pageVM.page.measurements_prepped.horizontal_offset">
                 <story-text
-                        vertical="page.measurements_prepped.text_vertical"
-                        horizontal="page.measurements_prepped.text_horizontal"
-                        elements="page.elements_prepped">
+                        measurements="pageVM.page.measurements_prepped"
+                        config="pageVM.textConfig"
+                        owner="story.states.owner"
+                        editing="story.states.editing"
+                        vertical="pageVM.page.measurements_prepped.text_vertical"
+                        horizontal="pageVM.page.measurements_prepped.text_horizontal"
+                        elements="pageVM.page.elements_prepped"
+                        pending="pageVM.pendingChanges">
                 </story-text>
             </div>
         </div>

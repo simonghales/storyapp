@@ -1,6 +1,7 @@
 <article class="story"
          ng-class="{ 'state__loading' : story.states.loading,
          'state__owner' : story.states.owner,
+         'state__editing' : story.states.editing,
          'state__emptyStory' : !story.states.loading && story.data.story.pages.length == 0,
          'state__deleted' : story.states.deleted }">
     <story-menu
@@ -23,7 +24,8 @@
         </div>
     </section>
     <section class="story__empty show__emptyStory">
-        <div class="__maxSize show__owner">
+        <div class="__maxSize show__owner align__center">
+            <h3>Add a Page</h3>
             <button ng-click="story.addPage(0);" class="button button--round __hover--cool">
                 <span class="icon icon-plus"></span>
             </button>

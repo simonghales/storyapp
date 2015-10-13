@@ -24,6 +24,9 @@
             scope: {
                 pageVertical: "=",
                 pageHorizontal: "=",
+                owner: "=",
+                editing: "=",
+                config: "=",
             }
         }
 
@@ -35,6 +38,24 @@
                 "left": scope.pageHorizontal,
                 "right": scope.pageHorizontal,
             });
+
+            if(scope.owner) {
+                element.resizable(scope.config);
+
+                if(!scope.editing) {
+                    console.log("Disable boop woop!");
+                    element.resizable("disable");
+                }
+
+                scope.$watch('editing', function (enabled, oldValue) {
+                    if(enabled) {
+                        element.resizable("enable");
+                    } else {
+                        element.resizable("disable");
+                    }
+                }, true);
+
+            }
 
         }
 

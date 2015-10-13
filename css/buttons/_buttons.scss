@@ -435,6 +435,23 @@ a.button {
 
   }
 
+  &.state__active,
+  &.state__busy {
+    color: #FFFFFF;
+    background-color: $colour--action;
+  }
+
+  &.state__busy {
+    transform: scale(1.2);
+
+    .loader {
+      height: 100%;
+      width: 100%;
+      transform: translate(-1px, -1px);
+    }
+
+  }
+
 }
 
 .button--listed {

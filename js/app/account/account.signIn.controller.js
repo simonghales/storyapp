@@ -66,6 +66,7 @@ function SignInCTRL($rootScope, $scope, AuthenticationResource, UserResource) {
             .then(function(data) {
                 console.log("Got current user", data);
                 UserResource.storeUser(data.plain());
+                $rootScope.user = data.plain();
                 $rootScope.$broadcast('user-signedIn');
                 vm.states.busy = false;
                 $scope.closeThisDialog();

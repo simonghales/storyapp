@@ -1,3 +1,21 @@
 <section class="story-page-text">
-    <story-element ng-repeat="element in elements"></story-element>
+    <story-element ng-repeat="element in elements track by $index"></story-element>
+    <div class="page__text__positionControls show__editing">
+        <button ng-click="moveText('top', 'v')"
+                class="direction__button button button--round __hover--cool direction__up">
+            <span class="icon icon-up-big"></span>
+        </button>
+        <button ng-click="moveText('bottom', 'v')"
+                class="direction__button button button--round __hover--cool direction__down">
+            <span class="icon icon-down-big"></span>
+        </button>
+        <button ng-click="moveText('left', 'h')"
+                class="direction__button button button--round __hover--cool direction__left">
+            <span class="icon icon-left-big"></span>
+        </button>
+        <button ng-click="moveText('right', 'h')"
+                class="direction__button button button--round __hover--cool direction__right">
+            <span class="icon icon-right-big"></span>
+        </button>
+    </div>
 </section>

@@ -22,7 +22,21 @@
   width: 100%;
   height: 100%;
   opacity: 1;
+  overflow: hidden;
   @include transition(opacity 300ms linear);
+
+}
+
+&.state__editing {
+
+  .story-page-width {
+    position: relative;
+    outline: rgba(1, 46, 82, 0.48) solid 3000px;
+  }
+
+  .page__width__slider {
+    display: block;
+  }
 
 }
 
@@ -35,6 +49,25 @@
   position: relative;
 }
 
+.page__width__slider {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  width: 1px;
+  background-color: #FFF;
+  @include box-shadow(0 0 0 1px rgba(0, 0, 0, 0.25));
+  z-index: 2;
+
+  &.__right {
+    left: auto;
+    right: 0;
+  }
+
+}
+
 .story-page-container {
   position: absolute;
   top: 50px;
@@ -43,31 +76,134 @@
   right: 10px;
 }
 
+&.state__editing {
+
+  .story-page-container {
+    outline: #FFF dotted 2px;
+    @include box-shadow(0 0 0 3000px rgba(1, 46, 82, 0.35));
+  }
+
+}
+
+.state__editing {
+
+  .story-page-text {
+    outline: #FFF dotted 2px;
+    @include box-shadow(0 0 0 4px rgba(0, 0, 0, 0.25));
+  }
+
+}
+
 .story-page-text {
   position: absolute;
   top: 0;
   right: 0;
-  max-width: 200px;
-  max-height: 400px;
+  max-width: 100%;
+  max-height: 100%;
+  width: 200px;
+  height: 400px;
+
+  $positionButton-offset: 32px + 4px;
 
   &.posVertical__top {
     top: 0;
     bottom: auto;
+
+    .direction__button {
+
+      &.direction__left {
+        bottom: 0 - $positionButton-offset;
+      }
+
+      &.direction__right {
+        bottom: 0 - $positionButton-offset;
+      }
+
+      &.direction__up {
+        display: none;
+      }
+
+      &.direction__down {
+        bottom: 0 - $positionButton-offset;
+      }
+
+    }
+
   }
 
   &.posVertical__bottom {
     bottom: 0;
     top: auto;
+
+    .direction__button {
+
+      &.direction__left {
+        top: 0 - $positionButton-offset;
+      }
+
+      &.direction__right {
+        top: 0 - $positionButton-offset;
+      }
+
+      &.direction__up {
+        top: 0 - $positionButton-offset;
+      }
+
+      &.direction__down {
+        display: none;
+      }
+
+    }
+
   }
 
   &.posHorizontal__left {
     left: 0;
     right: auto;
+
+    .direction__button {
+
+      &.direction__left {
+        display: none;
+      }
+
+      &.direction__right {
+      }
+
+      &.direction__up {
+      }
+
+      &.direction__down {
+      }
+
+    }
+
   }
 
   &.posHorizontal__right {
     right: 0;
     left: auto;
+
+    .direction__button {
+
+      &.direction__left {
+        left: 0;
+      }
+
+      &.direction__right {
+        display: none;
+      }
+
+      &.direction__up {
+        right: 0;
+      }
+
+      &.direction__down {
+        right: 0;
+      }
+
+    }
+
   }
 
 }
@@ -92,4 +228,29 @@
   right: 0;
   text-align: center;
   z-index: 50;
+}
+
+.page__text__positionControls {
+
+  .direction__button {
+    position: absolute;
+
+    &.direction__left {
+      left: 0;
+    }
+
+    &.direction__right {
+      right: 0;
+    }
+
+    &.direction__up {
+      top: 0;
+    }
+
+    &.direction__down {
+      bottom: 0;
+    }
+
+  }
+
 }
