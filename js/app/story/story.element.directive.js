@@ -25,9 +25,23 @@
             controllerAs: 'elementVM',
             templateUrl: 'partials/story/_storyElement.html',
             replace: true,
-            //scope: {
-            //    playlist: "="
-            //}
+            scope: {
+                pending: "=",
+                element: "=",
+                //editing: "=",
+            }
+        }
+
+        directive.link = function(scope, element, attributes) {
+
+
+            scope.$watch('element.text', function (text, oldValue) {
+                if(text !== oldValue) {
+                    console.log("Text changed", text, oldValue);
+                    scope.pending();
+                }
+            }, true);
+
         }
 
         return directive;

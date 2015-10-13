@@ -19,6 +19,7 @@ angular.module('app', [
     'restangular',
     'ngAnimate',
     'templates',
+    'contenteditable',
 ]);
 
 angular.module('app.filters', []);

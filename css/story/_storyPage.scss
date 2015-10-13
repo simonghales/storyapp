@@ -208,6 +208,22 @@
 
 }
 
+.state__editing {
+
+  .story__element {
+
+    p {
+
+      &:focus {
+        outline: solid $colour--action 1px;
+      }
+
+    }
+
+  }
+
+}
+
 .story__element {
   margin: 10px 0;
 

@@ -47,6 +47,7 @@
             });
 
             scope.moveText = function(direction, type) {
+                console.log("Move text");
                 if(type == 'v') {
                     scope.vertical = direction;
                 } else {
@@ -76,6 +77,7 @@
             // Private function
 
             function _calculatePosition() {
+                console.log("Calculate positions");
                 element.removeClass("posHorizontal__left " +
                     "posHorizontal__right " +
                     "posVertical__top " +

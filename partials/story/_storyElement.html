@@ -1,3 +1,12 @@
 <div class="story__element">
-    <p ng-bind="elementVM.element.text" ng-style="elementVM.setStyles();"></p>
+    <p class="show__editing" ng-style="elementVM.setStyles();"
+       contenteditable="true"
+       ng-model="elementVM.element.text"
+       strip-br="false"
+       strip-tags="true"></p>
+    <p class="hide__editing" ng-style="elementVM.setStyles();"
+       contenteditable="false"
+       ng-model="elementVM.element.text"
+       strip-br="false"
+       strip-tags="true"></p>
 </div>

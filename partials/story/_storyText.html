@@ -1,5 +1,8 @@
 <section class="story-page-text">
-    <story-element ng-repeat="element in elements track by $index"></story-element>
+    <story-element editing="editing"
+                   element="element"
+                   pending="pending"
+                   ng-repeat="element in elements track by $index"></story-element>
     <div class="page__text__positionControls show__editing">
         <button ng-click="moveText('top', 'v')"
                 class="direction__button button button--round __hover--cool direction__up">
