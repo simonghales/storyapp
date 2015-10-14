@@ -12,6 +12,7 @@ function StoryElementCTRL($scope, StoryResource) {
     vm.element = $scope.element;
 
     vm.activate = activate;
+    vm.editElement = editElement;
     vm.setStyles = setStyles;
 
     activate();
@@ -20,6 +21,14 @@ function StoryElementCTRL($scope, StoryResource) {
 
     function activate() {
         //console.log("Scope for element", $scope);
+    }
+
+    function editElement($event) {
+        var offset = {
+            x : $event.pageX,
+            y : $event.pageY
+        }
+        $scope.editElement(vm.element, $scope.pending, offset);
     }
 
     function setStyles() {

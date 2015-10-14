@@ -16,10 +16,20 @@ function StoryCTRL($rootScope, $stateParams, StoryResource, PageResource, Modals
         error: false,
         owner: false,
         editing: false,
+        textEditorOpen: false
     }
 
     vm.data = {
         story: null
+    }
+
+    vm.editingOffset = null;
+    vm.editingPagePending = null;
+    vm.editingElement = null;
+
+    vm.editorOptions = {
+        cancel: ".__noDrag",
+        containment: "window"
     }
 
     vm.activate = activate;
@@ -28,6 +38,7 @@ function StoryCTRL($rootScope, $stateParams, StoryResource, PageResource, Modals
     vm.deleteStoryPrompt = deleteStoryPrompt;
     vm.removePage = removePage;
     vm.toggleEditing = toggleEditing;
+    vm.editElement = editElement;
 
     activate();
 
@@ -39,7 +50,7 @@ function StoryCTRL($rootScope, $stateParams, StoryResource, PageResource, Modals
 
     function getStory() {
         vm.states.loading = true;
-        console.log("Get story", StoryResource);
+        //console.log("Get story", StoryResource);
         StoryResource.one($stateParams.id).get().then(function(data) {
             console.log("Loaded data", data);
             if(data.deleted) {
@@ -81,6 +92,14 @@ function StoryCTRL($rootScope, $stateParams, StoryResource, PageResource, Modals
 
     function toggleEditing() {
         vm.states.editing = !vm.states.editing;
+    }
+
+    function editElement(element, pagePending, offset) {
+        vm.states.textEditorOpen = true;
+        vm.editingElement = element;
+        vm.editingPagePending = pagePending;
+        vm.editingOffset = offset;
+        console.log("Editing new element", vm.editingElement, vm.editingPagePending);
     }
 
     // Private functions

@@ -28,6 +28,7 @@
             scope: {
                 pending: "=",
                 element: "=",
+                editElement: "="
                 //editing: "=",
             }
         }
@@ -37,7 +38,8 @@
 
             scope.$watch('element.text', function (text, oldValue) {
                 if(text !== oldValue) {
-                    console.log("Text changed", text, oldValue);
+                    //console.log("Text changed", text, oldValue);
+                    //scope.element.text = text.substring(0, 200);
                     scope.pending();
                 }
             }, true);

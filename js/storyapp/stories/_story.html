@@ -26,7 +26,9 @@
         </ul>
     </aside>
     <div class="textEditor-wrapper show__editing">
-        <text-editor drag-me="" drag-options="{{story.editorOptions}}"></text-editor>
+        <text-editor visible="story.states.textEditorOpen"
+                     drag-me=""
+                     drag-options="{{story.editorOptions}}"></text-editor>
         <!--<text-menu></text-menu>-->
     </div>
     <section class="show__loading">

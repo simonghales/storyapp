@@ -33,7 +33,8 @@
                 config: "=",
                 owner: "=",
                 editing: "=",
-                pending: "="
+                pending: "=",
+                editElement: "="
             }
         }
 

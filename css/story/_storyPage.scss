@@ -90,6 +90,15 @@
   .story-page-text {
     outline: #FFF dotted 2px;
     @include box-shadow(0 0 0 4px rgba(0, 0, 0, 0.25));
+
+    &:hover {
+
+      .element--editable {
+        background-color: rgba(0,0,0,0.1);
+      }
+
+    }
+
   }
 
 }
@@ -226,6 +235,7 @@
 
 .story__element {
   margin: 10px 0;
+  position: relative;
 
   &:first-child {
     margin-top: 0;
@@ -233,6 +243,19 @@
 
   &:last-child {
     margin-bottom: 0;
+  }
+
+}
+
+.element--editable {
+  @include transition(background-color 200ms ease-in);
+}
+
+.element__options {
+
+  .option {
+    position: absolute;
+    left: -24px - 4px;
   }
 
 }

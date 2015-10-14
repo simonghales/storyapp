@@ -41,6 +41,7 @@
         function prepSavePage(page) {
 
             page.measurements = JSON.stringify(page.measurements_prepped);
+
             page.elements = angular.toJson(page.elements_prepped);
             //page = angular.toJson(page);
 

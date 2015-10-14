@@ -33,7 +33,7 @@ function StoryPageCTRL($scope, Restangular, StoryResource, PageResource, ModalsS
             vm.page.defaultTemplate = null;
         }
 
-        console.log("Page's elements", vm.page.elements_prepped);
+        //console.log("Page's elements", vm.page.elements_prepped);
         //console.log("Page's scope", vm.page);
 
         //console.log("Stringified", StoryResource.stringifyElements(vm.page.elements_prepped));
@@ -57,7 +57,7 @@ function StoryPageCTRL($scope, Restangular, StoryResource, PageResource, ModalsS
     }
 
     function moveText(direction) {
-        console.log("Update direction!");
+        //console.log("Update direction!");
         if(direction == "top") {
             vm.page.measurements_prepped.text_vertical = "top";
             return;
@@ -125,8 +125,6 @@ function StoryPageCTRL($scope, Restangular, StoryResource, PageResource, ModalsS
                 vm.states.updating = false;
             });
     }
-
-    // Private functions
 
     function _createPage() {
         PageResource.post(vm.page)

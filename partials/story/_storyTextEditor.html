@@ -1,0 +1,48 @@
+<div class="textEditor" off-click="textEditor.hide();" off-click-if="visible" off-click-filter="'.storyUi__button'">
+    <div class="handle handle__n"></div>
+    <div class="handle handle__e"></div>
+    <div class="handle handle__s"></div>
+    <div class="handle handle__w"></div>
+    <div class="padding __noDrag">
+        <div class="content">
+            <button class="button button__close icon icon-cancel" ng-click="textEditor.hide();"></button>
+            <section class="inputSection">
+                <label class="label__plain">Colour</label>
+                <div class="inputWrapper">
+                    <input type="text" class="input__plain" ng-model="textEditor.element.color" readonly/>
+                </div>
+                <color-picker ng-model="textEditor.element.color"></color-picker>
+            </section>
+            <section class="inputSection" ng-class="{ 'state__dropdown' : textEditor.states.dropdown_fontSize }">
+                <label class="label__plain" for="textEditor-fontSize">Font-size</label>
+                <div class="input__dropdown inputWrapper">
+                    <input class="input__plain" id="textEditor-fontSize" type="text"
+                           ng-model="textEditor.element.font_size" readonly
+                           ng-click="textEditor.toggleDropdownFont();" />
+                    <span class="icon icon-down-dir" ng-click="textEditor.toggleDropdownFont();"></span>
+                    <ul class="dropdown dropdown__input">
+                        <li ng-repeat="option in textEditor.options.fontSize" ng-click="textEditor.selectOption(option,
+					'font_size', 'dropdown_fontSize')">
+                            {{ ::option }}
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="inputSection" ng-class="{ 'state__dropdown' : textEditor.states.dropdown_textAlign }"> <!-- state__dropdown -->
+                <label class="label__plain" for="textEditor-alignment">Text-align</label>
+                <div class="input__dropdown inputWrapper">
+                    <input class="input__plain" id="textEditor-alignment" type="text"
+                           ng-model="textEditor.element.text_align" readonly
+                           ng-click="textEditor.toggleDropdownAlign();" />
+                    <span class="icon icon-down-dir" ng-click="textEditor.toggleDropdownAlign();"></span>
+                    <ul class="dropdown dropdown__input">
+                        <li ng-repeat="option in textEditor.options.textAlign" ng-click="textEditor.selectOption(option,
+					'text_align', 'dropdown_textAlign')">
+                            {{ ::option }}
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

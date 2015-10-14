@@ -1,11 +1,17 @@
 <div class="story__element">
-    <p class="show__editing" ng-style="elementVM.setStyles();"
-       contenteditable="true"
+    <div class="element__options show__editing">
+        <button ng-click="elementVM.editElement($event);"
+                class="storyUi__button option button button--round __mini __hover--cool">
+            <span class="icon icon-font"></span>
+        </button>
+    </div>
+    <p class="hide__editing" ng-style="elementVM.setStyles();"
+       contenteditable="false"
        ng-model="elementVM.element.text"
        strip-br="false"
        strip-tags="true"></p>
-    <p class="hide__editing" ng-style="elementVM.setStyles();"
-       contenteditable="false"
+    <p class="show__editing element--editable" ng-style="elementVM.setStyles();"
+       contenteditable="true"
        ng-model="elementVM.element.text"
        strip-br="false"
        strip-tags="true"></p>

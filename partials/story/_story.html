@@ -6,6 +6,13 @@
          'state__deleted' : story.states.deleted }">
     <story-menu
             ng-show="!story.states.loading && story.states.owner && !story.states.deleted"></story-menu>
+    <text-editor ng-if="story.states.textEditorOpen"
+                 drag-me=""
+                 drag-options="{{story.editorOptions}}"
+                 visible="story.states.textEditorOpen"
+                 offset="story.editingOffset"
+                 pending="story.editingPagePending"
+                 editing-element="story.editingElement"></text-editor>
     <section class="show__loading">
         <div class="flex__wrapper __positionAbsolute">
             <ul class="loadingDots">
@@ -16,7 +23,8 @@
         </div>
     </section>
     <div class="story__pages">
-        <story-page ng-controller="StoryPageCTRL as pageVM" ng-repeat="page in story.data.story.pages"></story-page>
+        <story-page ng-controller="StoryPageCTRL as pageVM"
+                    ng-repeat="page in story.data.story.pages"></story-page>
     </div>
     <section class="story__empty show__deleted">
         <div class="__maxSize">
